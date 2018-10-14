@@ -25,7 +25,7 @@
                     <tr *ngFor="let recipe of recipes">
                       <td>{{recipe.title}}</td>
                       <td>
-                        <a [routerLink]="['/home/recipes/', recipe.key]" class="btn btn-sm">Voir en Détail</a>
+                        <a [routerLink]="['/recipes/', recipe.key]" class="btn btn-sm">Voir en Détail</a>
                       </td>
                     </tr>
                   </tbody>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-// TO DO
-// remove /home of every route
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

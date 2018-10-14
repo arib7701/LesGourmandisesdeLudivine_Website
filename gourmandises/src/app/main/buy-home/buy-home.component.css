@@ -1,0 +1,34 @@
+.cakes-heading {
+  margin-bottom: 5em;
+}
+
+.cakes-heading h3 {
+  font-size: 40px;
+  margin-left: -100px;
+  line-height: 1;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+  z-index: 2;
+  width: 300px;
+}
+
+.buy {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+i {
+  font-size: 70px;
+  color: #f14e95;
+}
+
+@media screen and (max-width: 768px) {
+  .buy {
+    margin-bottom: 50px;
+  }
+}

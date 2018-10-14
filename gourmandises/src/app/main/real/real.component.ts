@@ -37,6 +37,8 @@ export class RealComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.subscriptionReal.unsubscribe();
+    if (this.subscriptionReal !== undefined) {
+      this.subscriptionReal.unsubscribe();
+    }
   }
 }

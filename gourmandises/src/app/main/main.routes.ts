@@ -18,15 +18,14 @@ import { RealComponent } from './real/real.component';
 
 export const mainRoutes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: MainComponent,
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       { path: 'gallery', component: GalleryComponent },
       { path: 'gallery/:cat', component: GalleryDetailComponent },
       { path: 'recipes', component: RecipesComponent },
       { path: 'recipes/:id', component: RecipeDetailComponent },
-      { path: 'real', component: RealComponent },
       { path: 'real/:id', component: RealDetailComponent },
       { path: 'archivesReal', component: ArchivesRealComponent },
       { path: 'archivesActu', component: ArchivesActuComponent },

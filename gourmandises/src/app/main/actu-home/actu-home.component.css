@@ -1,0 +1,152 @@
+#cakes-topnews {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#cakes-topnews {
+  height: auto;
+  float: left;
+}
+
+#cakes-topnews .display-t,
+#cakes-topnews .display-tc {
+  height: auto;
+  display: table;
+  width: 100%;
+}
+
+#cakes-topnews .cakes-heading h2 {
+  color: #fff;
+}
+
+#cakes-topnews .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#cakes-topnews .topnews-img {
+  padding: 30px;
+  width: 100%;
+  float: left;
+}
+
+#cakes-topnews .topnews-img img {
+  width: 100%;
+}
+
+#cakes-topnews .topnews-wrap {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  width: 100%;
+  float: left;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#cakes-topnews .topnews-wrap h3 {
+  font-size: 20px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  display: block;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#cakes-topnews .topnews-wrap p,
+#cakes-topnews .topnews-wrap span {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#cakes-topnews .topnews-wrap i {
+  color: white;
+  font-size: 20px;
+}
+
+#cakes-topnews .topnews-wrap .topnews-col {
+  margin-bottom: 30px;
+}
+
+#cakes-topnews {
+  padding: 3em 0;
+  clear: both;
+}
+
+.cakes-bg {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  float: left;
+  position: relative;
+}
+
+.topnewsText {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.topnews-wrap a {
+  font-size: 20px;
+}
+
+#cakes-archive .btn {
+  border: none !important;
+  background: #f14e95;
+  color: #fff;
+  font-size: 16px;
+  width: 200px;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+  bottom: -20px;
+  float: right;
+  right: 30px;
+}
+
+@media screen and (max-width: 990px) {
+  #cakes-archive .btn {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .cakes-heading {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-topnews {
+    height: inherit;
+    padding: 7em 0;
+  }
+
+  #cakes-topnews .display-t,
+  #cakes-topnews .display-tc {
+    height: 100vh;
+  }
+
+  #cakes-topnews .topnews-wrap {
+    margin-bottom: 10px;
+  }
+
+  #cakes-news {
+    padding: 3em 0;
+  }
+
+  .cakes-heading h2 {
+    font-size: 40px;
+  }
+}

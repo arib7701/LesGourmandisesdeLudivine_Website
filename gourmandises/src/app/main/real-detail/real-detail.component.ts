@@ -184,7 +184,10 @@ export class RealDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptionRoute.unsubscribe();
     this.subscriptionNews.unsubscribe();
-    this.subscriptionGal.unsubscribe();
+
+    if (this.subscriptionGal !== undefined) {
+      this.subscriptionGal.unsubscribe();
+    }
 
     if (this.subscriptionPartner !== undefined) {
       this.subscriptionPartner.unsubscribe();

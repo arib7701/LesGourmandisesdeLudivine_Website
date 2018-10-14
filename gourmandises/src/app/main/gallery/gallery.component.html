@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <ul id="cakes-gallery-list">
           <li class="one-third" *ngFor="let catGal of imgByCategories; let i = index;" data-animate-effect="fadeIn">
-            <a [routerLink]="['/home/gallery/', catGal.cat]">
+            <a [routerLink]="['/gallery/', catGal.cat]">
               <img class="galleryPresImg" *ngIf="catGal.imgs.length > 0;" src="{{imgPrinByCat[i]}}">
               <div class="case-studies-summary">
                 <span>{{catGal.imgs.length}} Photos</span>

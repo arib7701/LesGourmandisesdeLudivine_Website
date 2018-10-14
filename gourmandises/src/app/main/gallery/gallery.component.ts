@@ -61,7 +61,12 @@ export class GalleryComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.subscriptionCat.unsubscribe();
-    this.subscriptionGal.unsubscribe();
+    if (this.subscriptionCat !== undefined) {
+      this.subscriptionCat.unsubscribe();
+    }
+
+    if (this.subscriptionGal !== undefined) {
+      this.subscriptionGal.unsubscribe();
+    }
   }
 }

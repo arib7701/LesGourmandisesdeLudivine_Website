@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin']);
       })
       .catch(err => {
-        this.router.navigate(['/home/login']);
+        this.router.navigate(['/login']);
       });
   }
 }

@@ -31,6 +31,8 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.subscriptionRecipe.unsubscribe();
+    if (this.subscriptionRecipe !== undefined) {
+      this.subscriptionRecipe.unsubscribe();
+    }
   }
 }
