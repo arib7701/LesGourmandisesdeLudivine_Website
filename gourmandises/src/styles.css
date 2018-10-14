@@ -23,6 +23,24 @@
   font-family: 'Sacramento', Arial, serif;
 }
 
+.cakes-heading h3 {
+  font-size: 40px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+}
+
+.cakes-heading h5 {
+  font-size: 30px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+}
+
 @media screen and (max-width: 768px) {
   .returnBtn {
     padding-left: 10%;

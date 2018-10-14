@@ -1,3 +1,127 @@
-<p>
-  real-detail works!
-</p>
+<div id="cakes-realization" class="cakes-section-gray">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1 offset-md-1 returnBtn">
+        <button routerLink="/" class="btn btn-default">
+          Retour</button>
+      </div>
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>{{real?.title}}</h2>
+        <span>{{real?.date}}</span>
+      </div>
+    </div>
+    <div class="row" style="display:flex; align-items: center; justify-content: space-evenly;">
+      <div class="col-md-1 prevBtnTop">
+        <a *ngIf="nextReal !== undefined" [routerLink]="['/home/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i>Next</a>
+      </div>
+      <div class="col-md-3">
+        <div class="real-left">
+          <span class="icon">
+            <i class="fa fa-book"></i>
+          </span>
+          <div class="real-copy">
+            <h3></h3>
+            <p>{{real?.description}}</p>
+          </div>
+        </div>
+        <div class="real-left" *ngIf="real?.haveRecipe.exist === true">
+          <span class="icon">
+            <i class="fas fa-utensils"></i>
+          </span>
+          <div class="real-copy">
+            <h3></h3>
+            <a [routerLink]="['/home/recipes/', real.haveRecipe.recipeLink]">Voir la Recette</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 imgDetail">
+        <div class="row" style="display:flex;">
+          <div class="col-md-8 imgPrinc">
+            <img src="{{display}}" alt="img_principale">
+          </div>
+          <div class="col-md-2 col-sm-12 imgThumb">
+            <a (click)="changeDisplay(real.img.url)"><img src="{{real?.img.url}}" alt="img_principale"></a>
+            <div *ngFor="let gal of galleryImg">
+              <a (click)="changeDisplay(gal.img)"><img src="{{gal?.img}}" alt="img_gallery"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="real-left" style="text-align: center;">
+          <div class="cakes-heading text-center" style="margin-bottom: 10px;">
+            <h5>Likez Moi</h5>
+            <div>
+              <a (click)="liked()" [class.disabled]="likesDisabled ? true:false">
+                <span class="iconheart">
+                  <i class="fa fa-heart"></i>
+                </span></a>
+            </div>
+          </div>
+          <div *ngIf="real?.likes > 0" class="real-copy-likes">
+            <p>{{real.likes}} likes</p>
+          </div>
+        </div>
+        <div *ngIf="partnersArray?.length > 0" class="real-left">
+          <div class="real-copy">
+            <h3>Partenaires ou Produits</h3>
+            <div *ngFor="let partner of partnersArray">
+              <span class="icon" style="width:25px; height:25px;">
+                <i class="fa fa-star" style="font-size:15px;"></i>
+              </span>
+              <a *ngIf="partner?.website" href="https://{{partner?.website}}" target="_blank">{{partner?.name}}</a>
+              <span *ngIf="!partner?.website">{{partner?.name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1 prevBtnDown">
+        <a *ngIf="nextReal !== undefined" [routerLink]="['/home/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i>Next</a>
+      </div>
+      <div class="col-md-1 nextBtn">
+        <a *ngIf="prevReal !== undefined" [routerLink]="['/home/real/', prevNewId]"><i class="fa fa-arrow-circle-right arrow"></i>Prev</a>
+      </div>
+    </div>
+
+    <div id="cakes-realComment" class="row" style="display: flex;">
+      <div id="cakes-comment" class="col-md-4 offset-md-1 order-last cakes-heading">
+        <h3 class="text-center">Laissez un p'tit mot</h3>
+        <form class="form-inline" name="commentForm">
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="name">Votre Nom*</label>
+              <input type="text" [(ngModel)]="comment.name" name="name" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="message">Votre message*</label>
+              <textarea autosize name="message" [(ngModel)]="comment.mess" id="message" class="form-control" required
+                cols="30" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <button type="button" (click)="onSubmit()" class="btn btn-default">Envoyer</button>
+            </div>
+          </div>
+        </form>
+        <flash-messages></flash-messages>
+      </div>
+      <div class="col-md-5 offset-md-1 order-first cakes-heading" *ngIf="real?.comments?.length > 0">
+        <h3 class="text-center">Vos avis</h3>
+        <div class="wrap-comment">
+          <div class="item">
+            <div class="comment-slide active text-center" *ngFor="let com of real.comments">
+              <blockquote>
+                <span>{{com?.name}} - {{com?.date}}</span>
+                <p>"{{com?.mess}}"</p>
+              </blockquote>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

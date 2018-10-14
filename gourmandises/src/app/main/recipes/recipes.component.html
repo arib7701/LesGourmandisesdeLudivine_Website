@@ -1,3 +1,40 @@
-<p>
-  recipes works!
-</p>
+<div id="cakes-listrecipe">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1 offset-md-1 returnBtn">
+        <button routerLink="/" class="btn btn-default">
+          Retour</button>
+      </div>
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Mes Recettes</h2>
+        <p>Retrouvez en détails toutes les étapes et ingrédients de mes recettes! A vos fournots!</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 adminlist">
+        <ul class="timeline recipeList">
+          <li>
+            <div class="timeline-badge" style="background-image:url(../assets/img/edit_recipe.jpg);"></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h3 class="timeline-title">{{recipes?.length}} Recettes</h3>
+              </div>
+              <div class="timeline-body">
+                <table class="table table-hover" *ngIf="recipes?.length > 0;">
+                  <tbody>
+                    <tr *ngFor="let recipe of recipes">
+                      <td>{{recipe.title}}</td>
+                      <td>
+                        <a [routerLink]="['/home/recipes/', recipe.key]" class="btn btn-sm">Voir en Détail</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

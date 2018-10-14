@@ -1,0 +1,115 @@
+.newsSection {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.newsItem {
+  width: 100%;
+  float: left;
+  min-height: 350px;
+}
+
+.newsItem .news {
+  width: 100%;
+  height: 200px;
+  margin-right: 5px;
+}
+
+.newsItem h3 {
+  font-family: 'Sacramento', Arial, serif;
+  color: #f14e95;
+  text-align: center;
+  width: 150px;
+}
+
+.newsItem .news {
+  float: left;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.newsItem .news img {
+  width: 150px;
+  height: 150px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  margin-left: 2px;
+}
+
+.newsItem .desc-news {
+  text-align: center;
+}
+
+#cakes-archive .btn {
+  border: none !important;
+  background: #f14e95;
+  color: #fff;
+  font-size: 16px;
+  width: 200px;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+  bottom: 20px;
+  float: right;
+  right: -30px;
+}
+
+.newsItem .news {
+  justify-content: center;
+}
+
+@media screen and (max-width: 990px) {
+  #cakes-archive .btn {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-news {
+    padding: 3em 0;
+  }
+
+  .newsSection {
+    width: 100%;
+  }
+
+  .newsItem {
+    width: 100%;
+  }
+
+  .newsItem img {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .newsItem .news {
+    width: 100%;
+    height: 140px;
+  }
+
+  .newsItem .news img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+
+  .newsItem .news {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .newsItem .desc-news {
+    padding-right: 0;
+    text-align: center;
+  }
+}

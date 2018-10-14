@@ -14,6 +14,7 @@ import { BuyComponent } from './buy/buy.component';
 import { ArchivesRealComponent } from './archives-real/archives-real.component';
 import { GalleryDetailComponent } from './gallery-detail/gallery-detail.component';
 import { RealDetailComponent } from './real-detail/real-detail.component';
+import { RealComponent } from './real/real.component';
 
 export const mainRoutes: Routes = [
   {
@@ -25,6 +26,7 @@ export const mainRoutes: Routes = [
       { path: 'gallery/:cat', component: GalleryDetailComponent },
       { path: 'recipes', component: RecipesComponent },
       { path: 'recipes/:id', component: RecipeDetailComponent },
+      { path: 'real', component: RealComponent },
       { path: 'real/:id', component: RealDetailComponent },
       { path: 'archivesReal', component: ArchivesRealComponent },
       { path: 'archivesActu', component: ArchivesActuComponent },

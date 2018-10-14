@@ -16,6 +16,7 @@ import { BuyComponent } from './buy/buy.component';
 import { RealDetailComponent } from './real-detail/real-detail.component';
 import { RouterModule } from '@angular/router';
 import { mainRoutes } from './main.routes';
+import { RealComponent } from './real/real.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SharedModule } from '../shared/shared.module';
     AboutComponent,
     LoginComponent,
     BuyComponent,
-    RealDetailComponent
+    RealDetailComponent,
+    RealComponent
   ]
 })
 export class MainModule {}
