@@ -1,3 +1,34 @@
-<p>
-  navbar works!
-</p>
+<nav class="cakes-nav navbar navbar-expand-custom navbar-dark bg-light" [ngClass]="setClasses()" role="navigation"
+  style="background-color: transparent !important">
+  <a class="navbar-brand" id="cakes-logo" href="#"> Les Gourmandises de Ludivine</a>
+  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home">Accueil</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home/about">Mon Histoire</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home/gallery">Galerie</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home/recipes">Recettes</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home/partners">Mes Sponsors</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home/contact">Contact</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home/buy">Acheter <i class="fa fa-shopping-basket"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>

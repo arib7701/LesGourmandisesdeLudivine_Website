@@ -1,0 +1,157 @@
+.cakes-nav {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  padding: 40px 0;
+  z-index: 1001;
+}
+
+.navbar {
+  position: fixed !important;
+}
+
+.cakes-nav #cakes-logo {
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  line-height: 40px;
+  font-family: 'Sacramento', Arial, serif;
+}
+
+.cakes-nav #cakes-logo a:hover {
+  color: #f14e95 !important;
+}
+
+.cakes-nav ul li.active > a {
+  color: #f14e95 !important;
+}
+
+.navbar-toggler {
+  background-color: #f14e95;
+}
+
+.cakes-nav a {
+  padding: 5px 10px;
+  color: #fff;
+}
+
+.notHomeNav {
+  padding: 0;
+  position: relative !important;
+}
+
+.notHomeNav a {
+  color: #f14e95 !important;
+}
+
+.notHomeNav a:hover {
+  color: #913bf3;
+}
+
+.homeNav {
+  padding: 40px;
+}
+
+.homeNav a {
+  color: #fff !important;
+}
+
+.notHomePage {
+  margin-bottom: 40px;
+}
+
+.cakes-nav ul {
+  padding: 0;
+  margin: 2px 0 0 0;
+}
+
+.cakes-nav ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline;
+}
+
+.cakes-nav ul li a {
+  font-size: 14px;
+  padding: 30px 10px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.cakes-nav ul li a:hover,
+.cakes-nav ul li a:focus {
+  color: white;
+}
+
+@media screen and (max-width: 1150px) {
+  .notHomeNav a {
+    color: #fff !important;
+  }
+
+  .notHomeNav li.active > a {
+    color: purple !important;
+  }
+
+  .notHomeNav > a {
+    color: #f14e95 !important;
+  }
+
+  .navbar ul {
+    background-color: #f14e95;
+  }
+
+  .nav-item a {
+    color: #fff !important;
+  }
+
+  .cakes-nav ul li {
+    height: 50px;
+  }
+
+  .cakes-nav ul li a {
+    height: 50px;
+    padding: 10px 20px 0 !important;
+  }
+
+  .cakes-nav ul li.active > a {
+    color: purple !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cakes-nav {
+    padding: 20px 0;
+  }
+
+  .cakes-nav #cakes-logo {
+    font-size: 20px;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 1150px) {
+  .navbar-expand-custom {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-custom .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-custom .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-custom .navbar-collapse {
+    display: flex !important;
+  }
+  .navbar-expand-custom .navbar-toggler {
+    display: none;
+  }
+}
