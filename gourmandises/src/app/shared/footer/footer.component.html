@@ -1,0 +1,35 @@
+<footer id="cakes-footer">
+  <div class="container">
+    <div class="row copyright">
+      <div class="col-md-12 text-center">
+        <p>
+          <small class="block">
+            <a *ngIf="!isLoggedIn" routerLink="/home/login">Connexion</a>
+            <a *ngIf="isLoggedIn" routerLink="/admin">Admin / </a>
+            <a *ngIf="isLoggedIn" href="#" (click)="onLogoutClick()">Déconnexion</a>
+            <a *ngIf="isLoggedIn && isPage" [routerLink]="[component, id]"> / Editer la Page</a>
+          </small>
+          <small class="block ">&copy; 2018. Tous droits réservés.</small>
+          <small class="block ">Style par
+            <a href="http://freehtml5.co/ " target="_blank ">FREEHTML5.co</a>
+          </small>
+          <small class="block ">Site développé par
+            <a href="amandineribot-resume.herokuapp.com " target="_blank ">Amandine Ribot</a>
+          </small>
+        </p>
+        <ul class="cakes-social-icons ">
+          <li>
+            <a href="https://www.facebook.com/lesgourmandisesdeludivine">
+              <i class="icon-facebook "></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/les_gourmandises_de_ludivine/">
+              <i class="icon-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

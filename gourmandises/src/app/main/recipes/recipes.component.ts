@@ -13,9 +13,7 @@ export class RecipesComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   subscriptionRecipe: Subscription;
 
-  constructor(private recipeService: RecipeService) {}
-
-  ngOnInit() {
+  constructor(private recipeService: RecipeService) {
     this.subscriptionRecipe = this.recipeService
       .getAllRecipes()
       .snapshotChanges()
@@ -30,6 +28,8 @@ export class RecipesComponent implements OnInit, OnDestroy {
         this.recipes.reverse();
       });
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscriptionRecipe.unsubscribe();

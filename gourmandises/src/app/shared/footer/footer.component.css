@@ -1,0 +1,49 @@
+#cakes-footer {
+  padding: 3em 0;
+  clear: both;
+}
+
+#cakes-footer .copyright .block {
+  display: block;
+}
+
+.cakes-social-icons {
+  margin: 0;
+  padding: 0;
+}
+
+.cakes-social-icons li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+
+.cakes-social-icons li a {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  color: #f14e95;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cakes-social-icons li a i {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-footer {
+    padding: 3em 0;
+  }
+
+  #cakes-footer .copyright .pull-left,
+  #cakes-footer .copyright .pull-right {
+    float: none !important;
+    text-align: center;
+  }
+}

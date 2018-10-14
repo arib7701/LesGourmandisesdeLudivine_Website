@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { mainRoutes } from './main.routes';
 import { RealComponent } from './real/real.component';
 import { SharedModule } from '../shared/shared.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(mainRoutes)],
@@ -36,7 +37,8 @@ import { SharedModule } from '../shared/shared.module';
     LoginComponent,
     BuyComponent,
     RealDetailComponent,
-    RealComponent
+    RealComponent,
+    HeaderComponent
   ]
 })
 export class MainModule {}

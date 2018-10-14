@@ -26,6 +26,9 @@ import { PartnerService } from '../services/partner.service';
 import { CategoryService } from '../services/category.service';
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../guards/auth.guard';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -36,9 +39,10 @@ import { AuthGuard } from '../guards/auth.guard';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     FlashMessagesModule.forRoot(),
-    OwlModule
+    OwlModule,
+    RouterModule
   ],
-  declarations: [],
+  declarations: [NavbarComponent, FooterComponent],
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -46,7 +50,9 @@ import { AuthGuard } from '../guards/auth.guard';
     AngularFireModule,
     AngularFireStorageModule,
     FlashMessagesModule,
-    OwlModule
+    OwlModule,
+    NavbarComponent,
+    FooterComponent
   ],
   providers: [
     AngularFireAuth,

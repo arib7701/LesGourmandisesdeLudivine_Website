@@ -1,11 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { TestsModule } from './tests/tests.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [TestsModule]
+      imports: [TestsModule],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
