@@ -5,7 +5,6 @@ import {
   AngularFireDatabase
 } from 'angularfire2/database';
 import { Actu } from '../models/actu';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,12 +47,12 @@ export class ActuService {
   // Edit Actu By ID
   editActu(id: string, newActu: Actu[]): Promise<void> {
     this.getAllActu();
-    return this.allActu.update(id, newActu);
+    return this.manyActus.update(id, newActu);
   }
 
   // Delete Actu by ID
   deleteActu(id: string): Promise<void> {
     this.getAllActu();
-    return this.allActu.remove(id);
+    return this.manyActus.remove(id);
   }
 }

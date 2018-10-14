@@ -6,7 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { firebaseConfig } from '../app.module';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { firebaseConfig } from '../app.module';
     ReactiveFormsModule,
     RouterTestingModule,
     HttpClientTestingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
