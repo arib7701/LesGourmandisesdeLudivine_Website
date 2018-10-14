@@ -13,7 +13,9 @@ export const environment = {
     projectId: 'lesgourmandisesdeludivine',
     storageBucket: 'lesgourmandisesdeludivine.appspot.com',
     messagingSenderId: '403711033846'
-  }
+  },
+
+  CAPTCHA_SITE_ID: '6Ldf0nAUAAAAAF907BHAHdh82QpoyHycMtoU1q3p'
 };
 
 /*

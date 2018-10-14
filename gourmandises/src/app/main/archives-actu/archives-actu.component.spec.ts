@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArchivesActuComponent } from './archives-actu.component';
+import { TestsModule } from 'src/app/tests/tests.module';
 
 describe('ArchivesActuComponent', () => {
   let component: ArchivesActuComponent;
@@ -8,9 +9,9 @@ describe('ArchivesActuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchivesActuComponent ]
-    })
-    .compileComponents();
+      declarations: [ArchivesActuComponent],
+      imports: [TestsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

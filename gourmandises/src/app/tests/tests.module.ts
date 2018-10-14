@@ -7,6 +7,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../../environments/environment';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { environment } from '../../environments/environment';
     HttpClientTestingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FlashMessagesModule.forRoot()
   ],
   declarations: [],
   schemas: [NO_ERRORS_SCHEMA],
@@ -28,7 +30,8 @@ import { environment } from '../../environments/environment';
     HttpClientTestingModule,
     AngularFireModule,
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FlashMessagesModule
   ]
 })
 export class TestsModule {}

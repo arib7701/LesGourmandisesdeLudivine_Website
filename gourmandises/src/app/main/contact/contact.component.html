@@ -1,3 +1,77 @@
-<p>
-  contact works!
-</p>
+<div id="cakes-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Contactez-moi</h2>
+      </div>
+    </div>
+    <div class="row" style="display: flex;">
+      <div class="col-md-5">
+
+        <div class="fh5co-contact-info">
+          <h3>Informations de Contact</h3>
+          <ul>
+            <li class="address">Sereilhac 87620</li>
+            <li class="phone"><a href="tel://1234567920">+33 06 59 22 06 64</a></li>
+            <li class="email"><a href="#">lesgourmandisesdeludivine@yahoo.com</a></li>
+            <li class="url"><a href="https://lesgourmandisesdeludivine.firebaseapp.com/">lesgourmandisesdeludivine.firebaseapp.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <h2>Laissez moi un message</h2>
+        <form [formGroup]="form" (ngSubmit)="processForm()">
+          <div class="row form-group" style="display: flex;">
+            <div class="col-md-6">
+              <label for="firstName">Prenom*</label>
+              <input type="text" name="name" class="form-control" id="firstName" formControlName="firstName"
+                placeholder="Votre prenom">
+              <div class="validation"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName">Nom de famille*</label>
+              <input type="text" id="lastName" class="form-control" id="lastName" formControlName="lastName"
+                placeholder="Votre nom de famille">
+              <div class="validation"></div>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label for="email">Email*</label>
+              <input type="text" id="email" class="form-control" id="email" formControlName="email" placeholder="Votre adresse email">
+              <div class="validation"></div>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" class="form-control" id="subject" formControlName="subject" placeholder="Le sujet du message">
+              <div class="validation"></div>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label for="message">Message*</label>
+              <textarea autosize name="message" id="message" cols="30" rows="10" id="message" formControlName="message"
+                class="form-control" placeholder="Ecrivez-nous!"></textarea>
+              <div class="validation"></div>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-12">
+              <div #captchaRef2></div>
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="btn">Envoyer</button>
+          </div>
+        </form>
+        <flash-messages></flash-messages>
+      </div>
+    </div>
+  </div>
+</div>
