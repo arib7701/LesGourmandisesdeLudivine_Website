@@ -37,11 +37,11 @@ export class ContactComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private firebase: AngularFireDatabase,
     private flashService: FlashMessagesService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.createForm();
   }
+
+  ngOnInit() {}
 
   ngAfterViewInit() {
     const grecaptcha = (window as any).grecaptcha;

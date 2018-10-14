@@ -1,3 +1,83 @@
-<p>
-  partners works!
-</p>
+<div id="cakes-partners">
+  <div class="container-full">
+    <div class="row">
+      <div class="col-md-12 text-center cakes-heading">
+        <span></span>
+        <h2>Mes Sponsors et Produits</h2>
+        <p>Un Grand Merci à mes sponsors pour leur super produits!</p>
+      </div>
+    </div>
+    <div class="row"></div>
+    <section id="photostack-1" class="photostack">
+      <div id="divPhoto">
+        <figure *ngFor="let partner of partners">
+          <h2 *ngIf="partner.isPartner" class="photostack-partner">Sponsor</h2>
+          <h2 *ngIf="!partner.isPartner" class="photostack-partner">Produit</h2>
+          <a href="https://{{partner?.website}}" target="_blank" class="photostack-img"><img src="{{partner?.logo}}"
+              alt="logo_partner" /></a>
+          <figcaption>
+            <h2 class="photostack-title">{{partner?.name}}</h2>
+            <div class="photostack-back">
+              <div class="backInfo" *ngIf="partner.location">
+                <h2>Lieux de Vente:</h2>
+                <p>{{partner?.location}}</p>
+              </div>
+              <div class="backInfo" *ngIf="partner.website">
+                <h2>Site Web / Facebook:</h2>
+                <a class="col-md-12 text-center" href="https://{{partner?.website}}" target="_blank">{{partner?.website}}</a>
+              </div>
+              <div class="col-md-12 text-center backInfo" *ngIf="partner.description">
+                <h2>Description: </h2>
+                <p>{{partner?.description}}</p>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <div class="col-md-12 text-center cakes-subheading">
+      <h3>Mes 10 derniers sponsors / produits</h3>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 adminlist">
+        <div class="timeline-badge" style="background-image:url(https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-1/1796524_462620637200892_1907837364_n.jpg?_nc_cat=108&oh=718b8521674b2e70677a51c8d1072210&oe=5C260A0B);"></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+          </div>
+          <div class="timeline-body">
+            <table class="table table-hover" *ngIf="partners?.length > 0;">
+              <thead>
+                <th></th>
+                <th></th>
+                <th>Realisations associees</th>
+                <th>Site Web / Facebook</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pat of partners | paginate: { itemsPerPage: 10, currentPage: partnerPage, id: 'partner' }; let i = index">
+                  <td>
+                    <img class="patlogo" src="{{pat.logo}}">
+                  </td>
+                  <td>{{pat?.name}}</td>
+                  <td>
+                    <ul *ngIf="pat?.realTitle.length > 0">
+                      <li *ngFor="let title of pat.realTitle; let i = index"><i class="fas fa-splotch"></i> <a
+                          [routerLink]="['/real/'+pat.realId[i]]"> {{title}}</a></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <a href="{{pat?.website}}" target="_blank">{{pat?.website}}</a>
+                    <p *ngIf="pat?.location">Lieu de vente: {{pat?.location}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" class="paginations" (pageChange)="partnerPage = $event"
+              id="partner"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

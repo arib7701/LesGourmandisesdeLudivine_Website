@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../../environments/environment';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    NgxPaginationModule
   ],
   declarations: [],
   schemas: [NO_ERRORS_SCHEMA],
@@ -31,7 +33,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    NgxPaginationModule
   ]
 })
 export class TestsModule {}

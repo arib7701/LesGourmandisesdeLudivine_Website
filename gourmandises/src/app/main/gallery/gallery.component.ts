@@ -24,9 +24,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
   ) {
     this.imgByCategories = new Array<ImgCat>();
     this.imgPrinByCat = new Array<string>();
-  }
-
-  ngOnInit() {
     this.subscriptionCat = this.categoryService
       .getCategories()
       .valueChanges()
@@ -60,6 +57,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
         }
       });
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscriptionCat.unsubscribe();

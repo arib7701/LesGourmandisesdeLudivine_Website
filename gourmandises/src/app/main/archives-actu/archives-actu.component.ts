@@ -13,9 +13,7 @@ export class ArchivesActuComponent implements OnInit, OnDestroy {
   actus: Actu[];
   subscriptionActus: Subscription;
 
-  constructor(private actuService: ActuService) {}
-
-  ngOnInit() {
+  constructor(private actuService: ActuService) {
     this.subscriptionActus = this.actuService
       .getAllActu()
       .snapshotChanges()
@@ -37,6 +35,8 @@ export class ArchivesActuComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscriptionActus.unsubscribe();

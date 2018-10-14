@@ -14,9 +14,7 @@ export class ArchivesRealComponent implements OnInit, OnDestroy {
   realizations: Real[];
   subscriptionNews: Subscription;
 
-  constructor(private realService: RealService) {}
-
-  ngOnInit() {
+  constructor(private realService: RealService) {
     this.subscriptionNews = this.realService
       .getAllNews()
       .snapshotChanges()
@@ -38,6 +36,8 @@ export class ArchivesRealComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscriptionNews.unsubscribe();

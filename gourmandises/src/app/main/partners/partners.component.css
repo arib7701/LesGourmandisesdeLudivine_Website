@@ -1,0 +1,34 @@
+#cakes-partners {
+  padding: 3em 0;
+  clear: both;
+}
+
+.cakes-subheading h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+}
+
+.cakes-subheading {
+  position: relative;
+  top: -550px;
+}
+
+.patlogo {
+  max-width: 100px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.paginations {
+  text-align: center;
+}
+
+.paginations /deep/ .current {
+  background-color: #f14e95 !important;
+}

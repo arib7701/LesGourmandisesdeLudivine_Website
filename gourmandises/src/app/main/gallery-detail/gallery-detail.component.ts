@@ -9,6 +9,9 @@ import { Gallery } from 'src/app/models/gallery';
   templateUrl: './gallery-detail.component.html',
   styleUrls: ['./gallery-detail.component.css']
 })
+
+// TO DO
+// check css to avoid weird placement
 export class GalleryDetailComponent implements OnInit, OnDestroy {
   category: string;
   imgs: Gallery[];
@@ -17,9 +20,7 @@ export class GalleryDetailComponent implements OnInit, OnDestroy {
   constructor(
     private galleryService: GalleryService,
     private route: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.category = this.route.snapshot.params['cat'];
 
     this.subscriptionGal = this.galleryService
@@ -33,6 +34,8 @@ export class GalleryDetailComponent implements OnInit, OnDestroy {
         this.imgs.reverse();
       });
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscriptionGal.unsubscribe();
