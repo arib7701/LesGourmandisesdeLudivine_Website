@@ -1,0 +1,165 @@
+#cakes-gallery {
+  padding: 3em 0;
+  clear: both;
+}
+
+.cakes-heading {
+  margin-bottom: 5em;
+}
+
+.cakes-heading h2 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+}
+
+#cakes-gallery-list li.one-third {
+  width: 32.3%;
+}
+
+.galleryPresImg {
+  width: 100%;
+  position: relative;
+  top: -50px;
+  border-radius: 7px;
+}
+
+#cakes-gallery-list {
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  float: left;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+#cakes-gallery-list li,
+#cakes-gallery-list-detail li {
+  display: block;
+  padding: 0;
+  margin: 0 0 10px 1%;
+  list-style: none;
+  max-height: 400px;
+  float: left;
+  position: relative;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  border-radius: 7px;
+}
+
+#cakes-gallery-list li a {
+  height: 400px;
+  position: relative;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+#cakes-gallery-list-detail li a {
+  position: relative;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+#cakes-gallery-list li a:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  z-index: 80;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#cakes-gallery-list li a:hover:before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#cakes-gallery-list li a .case-studies-summary {
+  width: auto;
+  bottom: 2em;
+  left: 2em;
+  right: 2em;
+  position: absolute;
+  z-index: 100;
+}
+
+.galleryImg {
+  width: 100%;
+}
+
+ul#cakes-gallery-list-detail li {
+  display: inline;
+  list-style-type: none;
+  float: left;
+}
+
+#cakes-gallery-list li a .case-studies-summary span {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#cakes-gallery-list li a .case-studies-summary h2 {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 950px) {
+  .cakes-heading {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-gallery {
+    padding: 3em 0;
+  }
+
+  #cakes-gallery-list li a .case-studies-summary {
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+  }
+
+  #cakes-gallery-list li a .case-studies-summary h2 {
+    font-size: 20px;
+  }
+
+  #cakes-gallery-list li.one-third {
+    width: 49%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #cakes-gallery-list li {
+    margin-left: 0;
+  }
+
+  #cakes-gallery-list li.one-third {
+    width: 100%;
+  }
+}

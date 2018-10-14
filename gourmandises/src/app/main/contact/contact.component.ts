@@ -10,6 +10,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 
+// TO DO
+// add form validator handler - use material design
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',

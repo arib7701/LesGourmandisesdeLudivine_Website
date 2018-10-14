@@ -1,5 +1,7 @@
+import { Gallery } from './gallery';
+
 export class ImgCat {
   $key?: string;
-  imgs?: string[];
+  imgs?: Gallery[];
   cat?: string;
 }
