@@ -1,3 +1,18 @@
-<p>
-  login works!
-</p>
+<div class="row notHomePage"></div>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h1 class="text-center">Connexion</h1>
+    <form (submit)="onSubmit()" class="formLogin">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de Passe</label>
+        <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
+      </div>
+      <input type="submit" class="btn btn-primary btn-block" value="Poursuivre">
+    </form>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -20,6 +20,7 @@ import { environment } from '../../environments/environment';
     AngularFireDatabaseModule
   ],
   declarations: [],
+  schemas: [NO_ERRORS_SCHEMA],
   exports: [
     FormsModule,
     ReactiveFormsModule,

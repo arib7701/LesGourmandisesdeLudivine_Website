@@ -14,9 +14,12 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { BuyComponent } from './buy/buy.component';
 import { RealDetailComponent } from './real-detail/real-detail.component';
+import { RouterModule } from '@angular/router';
+import { mainRoutes } from './main.routes';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(mainRoutes)],
   declarations: [
     MainComponent,
     HomeComponent,

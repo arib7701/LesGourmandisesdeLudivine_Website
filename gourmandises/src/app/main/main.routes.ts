@@ -15,7 +15,7 @@ import { ArchivesRealComponent } from './archives-real/archives-real.component';
 import { GalleryDetailComponent } from './gallery-detail/gallery-detail.component';
 import { RealDetailComponent } from './real-detail/real-detail.component';
 
-export const adminRoutes: Routes = [
+export const mainRoutes: Routes = [
   {
     path: 'home',
     component: MainComponent,
