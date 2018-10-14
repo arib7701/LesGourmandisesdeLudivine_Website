@@ -1,0 +1,119 @@
+#cakes-randomgallery {
+  padding: 3em 0;
+  clear: both;
+}
+
+.row {
+  margin-right: 0;
+}
+
+#cakes-randomgallery .wrap-randomG {
+  position: relative;
+}
+
+#cakes-randomgallery .wrap-randomG .randomG-slide {
+  text-align: center;
+}
+
+#cakes-randomgallery .wrap-randomG .randomG-slide figure {
+  margin-bottom: 10px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 500px;
+  height: 500px;
+}
+
+#cakes-randomgallery .wrap-randomG .randomG-slide figure img {
+  width: 500px;
+  height: 500px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 992px) {
+  #cakes-randomgallery .wrap-randomG .randomG-slide blockquote {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #cakes-randomgallery .wrap-randomG .randomG-slide figure img,
+  #cakes-randomgallery .wrap-randomG .randomG-slide figure {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-randomgallery {
+    padding: 3em 0;
+  }
+}
+
+/* ------ MAY BE USEFUL LATER -----
+  --------- IN CAROUSEL -------------
+  
+  .owl-carousel .owl-controls .owl-dot span {
+    background: #e6e6e6;
+  }
+  
+  .owl-carousel .owl-controls .owl-dot span:hover,
+  .owl-carousel .owl-controls .owl-dot span:focus {
+    background: #cccccc;
+  }
+  
+  .owl-carousel .owl-controls .owl-dot:hover span,
+  .owl-carousel .owl-controls .owl-dot:focus span {
+    background: #cccccc;
+  }
+  
+  .owl-carousel .owl-controls .owl-dot.active span {
+    background: transparent;
+    border: 2px solid #f14e95;
+  }
+  
+  #cakes-randomgallery .wrap-randomG .randomG-slide blockquote {
+    border: none;
+    margin: 30px auto;
+    width: 50%;
+    position: relative;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+  }
+  
+  #cakes-randomgallery .wrap-randomG .randomG-slide blockquote p {
+    font-style: italic;
+    color: #8f989f;
+    font-size: 20px;
+    line-height: 1.6em;
+  }
+  
+  #cakes-randomgallery .wrap-randomG .randomG-slide.active {
+    display: block;
+  }
+  
+  #cakes-randomgallery .wrap-randomG .arrow-thumb {
+    position: absolute;
+    top: 40%;
+    display: block;
+    width: 100%;
+  }
+  
+  #cakes-randomgallery .wrap-randomG .arrow-thumb a {
+    font-size: 32px;
+    color: #dadada;
+  }
+  
+  #cakes-randomgallery .wrap-randomG .arrow-thumb a:hover,
+  #cakes-randomgallery .wrap-randomG .arrow-thumb a:focus,
+  #cakes-randomgallery .wrap-randomG .arrow-thumb a:active {
+    text-decoration: none;
+  } 
+  ----------------------------------
+  */

@@ -12,7 +12,7 @@
     </div>
     <div class="row" style="display:flex; align-items: center; justify-content: space-evenly;">
       <div class="col-md-1 prevBtnTop">
-        <a *ngIf="nextReal !== undefined" [routerLink]="['/home/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i>Next</a>
+        <a *ngIf="nextReal !== undefined" [routerLink]="['/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i></a>
       </div>
       <div class="col-md-3">
         <div class="real-left">
@@ -76,10 +76,10 @@
         </div>
       </div>
       <div class="col-md-1 prevBtnDown">
-        <a *ngIf="nextReal !== undefined" [routerLink]="['/home/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i>Next</a>
+        <a *ngIf="nextReal !== undefined" [routerLink]="['/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i></a>
       </div>
       <div class="col-md-1 nextBtn">
-        <a *ngIf="prevReal !== undefined" [routerLink]="['/home/real/', prevNewId]"><i class="fa fa-arrow-circle-right arrow"></i>Prev</a>
+        <a *ngIf="prevReal !== undefined" [routerLink]="['/real/', prevNewId]"><i class="fa fa-arrow-circle-right arrow"></i></a>
       </div>
     </div>
 

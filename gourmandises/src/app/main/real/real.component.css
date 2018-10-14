@@ -1,3 +1,11 @@
+#cakes-real-home {
+  padding: 3em 0;
+  clear: both;
+  height: auto;
+  float: left;
+  position: relative;
+}
+
 .newsSection {
   width: 90%;
   margin: 0 auto;

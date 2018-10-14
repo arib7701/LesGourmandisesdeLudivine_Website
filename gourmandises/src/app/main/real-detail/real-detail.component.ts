@@ -110,7 +110,6 @@ export class RealDetailComponent implements OnInit, OnDestroy {
           map(actions => actions.map(a => ({ key: a.key, ...a.payload.val() })))
         )
         .subscribe(tempReal => {
-          console.log('prev: ', tempReal);
           this.prevReal = tempReal[0] as Real;
           if (tempReal[0] !== undefined) {
             this.prevNewId = tempReal[0].key;
@@ -128,7 +127,6 @@ export class RealDetailComponent implements OnInit, OnDestroy {
           map(actions => actions.map(a => ({ key: a.key, ...a.payload.val() })))
         )
         .subscribe(tempReal => {
-          console.log('next: ', tempReal);
           this.nextReal = tempReal[1] as Real;
           if (tempReal[1] !== undefined) {
             this.nextNewId = tempReal[1].key;

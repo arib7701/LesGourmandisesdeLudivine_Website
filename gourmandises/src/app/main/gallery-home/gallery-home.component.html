@@ -1,3 +1,29 @@
-<p>
-  gallery-home works!
-</p>
+<div id="cakes-randomgallery">
+  <div class="container">
+    <div class="row" style="display: inline;">
+      <div class="row">
+        <div class="col-md-12 text-center cakes-heading">
+          <h2>Au Hasard du temps ...</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="wrap-randomG">
+            <div class="owl-carousel-fullwidth">
+              <owl-carousel [options]="{items: 1, dots: true, nav: false, autoplay: true, loop: true, margin: 20, responsiveClass: true}"
+                [items]="randomGal" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+                <div class="item" *ngFor="let random of randomGal">
+                  <div class="randomG-slide active text-center">
+                    <figure>
+                      <img src="{{random.img}}" alt="gallery_random">
+                    </figure>
+                  </div>
+                </div>
+              </owl-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

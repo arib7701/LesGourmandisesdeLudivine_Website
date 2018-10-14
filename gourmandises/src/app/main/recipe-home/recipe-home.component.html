@@ -1,3 +1,42 @@
-<p>
-  recipe-home works!
-</p>
+<div id="cakes-recipe" class="cakes-bg" style="background-image:url(../assets/img/recipeBack.jpg);">
+  <div class="overlay"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Ma dernière Recette</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="display-t">
+        <div class="display-tc">
+          <div class="col-md-12">
+            <div class="col-md-4 offset-md-1 col-sm-12 text-center">
+              <div class="recipe-wrap">
+                <h3>{{newRecipe?.title}}</h3>
+                <div class="recipe-col">
+                  <i class="icon-clock"></i>
+                  <span>Préparation: {{newRecipe?.preparationTime}}</span>
+                  <span>Cuisson: {{newRecipe?.cookingTime}}</span>
+                </div>
+                <div class="recipe-col">
+                  <i class="icon-shopping-basket"></i>
+                  <span *ngFor="let ingredient of newRecipe?.ingredients, let i=index">
+                    <i class="fa fa-caret-right"></i> {{newRecipe?.quantities[i]}} {{ingredient}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 offset-md-1 col-sm-12 text-center" style="float: left;">
+              <div class="recipe-wrap">
+                <h3>Etapes</h3>
+                <i class="icon-file"></i>
+                <span class="recipeSteps" *ngFor="let step of newRecipe?.steps">
+                  <i class="fa fa-caret-right"></i> {{step}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

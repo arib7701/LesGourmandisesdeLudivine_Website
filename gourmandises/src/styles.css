@@ -1,3 +1,161 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('./assets/fonts/icomoon/icomoon.eot?srf3rx');
+  src: url('./assets/fonts/icomoon/icomoon.eot?srf3rx#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/icomoon/icomoon.ttf?srf3rx') format('truetype'),
+    url('./assets/fonts/icomoon/icomoon.woff?srf3rx') format('woff'),
+    url('./assets/fonts/icomoon/icomoon.svg?srf3rx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* =======================================================
+  *
+  * 	Template Style 
+  *
+  * ======================================================= */
+body {
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #828282;
+  background: #fff;
+}
+
+#page {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.offcanvas #page {
+  overflow: hidden;
+  position: absolute;
+}
+.offcanvas #page:after {
+  -webkit-transition: 2s;
+  -o-transition: 2s;
+  transition: 2s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  background: rgba(0, 0, 0, 0.7);
+  content: '';
+}
+
+a {
+  color: #f14e95;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  text-decoration: none !important;
+}
+a:hover,
+a:active,
+a:focus {
+  color: #f14e95 !important;
+  outline: none;
+  text-decoration: none !important;
+}
+
+.row {
+  display: block;
+}
+
+.scrollcolor {
+  background-color: 'transparent' !important;
+}
+
+.scrolla:hover {
+  color: #913bf3 !important;
+}
+
+.scrolla:active {
+  color: #913bf3 !important;
+}
+
+@media screen and (max-width: 1150px) {
+  .scrollcolor {
+    background-color: 'transparent' !important;
+  }
+
+  .scrolla:hover {
+    color: #913bf3 !important;
+  }
+
+  .scrolla:active {
+    color: #913bf3 !important;
+  }
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure {
+  color: #000;
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+}
+
+::-webkit-selection {
+  color: #fff;
+  background: #f14e95;
+}
+
+::-moz-selection {
+  color: #fff;
+  background: #f14e95;
+}
+
+::selection {
+  color: #fff;
+  background: #f14e95;
+}
+
+/* In Login Page */
+.notHomePage {
+  margin-bottom: 40px;
+}
+
+.owl-carousel .owl-controls .owl-dot span {
+  background: #e6e6e6;
+}
+.owl-carousel .owl-controls .owl-dot span:hover,
+.owl-carousel .owl-controls .owl-dot span:focus {
+  background: #cccccc;
+}
+.owl-carousel .owl-controls .owl-dot:hover span,
+.owl-carousel .owl-controls .owl-dot:focus span {
+  background: #cccccc;
+}
+.owl-carousel .owl-controls .owl-dot.active span {
+  background: transparent;
+  border: 2px solid #f14e95;
+}
+
+.uppercase {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .returnBtn .btn {
   height: 35px;
   border: none !important;

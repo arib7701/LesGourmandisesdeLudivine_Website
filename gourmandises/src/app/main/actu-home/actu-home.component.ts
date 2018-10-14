@@ -12,9 +12,7 @@ export class ActuHomeComponent implements OnInit, OnDestroy {
   lastActu: Actu;
   subscriptionNew: Subscription;
 
-  constructor(public actuService: ActuService) {}
-
-  ngOnInit() {
+  constructor(public actuService: ActuService) {
     this.subscriptionNew = this.actuService
       .getLastActu()
       .valueChanges()
@@ -22,6 +20,8 @@ export class ActuHomeComponent implements OnInit, OnDestroy {
         this.lastActu = lastActu[0] as Actu;
       });
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     if (this.subscriptionNew !== undefined) {

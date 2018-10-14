@@ -1,24 +1,28 @@
-<div class="row">
-  <div class="col-md-12 text-center cakes-heading">
-    <h2>Mes Récentes Créations!</h2>
-  </div>
-</div>
-<div class="newsSection">
-  <div class="col-md-6 col-sm-12 newsItem" *ngFor="let real of reals">
-    <div class="row" style="display:flex;">
-      <div class="col-md-11 news">
-        <h3>{{real.title}}</h3>
-        <img src="{{real.img.url}} " alt="nouvelleCreation ">
+<div id="cakes-real-home">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Mes Récentes Créations!</h2>
       </div>
-      <div class="desc-news col-md-11">
-        <p>{{real.description | slice:0:150}}...</p>
-        <a [routerLink]="['/real/', real.key]">Voir Plus</a>
-      </div>
-      <br>
-      <br>
     </div>
-  </div>
-  <div id="cakes-archive">
-    <a routerLink="/archivesReal"><button type="button" class="btn btn-default btn-block">Voir les archives</button></a>
+    <div class="newsSection">
+      <div class="col-md-6 col-sm-12 newsItem" *ngFor="let real of reals">
+        <div class="row" style="display:flex;">
+          <div class="col-md-11 news">
+            <h3>{{real.title}}</h3>
+            <img src="{{real.img.url}} " alt="nouvelleCreation ">
+          </div>
+          <div class="desc-news col-md-11">
+            <p>{{real.description | slice:0:150}}...</p>
+            <a [routerLink]="['/real/', real.key]">Voir Plus</a>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+      <div id="cakes-archive">
+        <a routerLink="/archivesReal"><button type="button" class="btn btn-default btn-block">Voir les archives</button></a>
+      </div>
+    </div>
   </div>
 </div>

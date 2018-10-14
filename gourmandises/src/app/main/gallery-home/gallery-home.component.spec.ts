@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GalleryHomeComponent } from './gallery-home.component';
+import { TestsModule } from 'src/app/tests/tests.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('GalleryHomeComponent', () => {
   let component: GalleryHomeComponent;
@@ -8,9 +10,10 @@ describe('GalleryHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GalleryHomeComponent ]
-    })
-    .compileComponents();
+      declarations: [GalleryHomeComponent],
+      imports: [TestsModule],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
