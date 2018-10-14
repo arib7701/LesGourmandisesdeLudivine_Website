@@ -1,3 +1,34 @@
-<p>
-  archives-actu works!
-</p>
+<div id="cakes-archivelist">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 col-sm-2 returnBtn">
+        <button [routerLink]="['/']" class="btn btn-default">
+          Retour</button>
+      </div>
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Toutes mes Actualités !</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 archivelist">
+        <ul class="timeline" *ngFor="let actu of actus; let i = index">
+          <li [ngClass]="{ 'timeline-inverted': i%2 == 0 }">
+            <div class="timeline-badge" [ngStyle]="{'background-image':'url('+actu.img+')'}"></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h3 class="timeline-title">{{actu.title}}</h3>
+                <span class="date">{{actu.date}}</span>
+              </div>
+              <div class="timeline-body">
+                <p>{{actu.description}} </p>
+              </div>
+              <div class="timeline-body">
+                <a href="{{actu.link}}">{{actu.titleLink}}</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

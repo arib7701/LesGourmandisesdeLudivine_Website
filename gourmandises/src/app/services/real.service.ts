@@ -17,35 +17,35 @@ export class RealService {
 
   // Get last 4 most recents Realizations
   getNews(): AngularFireList<Real[]> {
-    return (this.manyReals = this.firebase.list('/news', ref =>
+    return (this.manyReals = this.firebase.list<Real>('/news', ref =>
       ref.limitToLast(4)
     ) as AngularFireList<Real[]>);
   }
 
   // Get ALL Realizations
   getAllNews(): AngularFireList<Real[]> {
-    return (this.manyReals = this.firebase.list('/news') as AngularFireList<
-      Real[]
-    >);
+    return (this.manyReals = this.firebase.list<Real>(
+      '/news'
+    ) as AngularFireList<Real[]>);
   }
 
   // Get One Realization By Id
   getNewsById(id: string): AngularFireObject<Real> {
-    return (this.oneReal = this.firebase.object(
+    return (this.oneReal = this.firebase.object<Real>(
       '/news/' + id
     ) as AngularFireObject<Real>);
   }
 
   // Get Next Realization By Id
   getNextNewsById(id: string): AngularFireList<Real[]> {
-    return (this.manyReals = this.firebase.list('/news', ref =>
+    return (this.manyReals = this.firebase.list<Real>('/news', ref =>
       ref.orderByKey().startAt(id)
     ) as AngularFireList<Real[]>);
   }
 
   // Get Previous Realization By Id
   getPreviousNewsById(id: string): AngularFireList<Real[]> {
-    return (this.manyReals = this.firebase.list('/news', ref =>
+    return (this.manyReals = this.firebase.list<Real>('/news', ref =>
       ref
         .limitToLast(2)
         .orderByKey()

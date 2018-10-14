@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+.returnBtn .btn {
+  height: 35px;
+  border: none !important;
+  background: #f14e95;
+  color: #fff;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 100;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .returnBtn {
+    padding-left: 10%;
+    padding-bottom: 8%;
+  }
+}
