@@ -1,3 +1,24 @@
-<p>
-  gallery-detail works!
-</p>
+<div id="cakes-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1 offset-md-1 returnBtn">
+        <button routerLink="/home/gallery" class="btn btn-default">Retour</button>
+      </div>
+      <div class="col-md-12 text-center cakes-heading">
+        <span></span>
+        <h2>Galerie Photos: {{category}}</h2>
+      </div>
+    </div>
+    <div class="row row-bottom-padded-md">
+      <div class="col-md-12">
+        <ul id="cakes-gallery-list-detail">
+          <li class="col-md-2" *ngFor="let img of imgs" data-animate-effect="fadeIn">
+            <a href="{{img.img}}" data-lightbox="images">
+              <img class="galleryImg" src="{{img.img}}">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

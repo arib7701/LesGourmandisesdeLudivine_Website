@@ -10,9 +10,32 @@
   padding-right: 20px;
 }
 
+.cakes-heading {
+  margin-bottom: 5em;
+}
+
+.cakes-heading h2 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+}
+
 @media screen and (max-width: 768px) {
   .returnBtn {
     padding-left: 10%;
     padding-bottom: 8%;
+  }
+
+  .cakes-heading h2 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .cakes-heading {
+    margin-bottom: 0;
   }
 }

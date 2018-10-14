@@ -51,21 +51,6 @@ input:-webkit-autofill:active {
   width: 100%;
 }
 
-#cakes-contact .cakes-heading {
-  margin-bottom: 30px;
-  margin-bottom: 5em;
-}
-
-#cakes-contact .cakes-heading h2 {
-  margin-bottom: 0;
-  font-size: 60px;
-  margin-bottom: 10px;
-  line-height: 1.5;
-  font-weight: bold;
-  color: #f14e95;
-  font-family: 'Sacramento', Arial, serif;
-}
-
 .cakes-bg {
   background-size: cover;
   background-position: top center;
@@ -73,18 +58,8 @@ input:-webkit-autofill:active {
   position: relative;
 }
 
-@media screen and (max-width: 950px) {
-  .cakes-heading {
-    margin-bottom: 0;
-  }
-}
-
 @media screen and (max-width: 768px) {
   #cakes-contact {
     padding: 3em 0;
-  }
-
-  .cakes-heading h2 {
-    font-size: 40px;
   }
 }

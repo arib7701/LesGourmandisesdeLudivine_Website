@@ -3,19 +3,6 @@
   clear: both;
 }
 
-.cakes-heading {
-  margin-bottom: 5em;
-}
-
-.cakes-heading h2 {
-  font-size: 60px;
-  margin-bottom: 10px;
-  line-height: 1.5;
-  font-weight: bold;
-  color: #f14e95;
-  font-family: 'Sacramento', Arial, serif;
-}
-
 #cakes-gallery-list li.one-third {
   width: 32.3%;
 }
@@ -43,8 +30,7 @@
   width: 100%;
 }
 
-#cakes-gallery-list li,
-#cakes-gallery-list-detail li {
+#cakes-gallery-list li {
   display: block;
   padding: 0;
   margin: 0 0 10px 1%;
@@ -60,14 +46,6 @@
 
 #cakes-gallery-list li a {
   height: 400px;
-  position: relative;
-  width: 100%;
-  display: block;
-  overflow: hidden;
-  border-radius: 7px;
-}
-
-#cakes-gallery-list-detail li a {
   position: relative;
   width: 100%;
   display: block;
@@ -110,12 +88,6 @@
   width: 100%;
 }
 
-ul#cakes-gallery-list-detail li {
-  display: inline;
-  list-style-type: none;
-  float: left;
-}
-
 #cakes-gallery-list li a .case-studies-summary span {
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -126,12 +98,6 @@ ul#cakes-gallery-list-detail li {
 #cakes-gallery-list li a .case-studies-summary h2 {
   color: #fff;
   margin-bottom: 0;
-}
-
-@media screen and (max-width: 950px) {
-  .cakes-heading {
-    margin-bottom: 0;
-  }
 }
 
 @media screen and (max-width: 768px) {

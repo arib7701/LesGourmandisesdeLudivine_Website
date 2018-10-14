@@ -2,19 +2,6 @@
   padding-top: 50px;
 }
 
-.cakes-heading {
-  margin-bottom: 5em;
-}
-
-.cakes-heading h2 {
-  font-size: 60px;
-  margin-bottom: 10px;
-  line-height: 1.5;
-  font-weight: bold;
-  color: #f14e95;
-  font-family: 'Sacramento', Arial, serif;
-}
-
 .archivelist > .timeline {
   margin: 0;
   list-style: none;
@@ -179,16 +166,6 @@
     border-right-width: 14px;
     left: -14px;
     right: auto;
-  }
-
-  .cakes-heading {
-    margin-bottom: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .cakes-heading h2 {
-    font-size: 40px;
   }
 }
 
