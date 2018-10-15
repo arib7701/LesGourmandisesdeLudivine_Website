@@ -15,7 +15,10 @@ import { environment } from '../../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+import {
+  AngularFireStorageModule,
+  AngularFireStorage
+} from 'angularfire2/storage';
 
 // Import Services / Guards
 import { ActuService } from '../services/actu.service';
@@ -40,7 +43,8 @@ import { RouterModule } from '@angular/router';
     AngularFireStorageModule,
     FlashMessagesModule.forRoot(),
     OwlModule,
-    RouterModule
+    RouterModule,
+    AutosizeModule
   ],
   declarations: [NavbarComponent, FooterComponent],
   exports: [
@@ -52,11 +56,13 @@ import { RouterModule } from '@angular/router';
     FlashMessagesModule,
     OwlModule,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    AutosizeModule
   ],
   providers: [
     AngularFireAuth,
     AngularFireDatabase,
+    AngularFireStorage,
     ActuService,
     RealService,
     RecipeService,

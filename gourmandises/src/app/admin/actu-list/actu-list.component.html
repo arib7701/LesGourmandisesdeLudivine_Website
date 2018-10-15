@@ -1,0 +1,37 @@
+<div id="cakes-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 adminlist">
+        <ul class="timeline">
+          <li>
+            <div class="timeline-badge" style="background-image:url(../assets/img/topnew.jpg);"></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h3 class="timeline-title">{{actus?.length}} Actualités</h3>
+              </div>
+              <div class="timeline-body">
+                <table class="table table-hover" *ngIf="actus?.length > 0;">
+                  <tbody>
+                    <tr *ngFor="let actu of actus | paginate: { itemsPerPage: 10, currentPage: actuPage, id: 'actu' }; let i = index">
+                      <td>{{actu?.title}}</td>
+                      <td>
+                        <a [routerLink]="['/admin/actu/edit/', actu.key]" class="btn btn-sm">
+                          <i class="fa fa-edit"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-sm" (click)="onDeleteClick('actu', actu.key)">
+                          <i class="fa fa-trash"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls previousLabel="Précédent" nextLabel="Suivant" class="paginations" (pageChange)="actuPage = $event"
+                  id="actu"></pagination-controls>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

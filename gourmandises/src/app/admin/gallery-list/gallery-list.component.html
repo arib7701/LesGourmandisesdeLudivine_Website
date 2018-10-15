@@ -1,0 +1,31 @@
+<div id="cakes-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 adminlist">
+        <ul class="timeline">
+          <li>
+            <div class="timeline-badge" style="background-image:url(../assets/img/edit_gal.jpg);"></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h3 class="timeline-title">{{images?.length}} Catégories d'Images</h3>
+              </div>
+              <div class="timeline-body">
+                <table class="table table-hover" *ngIf="images?.length > 0;">
+                  <tbody>
+                    <tr *ngFor="let img of images">
+                      <td>{{img?.key}}</td>
+                      <td>
+                        <a [routerLink]="['/gallery/edit/', img.key]" class="btn btn-sm">
+                          <i class="fa fa-edit"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

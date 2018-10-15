@@ -9,6 +9,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../../environments/environment';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   declarations: [],
   schemas: [NO_ERRORS_SCHEMA],
+  providers: [AngularFireStorage],
   exports: [
     FormsModule,
     ReactiveFormsModule,
