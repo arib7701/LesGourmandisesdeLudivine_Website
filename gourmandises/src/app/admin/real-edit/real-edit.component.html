@@ -1,3 +1,135 @@
-<p>
-  real-edit works!
-</p>
+<div id="cakes-realEdit" class="cakes-bg" style="background-image:url(../assets/img/edit_real.jpg);">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Changer la Réalisation</h2>
+        <h2>{{real.title}}</h2>
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">
+        <form class="form-inline" name="realForm">
+          <div class=" col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="title">Titre*</label>
+              <input [(ngModel)]="real.title" type="title" class="form-control" name="title" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="img">Catégorie*</label>
+              <select type="text" name="category" [(ngModel)]="real.category" class="form-control">
+                <option *ngFor="let cat of categories">{{cat}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <label for="description">Description*</label>
+              <textarea autosize type="description" [(ngModel)]="real.description" class="form-control" name="description"
+                required>Description</textarea>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="img">Image Principale*</label>
+              <input type="file" class="form-control" (change)="uploadPrim($event)" accept=".png,.jpg" required />
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <img *ngIf="real.img?.url !== ''" src="{{real.img?.url}}" alt="img_principale" style="width: 100px;">
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="img">Images Galerie</label>
+              <input type="file" class="form-control" (change)="uploadGal($event)" accept=".png,.jpg" multiple />
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div *ngIf="real.galleryId?.length > 0" style="display:flex;">
+              <div *ngFor=" let gal of galleryImg; let i=index " style="margin-right: 20px; ">
+                <button class="btn-delete-gal-real " (click)="onDeleteGal(i) "><i class="fa fa-trash "></i></button>
+                <img src="{{gal?.img}} " alt="img_gallery " style="width: 100px; ">
+              </div>
+            </div>
+          </div>
+
+          <hr class="hrNice">
+          <div *ngIf="partnersArray?.length === 0" style="margin:0 auto;">
+            <label for="name">Ajouter Partenaire / Produit <a style="padding-left:15px;" (click)="addPartner()"><i
+                  class="fa fa-plus"> </i></a></label>
+          </div>
+
+          <div class="col-md-12 col-sm-12" style="display:flex; flex-wrap:wrap;">
+            <div class="col-md-4 col-sm-4" *ngFor="let partners of partnersArray; let i = index; trackBy:customTrackBy">
+              <div class="form-group">
+                <label for="name">Partenaire / Produit {{i+1}} <a style="padding-left:15px;" (click)="deletePartner(i)">
+                    <i class="fa fa-trash"> </i></a><a *ngIf="i==partnersArray.length-1" style="padding-left:15px;"
+                    (click)="addPartner()">
+                    <i class="fa fa-plus"> </i></a></label>
+                <input type="text" [(ngModel)]="partnersArray[i].name" class="form-control" name="name_{{i}}">
+              </div>
+              <div class="form-group">
+                <label for="website">Site / Facebook</label>
+                <input type="text" [(ngModel)]="partnersArray[i].website" class="form-control" name="website_{{i}}">
+              </div>
+              <div class="form-group">
+                <label for="location">Lieu de Vente</label>
+                <input type="text" [(ngModel)]="partnersArray[i].location" class="form-control" name="location_{{i}}">
+              </div>
+              <div class="form-group" style="display: flex; flex-wrap: wrap;">
+                <label class="logoLabel" for="logo">Web Adresse du Logo</label>
+                <input type="text" [(ngModel)]="partnersArray[i].logo" class="form-control" name="logo_{{i}}" style="width: 70%;"><img
+                  *ngIf="partners.logo" class="partnerLogo" src="{{partners.logo}}" alt="logo_partenaire">
+              </div>
+              <div class="form-group" style="display: flex; flex-wrap: wrap;">
+                <label for="isPartner">Partenaires</label>
+                <input type="checkbox" style="width:8%; margin-left:10px;" [(ngModel)]="partnersArray[i].isPartner"
+                  class="form-control" name="isPartner_{{i}}">
+              </div>
+              <div class="form-group" style="display: flex; flex-wrap: wrap;">
+                <label for="alreadyUsed">Deja utilise</label>
+                <input type="checkbox" style="width:8%; margin-left:10px;" [(ngModel)]="partnersArray[i].alreadyUsed"
+                  class="form-control" name="alreadyUsed_{{i}}" (change)="getOldPartner($event, i)">
+              </div>
+            </div>
+          </div>
+
+          <hr *ngIf="real.comments?.length> 0" class="hrNice">
+
+          <div class="col-md-12 col-sm-12 " *ngIf="real.comments?.length> 0;">
+            <div class="form-group">
+              <label>Commentaires</label>
+              <table class="table table-hover" style="color:#fff;">
+                <tbody>
+                  <tr *ngFor="let com of real?.comments; let i = index">
+                    <td>{{com.name}}</td>
+                    <td>{{com.mess}}</td>
+                    <td>
+                      <a style="padding-left:15px;" (click)="onDeleteCom(i)">
+                        <i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <hr class="hrNice">
+          <div class="col-md-4 col-sm-4">
+            <button type="button" (click)="onSubmit()" class="btn btn-default btn-block">Changer & Voir</button>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <button routerLink="/admin" class="btn btn-default btn-block">
+              Retour Admin</button>
+          </div>
+        </form>
+        <flash-messages></flash-messages>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,68 @@
-<p>
-  recipe-edit works!
-</p>
+<div id="cakes-recipeEdit" class="cakes-bg" style="background-image:url(../assets/img/edit_recipe.jpg);">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center cakes-heading">
+        <h2>Changer la Recette</h2>
+        <h2> {{recipe.title}}</h2>
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="cakes-heading">
+          <form class="form-inline" name="recipeForm">
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label for="title">Temps de Préparation*</label>
+                <input type="text" [(ngModel)]="recipe.preparationTime" class="form-control" name="title">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label for="partners">Temps de Cuisson</label>
+                <input type="text" class="form-control " [(ngModel)]="recipe.cookingTime" name="partners">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div>
+                <div class="form-group" *ngFor="let i of arrayStep">
+                  <label for="steps">Etape #{{i+1}} <a style="padding-left:15px;" (click)="onDeleteStep(i)">
+                      <i class="fa fa-trash"> </i></a><a style="padding-left:15px;" (click)="addStep(i)">
+                      <i class="fa fa-plus"> </i></a></label>
+                  <input type="text" class="form-control" [(ngModel)]="recipe.steps[i]" name="steps{{i}}">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div>
+                <div class="form-group" *ngFor="let i of arrayIng">
+                  <div class="col-md-7">
+                    <label for="ingredients">Ingrédient #{{i+1}} <a style="padding-left:15px;" (click)="onDeleteIng(i)">
+                        <i class="fa fa-trash"> </i></a><a *ngIf="i==numberIngredients-1" style="padding-left:15px;"
+                        (click)="addIng()">
+                        <i class="fa fa-plus"> </i></a></label>
+                    <input type="text" class="form-control" [(ngModel)]="recipe.ingredients[i]" name="ingredients{{i}}">
+                  </div>
+                  <div class="col-md-5">
+                    <label for="quantity">Quantité #{{i+1}} </label>
+                    <input type="text" class="form-control" [(ngModel)]="recipe.quantities[i]" name="quantity{{i}}">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <button type="button" (click)="onSubmit();" class="btn btn-default btn-block">Changer</button>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <button routerLink="/admin" class="btn btn-default btn-block">
+                Retour Admin</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <flash-messages></flash-messages>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RealListComponent } from './real-list.component';
+import { TestsModule } from 'src/app/tests/tests.module';
 
 describe('RealListComponent', () => {
   let component: RealListComponent;
@@ -8,9 +9,9 @@ describe('RealListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RealListComponent ]
-    })
-    .compileComponents();
+      declarations: [RealListComponent],
+      imports: [TestsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

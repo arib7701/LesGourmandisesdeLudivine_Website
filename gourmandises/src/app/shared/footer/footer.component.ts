@@ -26,8 +26,13 @@ export class FooterComponent implements OnInit, OnDestroy {
         this.path = event.url;
         this.pathParts = this.path.split('/');
 
+        console.log(this.pathParts);
         // Only Show Edit link if page editable
-        if (this.pathParts[3] === undefined || this.pathParts[3] === 'edit') {
+        if (
+          (this.pathParts[0] === '' && this.pathParts[3] === undefined) ||
+          this.pathParts[1] === 'admin' ||
+          this.pathParts[3] === 'edit'
+        ) {
           this.isPage = false;
         } else {
           this.isPage = true;

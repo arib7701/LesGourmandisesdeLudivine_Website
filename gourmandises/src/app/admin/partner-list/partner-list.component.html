@@ -15,7 +15,7 @@
                     <tr *ngFor="let pat of partners | paginate: { itemsPerPage: 10, currentPage: partnerPage, id: 'partner' }; let i = index">
                       <td>{{pat?.name}}</td>
                       <td>
-                        <a [routerLink]="['/partners/edit/', pat.key]" class="btn btn-sm">
+                        <a [routerLink]="['/admin/partners/edit/', pat.key]" class="btn btn-sm">
                           <i class="fa fa-edit"></i></a>
                       </td>
                       <td>

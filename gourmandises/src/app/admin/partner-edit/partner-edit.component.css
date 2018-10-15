@@ -1,0 +1,70 @@
+#cakes-partnerEdit {
+  padding: 3em 0;
+  clear: both;
+}
+
+#cakes-partnerEdit {
+  position: relative;
+}
+
+#cakes-partnerEdit .cakes-heading h2 {
+  color: #fff;
+}
+
+#cakes-partnerEdit .cakes-heading p {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#cakes-partnerEdit .form-control {
+  background: rgba(255, 255, 255, 0.2);
+  border: none !important;
+  color: #fff;
+  font-size: 16px !important;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#cakes-partnerEdit label {
+  color: #fff !important;
+  text-align: left;
+  font-size: 15px;
+}
+
+#cakes-partnerEdit .form-control:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#cakes-partnerEdit .btn {
+  height: 54px;
+  border: none !important;
+  background: #f14e95;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+#cakes-partnerEdit .form-inline .form-group {
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+#cakes-partnerEdit .form-inline .form-group .form-control {
+  width: 100%;
+}
+
+#cakes-partnerEdit .cakes-heading {
+  margin-bottom: 30px;
+}
+
+#cakes-partnerEdit .cakes-heading h2 {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-partnerEdit {
+    padding: 3em 0;
+  }
+}

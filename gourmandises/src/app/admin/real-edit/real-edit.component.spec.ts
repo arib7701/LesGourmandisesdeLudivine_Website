@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RealEditComponent } from './real-edit.component';
+import { TestsModule } from 'src/app/tests/tests.module';
 
 describe('RealEditComponent', () => {
   let component: RealEditComponent;
@@ -8,9 +9,9 @@ describe('RealEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RealEditComponent ]
-    })
-    .compileComponents();
+      declarations: [RealEditComponent],
+      imports: [TestsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
