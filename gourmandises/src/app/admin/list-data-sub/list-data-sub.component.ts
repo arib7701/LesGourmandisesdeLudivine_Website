@@ -38,7 +38,6 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
     private actuService: ActuService,
     private partnerService: PartnerService,
     private galleryService: GalleryService,
-    private flashService: FlashMessagesService,
     private storage: AngularFireStorage
   ) {}
 
@@ -227,10 +226,6 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
           break;
         }
       }
-      this.flashService.show(' Supprimée', {
-        cssClass: 'valid-feedback',
-        timeout: 4000
-      });
     }
   }
 

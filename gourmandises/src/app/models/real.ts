@@ -1,13 +1,19 @@
 export class Real {
-  $key?: string;
+  key?: string;
   title?: string;
   description?: string;
   partnersId?: string[];
-  img?: any;
+  img?: {
+    id?: string;
+    url?: string;
+  };
   category?: string;
   likes?: number;
   galleryId?: string[];
   date?: string;
   comments?: any[];
-  haveRecipe?: any;
+  haveRecipe?: {
+    exist?: boolean;
+    recipeLink?: string;
+  };
 }

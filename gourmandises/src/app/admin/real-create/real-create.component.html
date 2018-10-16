@@ -1,0 +1,46 @@
+<div id="cakes-add-data" class="cakes-bg" style="background-image:url(../assets/img/addnew.jpg);">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center cakes-heading">
+        <h2>Ajouter une Nouvelle Réalisation</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <form class="form-inline" name="realForm">
+          <div class=" col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="title">Titre*</label>
+              <input [(ngModel)]="newReal.title" type="text" class="form-control" name="title" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="description">Description*</label>
+              <textarea autosize type="description" [(ngModel)]="newReal.description" class="form-control" name="description"
+                required>Description</textarea>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="img">Catégorie*</label>
+              <select type="text" [(ngModel)]="newReal.category" name="category" class="form-control">
+                <option *ngFor="let cat of categories">{{cat}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="img">Image Principale*</label>
+              <input type="file" class="form-control" (change)="uploadPrim($event)" accept=".png,.jpg" required />
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <button type="button" (click)="onSubmitReal();" class="btn btn-default btn-block ">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

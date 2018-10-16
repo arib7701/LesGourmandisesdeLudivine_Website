@@ -1,0 +1,2 @@
+<app-real-create *ngIf="showReal" (action)="storeNewReal($event)"></app-real-create>
+<app-recipe-create *ngIf="showRecipe" [real]="newReal"></app-recipe-create>

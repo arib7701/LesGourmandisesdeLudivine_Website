@@ -27,7 +27,11 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private flashService: FlashMessagesService,
     private storage: AngularFireStorage
-  ) {}
+  ) {
+    this.real = new Real();
+    this.real.img = {};
+    this.imgs = new Array<Gallery>();
+  }
 
   ngOnInit() {
     this.category = this.route.snapshot.paramMap.get('cat');
@@ -69,7 +73,7 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     principale: boolean
   ) {
     // For Non Principale Img
-    if (real.galleryId !== undefined && principale === false) {
+    if (principale === false && real.galleryId !== undefined) {
       const gallery: any = real.galleryId;
       if (gallery.length > 0) {
         for (let i = 0; i < gallery.length; i++) {
@@ -92,9 +96,9 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     this.realService.editReal(realId, real as Real[]);
   }
 
-  deleteFromGal(category: string, img: Gallery, principale: boolean) {
+  deleteFromGal(category: string, img: any, principale: boolean) {
     // Delete from Gallery
-    this.galleryService.deletePhotoInGallery(category, img.$key);
+    this.galleryService.deletePhotoInGallery(category, img.key);
 
     // Delete from Storage
     this.deleteImgStorage(img.img);
@@ -106,7 +110,7 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
       .subscribe(realObject => {
         this.real = realObject;
         // Delete Img from Realization
-        this.deleteImgReal(this.real, img.newsLink, img.$key, principale);
+        this.deleteImgReal(this.real, img.newsLink, img.key, principale);
       });
 
     // Show Success Message
@@ -116,7 +120,7 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  onDelete(principale: boolean, img: Gallery) {
+  onDelete(principale: boolean, img: any) {
     if (confirm('Etes-vous sure de vouloir supprimer cette photo?')) {
       if (principale) {
         if (

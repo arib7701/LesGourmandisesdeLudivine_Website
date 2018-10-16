@@ -1,12 +1,16 @@
+<app-create-data></app-create-data>
+
 <div id="cakes-list">
-    <div class="row">
-        <div class="col-md-12 text-center cakes-heading">
-            <h2>Mes Données</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center cakes-heading">
+                <h2>Mes Données</h2>
+            </div>
         </div>
+        <app-list-data-sub [dataType]="'real'"></app-list-data-sub>
+        <app-list-data-sub [dataType]="'recipes'"></app-list-data-sub>
+        <app-list-data-sub [dataType]="'gallery'"></app-list-data-sub>
+        <app-list-data-sub [dataType]="'partners'"></app-list-data-sub>
+        <app-list-data-sub [dataType]="'actu'"></app-list-data-sub>
     </div>
-    <app-list-data-sub [dataType]="'real'"></app-list-data-sub>
-    <app-list-data-sub [dataType]="'recipes'"></app-list-data-sub>
-    <app-list-data-sub [dataType]="'gallery'"></app-list-data-sub>
-    <app-list-data-sub [dataType]="'partners'"></app-list-data-sub>
-    <app-list-data-sub [dataType]="'actu'"></app-list-data-sub>
 </div>
