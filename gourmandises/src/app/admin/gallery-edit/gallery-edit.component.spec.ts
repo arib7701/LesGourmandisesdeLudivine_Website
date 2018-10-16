@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GalleryEditComponent } from './gallery-edit.component';
+import { TestsModule } from 'src/app/tests/tests.module';
 
 describe('GalleryEditComponent', () => {
   let component: GalleryEditComponent;
@@ -8,9 +9,9 @@ describe('GalleryEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GalleryEditComponent ]
-    })
-    .compileComponents();
+      declarations: [GalleryEditComponent],
+      imports: [TestsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

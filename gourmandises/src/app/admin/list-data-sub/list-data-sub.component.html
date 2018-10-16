@@ -29,7 +29,7 @@
                   <tr *ngFor="let data of datas">
                     <td>{{data?.key}}</td>
                     <td>
-                      <a [routerLink]="['/admin/+dataType+/edit/', data.key]" class="btn btn-sm">
+                      <a [routerLink]="['/admin/'+dataType+'/edit/', data.key]" class="btn btn-sm">
                         <i class="fa fa-edit"></i></a>
                     </td>
                   </tr>
