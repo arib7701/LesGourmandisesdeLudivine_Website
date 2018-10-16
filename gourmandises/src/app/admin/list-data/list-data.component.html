@@ -1,5 +1,12 @@
-<app-real-list></app-real-list>
-<app-recipe-list></app-recipe-list>
-<app-gallery-list></app-gallery-list>
-<app-partner-list></app-partner-list>
-<app-actu-list></app-actu-list>
+<div id="cakes-list">
+    <div class="row">
+        <div class="col-md-12 text-center cakes-heading">
+            <h2>Mes Données</h2>
+        </div>
+    </div>
+    <app-list-data-sub [dataType]="'real'"></app-list-data-sub>
+    <app-list-data-sub [dataType]="'recipes'"></app-list-data-sub>
+    <app-list-data-sub [dataType]="'gallery'"></app-list-data-sub>
+    <app-list-data-sub [dataType]="'partners'"></app-list-data-sub>
+    <app-list-data-sub [dataType]="'actu'"></app-list-data-sub>
+</div>

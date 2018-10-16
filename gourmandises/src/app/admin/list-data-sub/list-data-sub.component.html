@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-md-offset-0 adminlist">
+      <ul class="timeline">
+        <li>
+          <div class="timeline-badge" [ngStyle]="{'background-image': url}"></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h3 class="timeline-title">{{datas?.length}} {{title}}</h3>
+            </div>
+            <div class="timeline-body">
+              <table class="table table-hover" *ngIf="datas?.length > 0;">
+                <tbody *ngIf="dataType !== 'gallery'">
+                  <tr *ngFor="let data of datas | paginate: { itemsPerPage: 10, currentPage: page, id: dataType }; let i = index ">
+                    <td>{{data.title || data.name}} <small>{{data?.date}}</small></td>
+
+                    <td>
+                      <a [routerLink]="
+                      ['/admin/'+dataType+'/edit/',data.key]" class="btn btn-sm">
+                        <i class="fa fa-edit"></i></a>
+                    </td>
+                    <td>
+                      <a class="btn btn-sm" (click)="onDeleteClick(dataType, data.key, i)">
+                        <i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="dataType === 'gallery'">
+                  <tr *ngFor="let data of datas">
+                    <td>{{data?.key}}</td>
+                    <td>
+                      <a [routerLink]="['/admin/+dataType+/edit/', data.key]" class="btn btn-sm">
+                        <i class="fa fa-edit"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls *ngIf="dataType !== 'gallery'" previousLabel="Précédent" nextLabel="Suivant" class="paginations"
+                (pageChange)="page = $event" id={{dataType}}></pagination-controls>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
