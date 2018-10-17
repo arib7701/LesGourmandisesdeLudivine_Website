@@ -1,3 +1,4 @@
+<app-actu-create *ngIf="showActu" (change)="changeView($event)"></app-actu-create>
 <app-real-create *ngIf="showReal" (action)="storeNewReal($event)"></app-real-create>
 <app-gallery-create *ngIf="showGallery" [real]="newReal" (change)="changeView($event)"></app-gallery-create>
 <app-recipe-create *ngIf="showRecipe" [real]="newReal" (change)="changeView($event)"></app-recipe-create>

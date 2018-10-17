@@ -30,7 +30,7 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
 }
 
-#cakes-contact .btn {
+#cakes-contact .submitBtn {
   height: 54px;
   border: none !important;
   background: #f14e95;
@@ -51,11 +51,8 @@ input:-webkit-autofill:active {
   width: 100%;
 }
 
-.cakes-bg {
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  position: relative;
+.form-full-width {
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

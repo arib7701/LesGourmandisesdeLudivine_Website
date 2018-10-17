@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatInputModule } from '@angular/material';
 
 // Third Party
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -32,6 +34,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { FormErrorsComponent } from './form-errors/form-errors.component';
 
 @NgModule({
   imports: [
@@ -44,9 +47,12 @@ import { RouterModule } from '@angular/router';
     FlashMessagesModule.forRoot(),
     OwlModule,
     RouterModule,
-    AutosizeModule
+    AutosizeModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule
   ],
-  declarations: [NavbarComponent, FooterComponent],
+  declarations: [NavbarComponent, FooterComponent, FormErrorsComponent],
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -57,7 +63,11 @@ import { RouterModule } from '@angular/router';
     OwlModule,
     NavbarComponent,
     FooterComponent,
-    AutosizeModule
+    FormErrorsComponent,
+    AutosizeModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [
     AngularFireAuth,

@@ -1,3 +1,61 @@
-<p>
-  actu-create works!
-</p>
+<div id="cakes-add-actu" class="cakes-bg" style="background-image:url(../assets/img/addnew.jpg);">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center cakes-heading">
+        <h2>Ajouter une Nouvelle Actualité</h2>
+        <p></p>
+      </div>
+    </div>
+    <flash-messages></flash-messages>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <form class="form-inline" name="actuForm">
+          <div class=" col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="title">Titre*</label>
+              <input [(ngModel)]="newActu.title" type="text" class="form-control" name="title" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="description">Description*</label>
+              <textarea autosize type="description" [(ngModel)]="newActu.description" class="form-control" name="description"
+                required>Description</textarea>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="link">Lien Web</label>
+              <input type="text" [(ngModel)]="newActu.link" class="form-control" name="link">
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="form-group" style="display: flex; flex-wrap: wrap;">
+              <label for="titleLink">Titre Lien Web</label>
+              <input type="text" [(ngModel)]="newActu.titleLink" class="form-control" name="titleLink">
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="img">Image*</label>
+              <input type="file" class="form-control" (change)="uploadImg($event)" accept=".png,.jpg" required />
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group" style="display: flex; flex-wrap: wrap;">
+              <img *ngIf="newActu?.img" class="" src="{{newActu.img}}" alt="logo_actualite">
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <button type="button" (click)="onSubmitActu();" class="btn btn-default btn-block">Ajouter</button>
+          </div>
+
+          <div class="col-md-4 col-sm-4">
+            <button type="button" (click)="noActu()" class="btn btn-default btn-block">Pas d'actualité</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

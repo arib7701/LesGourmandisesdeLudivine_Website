@@ -1,3 +1,5 @@
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
 @font-face {
   font-family: 'icomoon';
   src: url('./assets/fonts/icomoon/icomoon.eot?srf3rx');
@@ -14,6 +16,7 @@
   * 	Template Style 
   *
   * ======================================================= */
+
 body {
   font-family: 'Work Sans', Arial, sans-serif;
   font-weight: 400;

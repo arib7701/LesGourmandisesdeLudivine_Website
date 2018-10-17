@@ -1,7 +1,7 @@
 <div id="cakes-contact">
   <div class="container">
     <div class="row">
-      <div class="col-md-2 col-sm-2 returnBtn">
+      <div class="col-md-1 offset-md-1 returnBtn">
         <button routerLink="/" class="btn btn-default">
           Retour</button>
       </div>
@@ -25,44 +25,60 @@
       </div>
       <div class="col-md-6">
         <h2>Laissez moi un message</h2>
-        <form [formGroup]="form" (ngSubmit)="processForm()">
+        <form [formGroup]="contactForm" (ngSubmit)="processForm()">
           <div class="row form-group" style="display: flex;">
             <div class="col-md-6">
-              <label for="firstName">Prenom*</label>
-              <input type="text" name="name" class="form-control" id="firstName" formControlName="firstName"
-                placeholder="Votre prenom">
-              <div class="validation"></div>
+              <mat-form-field>
+                <input matInput placeholder="Votre prenom" type="text" name="name" id="firstName" formControlName="firstName">
+                <mat-error *ngIf="firstName.hasError('required')">
+                  Champ <strong>obligatoire</strong>
+                </mat-error>
+              </mat-form-field>
             </div>
+
             <div class="col-md-6">
-              <label for="lastName">Nom de famille*</label>
-              <input type="text" id="lastName" class="form-control" id="lastName" formControlName="lastName"
-                placeholder="Votre nom de famille">
-              <div class="validation"></div>
+              <mat-form-field>
+                <input matInput placeholder="Votre nom de famille" type="text" name="lastName" id="lastName"
+                  formControlName="lastName">
+                <mat-error *ngIf="lastName.hasError('required')">
+                  Champ <strong>obligatoire</strong>
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-12">
-              <label for="email">Email*</label>
-              <input type="text" id="email" class="form-control" id="email" formControlName="email" placeholder="Votre adresse email">
-              <div class="validation"></div>
+              <mat-form-field class="form-full-width">
+                <input matInput placeholder="Votre email" type="text" name="email" id="email" formControlName="email">
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                  Entrez une adresse email valide.
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                  Champ <strong>obligatoire</strong>
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-12">
-              <label for="subject">Sujet</label>
-              <input type="text" id="subject" class="form-control" id="subject" formControlName="subject" placeholder="Le sujet du message">
-              <div class="validation"></div>
+              <mat-form-field class="form-full-width">
+                <input matInput placeholder="Sujet" type="text" name="subject" id="subject" formControlName="subject">
+              </mat-form-field>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-12">
-              <label for="message">Message*</label>
-              <textarea autosize name="message" id="message" cols="30" rows="10" id="message" formControlName="message"
-                class="form-control" placeholder="Ecrivez-nous!"></textarea>
-              <div class="validation"></div>
+              <mat-form-field class="form-full-width">
+                <mat-label>Message</mat-label>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" cols="20"
+                  name="message" id="message" id="message" formControlName="message" placeholder="Ecrivez-nous!"></textarea>
+                <mat-error *ngIf="message.hasError('required')">
+                  Champ <strong>obligatoire</strong>
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
           <div class="row form-group">
@@ -71,7 +87,7 @@
             </div>
           </div>
           <div>
-            <button type="submit" class="btn">Envoyer</button>
+            <button type="submit" [disabled]="!contactForm.valid" class="submitBtn">Envoyer</button>
           </div>
         </form>
         <flash-messages></flash-messages>

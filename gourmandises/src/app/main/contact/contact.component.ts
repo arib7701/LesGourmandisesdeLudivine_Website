@@ -5,7 +5,12 @@ import {
   ElementRef,
   AfterViewInit
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
@@ -21,46 +26,45 @@ import { environment } from 'src/environments/environment';
 export class ContactComponent implements OnInit, AfterViewInit {
   @ViewChild('captchaRef2')
   captchaRef2: ElementRef;
-  contacts: any[];
-  firstName: string;
-  lastName: string;
-  email: string;
-  subject: string;
-  message: string;
-  form: FormGroup;
   captcha: Boolean = false;
-
+  grecaptcha: any;
   _reCaptchaId: number;
   CAPTCHA = environment.CAPTCHA_SITE_ID;
 
+  contacts: any[];
+  contactForm: FormGroup;
+
   constructor(
-    private formBuilder: FormBuilder,
     private firebase: AngularFireDatabase,
     private flashService: FlashMessagesService
   ) {
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.grecaptcha = (window as any).grecaptcha;
+  }
 
   ngAfterViewInit() {
-    const grecaptcha = (window as any).grecaptcha;
-    if (grecaptcha) {
-      this._reCaptchaId = grecaptcha.render(this.captchaRef2.nativeElement, {
-        sitekey: this.CAPTCHA,
-        callback: resonse => this.reCapchaSuccess(resonse),
-        'expired-callback': () => this.reCapchaExpired()
-      });
+    if (this.grecaptcha) {
+      this._reCaptchaId = this.grecaptcha.render(
+        this.captchaRef2.nativeElement,
+        {
+          sitekey: this.CAPTCHA,
+          callback: resonse => this.reCapchaSuccess(resonse),
+          'expired-callback': () => this.reCapchaExpired()
+        }
+      );
     }
   }
 
   createForm() {
-    this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      subject: ['', Validators.required],
-      message: ['', Validators.required]
+    this.contactForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      subject: new FormControl(''),
+      message: new FormControl('', [Validators.required])
     });
   }
 
@@ -85,50 +89,56 @@ export class ContactComponent implements OnInit, AfterViewInit {
         timeout: 2000
       });
     } else {
-      const { firstName, lastName, email, subject, message } = this.form.value;
-      console.log(
-        firstName + ' ' + lastName + ' ' + email + ' ' + subject + ' ' + message
-      );
+      const {
+        firstName,
+        lastName,
+        email,
+        subject,
+        message
+      } = this.contactForm.value;
 
-      if (
-        firstName !== '' &&
-        lastName !== '' &&
-        email !== '' &&
-        message !== ''
-      ) {
-        const date = Date();
-        const html = `
+      const date = Date();
+      const html = `
           <div>From: ${firstName} ${lastName}</div>
           <div>Email: <a href="mailto:${email}">${email}</a></div>
           <div>Date: ${date}</div>
           <div>Subject: ${subject}</div>
           <div>Message: ${message}</div>
         `;
-        const formRequest = {
-          firstName,
-          lastName,
-          email,
-          subject,
-          message,
-          date,
-          html
-        };
+      const formRequest = {
+        firstName,
+        lastName,
+        email,
+        subject,
+        message,
+        date,
+        html
+      };
 
-        // Push new message to DB table in firebase - Cloud Fct will listen to any change on table and send email
-        this.firebase.list('/messages').push(formRequest);
+      // Push new message to DB table in firebase - Cloud Fct will listen to any change on table and send email
+      this.firebase.list('/messages').push(formRequest);
 
-        // Show message success
-        this.flashService.show('Votre message a bien été envoyé.', {
-          cssClass: 'alert-success',
-          timeout: 2000
-        });
-      } else {
-        // Show message error - Fill form fully
-        this.flashService.show(
-          'Erreur dans le formulaire, veuillez remplir les champs nécéssaires.',
-          { cssClass: 'alert-danger', timeout: 2000 }
-        );
-      }
+      // Show message success
+      this.flashService.show('Votre message a bien été envoyé.', {
+        cssClass: 'alert-success',
+        timeout: 2000
+      });
     }
+  }
+
+  get firstName() {
+    return this.contactForm.get('firstName');
+  }
+  get lastName() {
+    return this.contactForm.get('lastName');
+  }
+  get email() {
+    return this.contactForm.get('email');
+  }
+  get subject() {
+    return this.contactForm.get('subject');
+  }
+  get message() {
+    return this.contactForm.get('message');
   }
 }

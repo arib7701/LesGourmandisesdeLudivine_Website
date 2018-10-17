@@ -10,10 +10,11 @@ export class CreateDataComponent implements OnInit {
   newReal: Real;
 
   // Boolean to View Forms
-  showReal: Boolean = true;
+  showReal: Boolean = false;
   showRecipe: Boolean = false;
   showGallery: Boolean = false;
   showPartner: Boolean = false;
+  showActu: Boolean = true;
 
   constructor() {}
 
@@ -26,7 +27,10 @@ export class CreateDataComponent implements OnInit {
   }
 
   changeView(view: string) {
-    if (view === 'recipe') {
+    if (view === 'fromactu') {
+      this.showActu = false;
+      this.showReal = true;
+    } else if (view === 'recipe') {
       this.showGallery = false;
       this.showRecipe = true;
     } else if (view === 'partner') {
@@ -34,7 +38,7 @@ export class CreateDataComponent implements OnInit {
       this.showPartner = true;
     } else if (view === 'real') {
       this.showPartner = false;
-      this.showReal = true;
+      this.showActu = true;
     }
   }
 }

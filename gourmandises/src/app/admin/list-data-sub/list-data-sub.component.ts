@@ -149,7 +149,8 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
 
   // Delete Picture From Storage
   deleteImgStorage(data: any) {
-    if (data.img !== undefined) {
+    if (data.img === undefined) {
+    } else {
       this.storage
         .refFromURL(data.img)
         .delete()
@@ -163,7 +164,8 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
 
   // Delete Partner in associated Realization
   deletePartnerReal(real: Real, realId: string, partnerKey: string) {
-    if (real.partnersId !== undefined) {
+    if (real.partnersId === undefined) {
+    } else {
       const partners: any = real.partnersId;
       if (partners.length > 0) {
         for (let i = 0; i < partners.length; i++) {
@@ -199,7 +201,6 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
           break;
         }
         case 'partners': {
-          this.partnerService.deletePartner(id);
           // Get Id of Realization using Img
           this.data = this.datas[index];
           for (let i = 0; i < this.data.realId.length; i++) {
@@ -209,6 +210,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
               .subscribe(real => {
                 // Delete Partner from Realization
                 this.deletePartnerReal(real, this.data.realId[i], id);
+                this.partnerService.deletePartner(id);
               });
           }
           break;
@@ -221,8 +223,8 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
             .subscribe(actu => {
               // Delete Img from Storage
               this.deleteImgStorage(actu);
+              this.actuService.deleteActu(id);
             });
-          this.actuService.deleteActu(id);
           break;
         }
       }
