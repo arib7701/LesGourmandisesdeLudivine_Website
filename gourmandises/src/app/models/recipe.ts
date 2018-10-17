@@ -1,5 +1,5 @@
 export class Recipe {
-  $key?: string;
+  key?: string;
   title?: string;
   cookingTime?: string;
   preparationTime?: string;

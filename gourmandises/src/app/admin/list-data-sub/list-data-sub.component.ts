@@ -181,7 +181,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
     this.realService.editReal(realId, real as Real[]);
   }
 
-  onDeleteClick(type, id, index) {
+  onDeleteClick(type: string, id: string, index: number) {
     if (confirm('Etes-vous sure de vouloir supprimer cette donnée?')) {
       switch (type) {
         case 'recipes': {

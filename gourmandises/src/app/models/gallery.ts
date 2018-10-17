@@ -1,5 +1,5 @@
 export class Gallery {
-  $key?: string;
+  key?: string;
   img?: string;
   principale?: boolean;
   date?: string;

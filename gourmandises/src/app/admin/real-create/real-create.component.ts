@@ -119,7 +119,7 @@ export class RealCreateComponent implements OnInit, OnDestroy {
               this.realService.editReal(this.newRealId, this.newReal as Real[]);
 
               // Send back Real to Parent Component
-              this.newReal.$key = this.newRealId;
+              this.newReal.key = this.newRealId;
               this.action.emit(this.newReal);
             }
           );

@@ -1,5 +1,5 @@
 export class TopNew {
-  $key?: string;
+  key?: string;
   title?: string;
   message?: string;
   mainImg?: string;

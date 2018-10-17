@@ -1,2 +1,4 @@
 <app-real-create *ngIf="showReal" (action)="storeNewReal($event)"></app-real-create>
-<app-recipe-create *ngIf="showRecipe" [real]="newReal"></app-recipe-create>
+<app-gallery-create *ngIf="showGallery" [real]="newReal" (change)="changeView($event)"></app-gallery-create>
+<app-recipe-create *ngIf="showRecipe" [real]="newReal" (change)="changeView($event)"></app-recipe-create>
+<app-partner-create *ngIf="showPartner" [real]="newReal" (change)="changeView($event)"></app-partner-create>

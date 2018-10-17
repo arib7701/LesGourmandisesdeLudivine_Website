@@ -1,5 +1,5 @@
 export class Partner {
-  $key?: string;
+  key?: string;
   name?: string;
   location?: string;
   logo?: string;

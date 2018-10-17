@@ -1,5 +1,5 @@
 export class Actu {
-  $key?: string;
+  key?: string;
   title?: string;
   description?: string;
   img?: any;

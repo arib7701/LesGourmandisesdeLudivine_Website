@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -14,6 +14,9 @@ export class RecipeCreateComponent implements OnInit {
   @Input()
   real: Real;
 
+  @Output()
+  change: EventEmitter<string> = new EventEmitter();
+
   optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
   newRecipe: Recipe;
 
@@ -24,8 +27,7 @@ export class RecipeCreateComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private realService: RealService,
-    private flashMess: FlashMessagesService
+    private realService: RealService
   ) {
     this.newRecipe = new Recipe();
     this.newRecipe.ingredients = new Array<string>();
@@ -57,7 +59,7 @@ export class RecipeCreateComponent implements OnInit {
       'fr-FR',
       this.optionsDate
     );
-    this.newRecipe.newsLink = this.real.$key;
+    this.newRecipe.newsLink = this.real.key;
 
     // Save Recipe to DB
     const key = this.recipeService.createNewRecipe(this.newRecipe as Recipe[]);
@@ -66,11 +68,16 @@ export class RecipeCreateComponent implements OnInit {
     this.real.haveRecipe.exist = true;
     this.real.haveRecipe.recipeLink = key;
     this.realService.editReal(this.real.key, this.real as Real[]);
+    this.change.emit('partner');
 
     // Show success message
     /*this.flashMess.show('Recette sauvegardée!', {
       cssClass: 'alert-success',
       timeout: 2000
     });*/
+  }
+
+  noRecipe() {
+    this.change.emit('partner');
   }
 }

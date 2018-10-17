@@ -4,7 +4,6 @@ import { Real } from 'src/app/models/real';
 import { Subscription } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { ActivatedRoute } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { map } from 'rxjs/operators';
 import { RealService } from 'src/app/services/real.service';
@@ -25,7 +24,6 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     private galleryService: GalleryService,
     private realService: RealService,
     private route: ActivatedRoute,
-    private flashService: FlashMessagesService,
     private storage: AngularFireStorage
   ) {
     this.real = new Real();
@@ -88,15 +86,17 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     } else if (principale) {
       // For Principale Img
       // Remove img of Realization
-      real.img.url = '';
-      real.img.id = '';
+      real.img = {
+        url: '',
+        id: ''
+      };
     }
 
     // Update Realization in DB
     this.realService.editReal(realId, real as Real[]);
   }
 
-  deleteFromGal(category: string, img: any, principale: boolean) {
+  deleteFromGal(category: string, img: Gallery, principale: boolean) {
     // Delete from Gallery
     this.galleryService.deletePhotoInGallery(category, img.key);
 
@@ -112,15 +112,9 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
         // Delete Img from Realization
         this.deleteImgReal(this.real, img.newsLink, img.key, principale);
       });
-
-    // Show Success Message
-    this.flashService.show('Image Supprimée', {
-      cssClass: 'valid-feedback',
-      timeout: 4000
-    });
   }
 
-  onDelete(principale: boolean, img: any) {
+  onDelete(principale: boolean, img: Gallery) {
     if (confirm('Etes-vous sure de vouloir supprimer cette photo?')) {
       if (principale) {
         if (

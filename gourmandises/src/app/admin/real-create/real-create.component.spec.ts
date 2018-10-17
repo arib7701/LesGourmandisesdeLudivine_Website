@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RealCreateComponent } from './real-create.component';
+import { TestsModule } from 'src/app/tests/tests.module';
 
 describe('RealCreateComponent', () => {
   let component: RealCreateComponent;
@@ -8,9 +9,9 @@ describe('RealCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RealCreateComponent ]
-    })
-    .compileComponents();
+      declarations: [RealCreateComponent],
+      imports: [TestsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

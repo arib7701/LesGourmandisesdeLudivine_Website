@@ -13,7 +13,7 @@ export class CreateDataComponent implements OnInit {
   showReal: Boolean = true;
   showRecipe: Boolean = false;
   showGallery: Boolean = false;
-  showPartners: Boolean = false;
+  showPartner: Boolean = false;
 
   constructor() {}
 
@@ -21,7 +21,20 @@ export class CreateDataComponent implements OnInit {
 
   storeNewReal(real: Real) {
     this.newReal = real;
-    this.showRecipe = true;
+    this.showGallery = true;
     this.showReal = false;
+  }
+
+  changeView(view: string) {
+    if (view === 'recipe') {
+      this.showGallery = false;
+      this.showRecipe = true;
+    } else if (view === 'partner') {
+      this.showRecipe = false;
+      this.showPartner = true;
+    } else if (view === 'real') {
+      this.showPartner = false;
+      this.showReal = true;
+    }
   }
 }

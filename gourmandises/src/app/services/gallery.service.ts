@@ -22,6 +22,23 @@ export class GalleryService {
     ) as AngularFireList<Gallery[]>);
   }
 
+  /*getTwentyRandomImg(): AngularFireList<Gallery[]> {
+    for (let i = 0; i < 20; i++) {
+      const random = Math.floor(Math.random() * 300);
+      const tempGalleries: AngularFireList<Gallery[]> = this.firebase.list(
+        '/gallery',
+        ref =>
+          ref
+            .limitToLast(1)
+            .orderByKey()
+            .startAt(random)
+      ) as AngularFireList<Gallery[]>;
+      this.manyGalleries.push(tempGalleries[0]);
+    }
+
+    return this.manyGalleries;
+  }*/
+
   // Get ONE Gallery By Category
   getOneGallery(category: string): AngularFireList<Gallery[]> {
     return (this.manyGalleries = this.firebase.list(

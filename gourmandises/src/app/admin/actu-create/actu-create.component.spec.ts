@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActuCreateComponent } from './actu-create.component';
+import { TestsModule } from 'src/app/tests/tests.module';
 
 describe('ActuCreateComponent', () => {
   let component: ActuCreateComponent;
@@ -8,9 +9,9 @@ describe('ActuCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActuCreateComponent ]
-    })
-    .compileComponents();
+      declarations: [ActuCreateComponent],
+      imports: [TestsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

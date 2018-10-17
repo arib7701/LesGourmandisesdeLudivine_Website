@@ -185,7 +185,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
       );
 
       // Update Partner with added new Real Info
-      this.partnerService.editPartner(oldPartner.$key, oldPartner as Partner[]);
+      this.partnerService.editPartner(oldPartner.key, oldPartner as Partner[]);
 
       // If Partner Empty in Real, initialize value
       if (this.real.partnersId === undefined) {
@@ -193,7 +193,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
       }
 
       // Add ID of Partner to Realization
-      this.real.partnersId.push(oldPartner.$key);
+      this.real.partnersId.push(oldPartner.key);
     }
   }
 

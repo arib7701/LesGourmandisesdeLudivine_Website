@@ -22,7 +22,7 @@ export class PartnerService {
     ) as AngularFireList<Partner[]>);
   }
 
-  // Get ALL Partners
+  // Get last 10 Partners
   getLastTenPartners(): AngularFireList<Partner[]> {
     return (this.manyPartners = this.firebase.list('/partner', ref =>
       ref.limitToLast(10)

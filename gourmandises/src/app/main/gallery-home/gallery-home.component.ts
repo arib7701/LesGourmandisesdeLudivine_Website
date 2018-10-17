@@ -46,6 +46,17 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
             });
         }
       });
+
+    /*this.subscriptionGal = this.galleryService
+      .getTwentyRandomImg()
+      .valueChanges()
+      .subscribe(galleries => {
+        this.randomGal = [];
+        galleries.forEach(element => {
+          this.randomGal.push(element as Gallery);
+        });
+        this.randomGal = this.shuffle(this.randomGal);
+      });*/
   }
 
   ngOnInit() {}
