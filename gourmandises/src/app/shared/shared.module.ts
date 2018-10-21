@@ -48,7 +48,6 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     OwlModule,
     RouterModule,
     AutosizeModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule
   ],
@@ -65,7 +64,6 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     FooterComponent,
     FormErrorsComponent,
     AutosizeModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule
   ],

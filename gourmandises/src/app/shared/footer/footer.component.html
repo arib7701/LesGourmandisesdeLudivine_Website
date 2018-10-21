@@ -4,7 +4,7 @@
       <div class="col-md-12 text-center">
         <p>
           <small class="block">
-            <a *ngIf="!isLoggedIn" routerLink="/home/login">Connexion</a>
+            <a *ngIf="!isLoggedIn" routerLink="/login">Connexion</a>
             <a *ngIf="isLoggedIn" routerLink="/admin">Admin / </a>
             <a *ngIf="isLoggedIn" href="#" (click)="onLogoutClick()">Déconnexion</a>
             <a *ngIf="isLoggedIn && isPage" [routerLink]="[component, id]"> / Editer la Page</a>
