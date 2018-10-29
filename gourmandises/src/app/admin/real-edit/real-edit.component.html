@@ -93,7 +93,7 @@
                   class="form-control" name="isPartner_{{i}}">
               </div>
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
-                <label for="alreadyUsed">Deja utilise</label>
+                <label for="alreadyUsed">Déjà utilisé</label>
                 <input type="checkbox" style="width:8%; margin-left:10px;" [(ngModel)]="partnersArray[i].alreadyUsed"
                   class="form-control" name="alreadyUsed_{{i}}" (change)="getOldPartner($event, i)">
               </div>

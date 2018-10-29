@@ -24,12 +24,12 @@
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
-                <label for="numberSteps">Nombre d'Etapes*</label>
+                <label for="numberSteps">Nombre d'Étapes*</label>
                 <input type="text" class="form-control" [(ngModel)]="numberSteps " (change)="arraySteps($event)" name="numberSteps">
               </div>
               <div *ngIf="numberSteps> 0">
                 <div class="form-group" *ngFor="let i of arrayStep">
-                  <label for="steps">Etape #{{i+1}}</label>
+                  <label for="steps">Étape #{{i+1}}</label>
                   <input type="text" class="form-control" [(ngModel)]="newRecipe.steps[i]" name="steps">
                 </div>
               </div>

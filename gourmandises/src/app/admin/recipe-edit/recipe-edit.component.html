@@ -27,7 +27,7 @@
             <div class="col-md-6 col-sm-6">
               <div>
                 <div class="form-group" *ngFor="let i of arrayStep">
-                  <label for="steps">Etape #{{i+1}} <a style="padding-left:15px;" (click)="onDeleteStep(i)">
+                  <label for="steps">Étape #{{i+1}} <a style="padding-left:15px;" (click)="onDeleteStep(i)">
                       <i class="fa fa-trash"> </i></a><a style="padding-left:15px;" (click)="addStep(i)">
                       <i class="fa fa-plus"> </i></a></label>
                   <input type="text" class="form-control" [(ngModel)]="recipe.steps[i]" name="steps{{i}}">
