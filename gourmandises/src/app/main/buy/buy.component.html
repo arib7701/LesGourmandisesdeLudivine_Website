@@ -90,7 +90,7 @@
                 <div class="col-md-12">
                   <mat-form-field class="form-full-width">
                     <input matInput placeholder="Ligne 1" type="text" name="row1" id="row1" formControlName="row1">
-                    <mat-error *ngIf="row1.hasError('maxLength') && !row1.hasError('required')">
+                    <mat-error *ngIf="row1.hasError('maxlength') && !row1.hasError('required')">
                         Caractères maximum: <strong>12</strong>
                     </mat-error>
                     <mat-error *ngIf="row1.hasError('required')">
@@ -104,7 +104,7 @@
                   <div class="col-md-12">
                     <mat-form-field class="form-full-width">
                       <input matInput placeholder="Ligne 2" type="text" name="row2" id="row2" formControlName="row2">
-                      <mat-error *ngIf="row2.hasError('maxLength')">
+                      <mat-error *ngIf="row2.hasError('maxlength')">
                           Caractères maximum: <strong>12</strong>
                       </mat-error>
                     </mat-form-field>
@@ -115,7 +115,7 @@
                   <div class="col-md-12">
                     <mat-form-field class="form-full-width">
                       <input matInput placeholder="Ligne 3" type="text" name="row3" id="row3" formControlName="row3">
-                      <mat-error *ngIf="row3.hasError('maxLength')">
+                      <mat-error *ngIf="row3.hasError('maxlength')">
                           Caractères maximum: <strong>12</strong>
                       </mat-error>
                     </mat-form-field>
