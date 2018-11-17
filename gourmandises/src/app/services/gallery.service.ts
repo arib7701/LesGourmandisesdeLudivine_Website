@@ -42,14 +42,14 @@ export class GalleryService {
   // Get ONE Gallery By Category
   getOneGallery(category: string): AngularFireList<Gallery[]> {
     return (this.manyGalleries = this.firebase.list(
-      '/gallery/' + category
+      `/gallery/${category}`
     ) as AngularFireList<Gallery[]>);
   }
 
   // Get One Img in One Gallery By Cateogory and By Id
   getPhotoInGallery(category: string, id: string): AngularFireObject<Gallery> {
     return (this.oneGallery = this.firebase.object(
-      '/gallery/' + category + '/' + id
+      `/gallery/${category}/${id}`
     ) as AngularFireObject<Gallery>);
   }
 
@@ -76,6 +76,6 @@ export class GalleryService {
   // Delete One Img in Gallery By Id
   deletePhotoInGallery(category: string, id: string): Promise<void> {
     this.getAllGallery();
-    return this.manyGalleries.remove(category + '/' + id);
+    return this.manyGalleries.remove(`${category}/${id}`);
   }
 }

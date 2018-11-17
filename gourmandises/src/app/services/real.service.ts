@@ -32,7 +32,7 @@ export class RealService {
   // Get One Realization By Id
   getNewsById(id: string): AngularFireObject<Real> {
     return (this.oneReal = this.firebase.object<Real>(
-      '/news/' + id
+      `/news/${id}`
     ) as AngularFireObject<Real>);
   }
 

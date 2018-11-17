@@ -32,7 +32,7 @@ export class RecipeService {
   // Get One Recipe By Id
   getRecipeById(id: string): AngularFireObject<Recipe> {
     return (this.oneRecipe = this.firebase.object(
-      '/recipes/' + id
+      `/recipes/${id}`
     ) as AngularFireObject<Recipe>);
   }
 

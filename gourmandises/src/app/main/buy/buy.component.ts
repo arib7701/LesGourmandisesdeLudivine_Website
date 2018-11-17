@@ -1,8 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  HostListener
+} from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { PaymentService } from 'src/app/services/payment.service';
+
+declare var StripeCheckout: any;
 
 @Component({
   selector: 'app-buy',
@@ -10,9 +20,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./buy.component.css']
 })
 export class BuyComponent implements OnInit, AfterViewInit {
-
   @ViewChild('captchaRef2')
-  captchaRef2: ElementRef;
+  captchaRef3: ElementRef;
   captcha: Boolean = false;
   grecaptcha: any;
   _reCaptchaId: number;
@@ -20,25 +29,60 @@ export class BuyComponent implements OnInit, AfterViewInit {
 
   infos: any[];
   buyInfoForm: FormGroup;
+  calculatedPrice = 0.0;
+
+  handler: any;
+  amount: Number = 100;
+  message: any;
+  details: any;
 
   constructor(
     private firebase: AngularFireDatabase,
-    private flashService: FlashMessagesService
+    private flashService: FlashMessagesService,
+    private paymentService: PaymentService
   ) {
     this.createForm();
   }
 
+  @HostListener('window: popstate')
+  onPopstate() {
+    this.handler.close();
+    // Show message success
+    this.flashService.show('Votre commande a bien été envoyé.', {
+      cssClass: 'alert-success',
+      timeout: 2000
+    });
+  }
+
   ngOnInit() {
     this.grecaptcha = (window as any).grecaptcha;
+
+    this.handler = StripeCheckout.configure({
+      key: environment.stripePublishedKey,
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      locale: 'auto',
+      panelLabel: 'Paiement',
+      billingAddress: true,
+      shippingAddress: true,
+      allowRememberMe: false,
+      token: token => {
+        this.paymentService.processPayment(
+          token,
+          this.amount,
+          this.details,
+          this.message
+        );
+      }
+    });
   }
 
   ngAfterViewInit() {
     if (this.grecaptcha) {
       this._reCaptchaId = this.grecaptcha.render(
-        this.captchaRef2.nativeElement,
+        this.captchaRef3.nativeElement,
         {
           sitekey: this.CAPTCHA,
-          callback: resonse => this.reCapchaSuccess(resonse),
+          callback: response => this.reCapchaSuccess(response),
           'expired-callback': () => this.reCapchaExpired()
         }
       );
@@ -47,16 +91,45 @@ export class BuyComponent implements OnInit, AfterViewInit {
 
   createForm() {
     this.buyInfoForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      address: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
-      zipcode: new FormControl('', [Validators.required]),
-      row1: new FormControl('', [Validators.required, Validators.maxLength(12)]),
+      quantity: new FormControl('', [Validators.required]),
+      event: new FormControl('', [Validators.required]),
+      perfum: new FormControl('nature', [Validators.required]),
+      form: new FormControl('rectangulaire', [Validators.required]),
+      decoration: new FormControl(false),
+      gluten: new FormControl(false),
+      lactose: new FormControl(false),
+      row1: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(12)
+      ]),
       row2: new FormControl('', [Validators.maxLength(12)]),
       row3: new FormControl('', [Validators.maxLength(12)])
     });
+
+    this.buyInfoForm.valueChanges.subscribe(() => {
+      this.calculatePrice();
+    });
+  }
+
+  calculatePrice() {
+    const pricePerBiscuit = 1.2;
+    const numberBiscuits: number = +this.buyInfoForm.value.quantity;
+
+    this.calculatedPrice = pricePerBiscuit * numberBiscuits;
+
+    if (this.buyInfoForm.value.decoration) {
+      this.calculatedPrice += 0.5 * numberBiscuits;
+    }
+
+    if (this.buyInfoForm.value.gluten) {
+      this.calculatedPrice += 0.5 * numberBiscuits;
+    }
+
+    if (this.buyInfoForm.value.lactose) {
+      this.calculatedPrice += 0.5 * numberBiscuits;
+    }
+
+    this.amount = this.calculatedPrice * 100;
   }
 
   reCapchaSuccess(data: any) {
@@ -72,6 +145,15 @@ export class BuyComponent implements OnInit, AfterViewInit {
     });
   }
 
+  handlePayment() {
+    this.handler.open({
+      name: 'Les Gourmandises de Ludivine',
+      description: 'Commande de Biscuits Personnalises',
+      currency: 'eur',
+      amount: this.amount
+    });
+  }
+
   processForm() {
     if (!this.captcha) {
       // Show message error - Fill form fully
@@ -81,71 +163,51 @@ export class BuyComponent implements OnInit, AfterViewInit {
       });
     } else {
       const {
-        firstName,
-        lastName,
-        email,
-        address,
-        city,
-        zipcode,
+        quantity,
+        event,
+        perfum,
+        form,
+        decoration,
+        gluten,
+        lactose,
         row1,
         row2,
         row3
       } = this.buyInfoForm.value;
-
-      const date = Date();
-      const html = `
-          <div>From: ${firstName} ${lastName}</div>
-          <div>Email: <a href="mailto:${email}">${email}</a></div>
-          <div>Date: ${date}</div>
-          <div>Addresse: ${address}</div>
-          <div>Ville: ${city}</div>
-          <div>Code Postal: ${zipcode}</div>
-          <div>Ligne 1: ${row1} </div>
-          <div>Ligne 2: ${row2} </div>
-          <div>Ligne 3: ${row3} </div>
-        `;
-      const formRequest = {
-        firstName,
-        lastName,
-        email,
-        address,
-        city,
-        zipcode,
-        row1,
-        row2,
-        row3,
-        date,
-        html
+      this.message = { row1, row2, row3 };
+      this.details = {
+        quantity,
+        event,
+        perfum,
+        form,
+        decoration,
+        gluten,
+        lactose
       };
-
-      // Push new message to DB table in firebase - Cloud Fct will listen to any change on table and send email
-      this.firebase.list('/orders').push(formRequest);
-
-      // Show message success
-      this.flashService.show('Votre commande a bien été envoyé.', {
-        cssClass: 'alert-success',
-        timeout: 2000
-      });
+      this.handlePayment();
     }
   }
 
-  get firstName() {
-    return this.buyInfoForm.get('firstName');
+  get quantity() {
+    return this.buyInfoForm.get('quantity');
   }
-  get lastName() {
-    return this.buyInfoForm.get('lastName');
+  get event() {
+    return this.buyInfoForm.get('event');
   }
-  get email() {
-    return this.buyInfoForm.get('email');
+  get perfum() {
+    return this.buyInfoForm.get('perfum');
   }
-  get address() {
-    return this.buyInfoForm.get('address');
+  get form() {
+    return this.buyInfoForm.get('form');
   }
-  get city() {
-    return this.buyInfoForm.get('city');
+  get decoration() {
+    return this.buyInfoForm.get('decoration');
   }
-  get zipcode() {
-    return this.buyInfoForm.get('zipcode');
+  get gluten() {
+    return this.buyInfoForm.get('gluten');
+  }
+  get lactose() {
+    return this.buyInfoForm.get('lactose');
   }
   get row1() {
     return this.buyInfoForm.get('row1');

@@ -32,7 +32,7 @@ export class ActuService {
   // Get ONE Actu By Id
   getOneActuById(id: string): AngularFireObject<Actu> {
     return (this.oneActu = this.firebase.object(
-      '/actu/' + id
+      `/actu/${id}`
     ) as AngularFireObject<Actu>);
   }
 

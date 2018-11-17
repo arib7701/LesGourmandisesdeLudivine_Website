@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatInputModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // Third Party
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -49,7 +52,10 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     RouterModule,
     AutosizeModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
   declarations: [NavbarComponent, FooterComponent, FormErrorsComponent],
   exports: [
@@ -65,7 +71,10 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     FormErrorsComponent,
     AutosizeModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
   providers: [
     AngularFireAuth,

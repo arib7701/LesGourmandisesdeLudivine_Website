@@ -32,7 +32,7 @@ export class PartnerService {
   // Get ONE Partner By Id
   getOnePartnerById(id: string): AngularFireObject<Partner> {
     return (this.onePartner = this.firebase.object(
-      '/partner/' + id
+      `/partner/${id}`
     ) as AngularFireObject<Partner>);
   }
 
