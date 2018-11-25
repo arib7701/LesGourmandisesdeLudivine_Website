@@ -68,7 +68,7 @@ exports.stripeCharge = functions.database
   .ref('/orders/{paymentId}')
   .onWrite((event, context) => {
     const payment = event.after.val();
-    console.log('payment ', payment);
+    // console.log('payment ', payment);
     const paymentId = context.params.paymentId;
 
     if (!payment || payment.charge) {
@@ -83,7 +83,7 @@ exports.stripeCharge = functions.database
 
       // eslint-disable-next-line consistent-return
       return stripe.charges.create(charge, { idempotency_key }).then(charge => {
-        console.log('Charge', charge);
+        // console.log('Charge', charge);
         return (
           // eslint-disable-next-line promise/no-nesting
           admin
@@ -147,7 +147,7 @@ exports.stripeCharge = functions.database
                 </div>
               `;
 
-              console.log('html ', html);
+              // console.log('html ', html);
 
               const mailOptions = {
                 to: 'amandineribot01@gmail.com',

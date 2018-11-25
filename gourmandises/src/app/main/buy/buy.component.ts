@@ -28,7 +28,8 @@ export class BuyComponent implements OnInit, AfterViewInit {
   CAPTCHA = environment.CAPTCHA_SITE_ID;
 
   infos: any[];
-  buyInfoForm: FormGroup;
+  buyInfoFormStep1: FormGroup;
+  buyInfoFormStep2: FormGroup;
   calculatedPrice = 0.0;
 
   handler: any;
@@ -36,12 +37,16 @@ export class BuyComponent implements OnInit, AfterViewInit {
   message: any;
   details: any;
 
+  showStep1 = true;
+  showStep2 = false;
+  showStep3 = false;
+
   constructor(
     private firebase: AngularFireDatabase,
     private flashService: FlashMessagesService,
     private paymentService: PaymentService
   ) {
-    this.createForm();
+    this.createForms();
   }
 
   @HostListener('window: popstate')
@@ -89,15 +94,18 @@ export class BuyComponent implements OnInit, AfterViewInit {
     }
   }
 
-  createForm() {
-    this.buyInfoForm = new FormGroup({
+  createForms() {
+    this.buyInfoFormStep1 = new FormGroup({
       quantity: new FormControl('', [Validators.required]),
       event: new FormControl('', [Validators.required]),
       perfum: new FormControl('nature', [Validators.required]),
       form: new FormControl('rectangulaire', [Validators.required]),
       decoration: new FormControl(false),
       gluten: new FormControl(false),
-      lactose: new FormControl(false),
+      lactose: new FormControl(false)
+    });
+
+    this.buyInfoFormStep2 = new FormGroup({
       row1: new FormControl('', [
         Validators.required,
         Validators.maxLength(12)
@@ -106,26 +114,26 @@ export class BuyComponent implements OnInit, AfterViewInit {
       row3: new FormControl('', [Validators.maxLength(12)])
     });
 
-    this.buyInfoForm.valueChanges.subscribe(() => {
+    this.buyInfoFormStep1.valueChanges.subscribe(() => {
       this.calculatePrice();
     });
   }
 
   calculatePrice() {
     const pricePerBiscuit = 1.2;
-    const numberBiscuits: number = +this.buyInfoForm.value.quantity;
+    const numberBiscuits: number = +this.buyInfoFormStep1.value.quantity;
 
     this.calculatedPrice = pricePerBiscuit * numberBiscuits;
 
-    if (this.buyInfoForm.value.decoration) {
+    if (this.buyInfoFormStep1.value.decoration) {
       this.calculatedPrice += 0.5 * numberBiscuits;
     }
 
-    if (this.buyInfoForm.value.gluten) {
+    if (this.buyInfoFormStep1.value.gluten) {
       this.calculatedPrice += 0.5 * numberBiscuits;
     }
 
-    if (this.buyInfoForm.value.lactose) {
+    if (this.buyInfoFormStep1.value.lactose) {
       this.calculatedPrice += 0.5 * numberBiscuits;
     }
 
@@ -154,7 +162,19 @@ export class BuyComponent implements OnInit, AfterViewInit {
     });
   }
 
-  processForm() {
+  processFormStep1() {
+    this.details = this.buyInfoFormStep1.value;
+    this.showStep1 = false;
+    this.showStep2 = true;
+  }
+
+  processFormStep2() {
+    this.message = this.buyInfoFormStep2.value;
+    this.showStep2 = false;
+    this.showStep3 = true;
+  }
+
+  processFormStep3() {
     if (!this.captcha) {
       // Show message error - Fill form fully
       this.flashService.show('Veuillez faire le captcha.', {
@@ -162,60 +182,48 @@ export class BuyComponent implements OnInit, AfterViewInit {
         timeout: 2000
       });
     } else {
-      const {
-        quantity,
-        event,
-        perfum,
-        form,
-        decoration,
-        gluten,
-        lactose,
-        row1,
-        row2,
-        row3
-      } = this.buyInfoForm.value;
-      this.message = { row1, row2, row3 };
-      this.details = {
-        quantity,
-        event,
-        perfum,
-        form,
-        decoration,
-        gluten,
-        lactose
-      };
       this.handlePayment();
     }
   }
 
+  returnStep1() {
+    this.showStep2 = false;
+    this.showStep1 = true;
+  }
+
+  returnStep2() {
+    this.showStep3 = false;
+    this.showStep2 = true;
+  }
+
   get quantity() {
-    return this.buyInfoForm.get('quantity');
+    return this.buyInfoFormStep1.get('quantity');
   }
   get event() {
-    return this.buyInfoForm.get('event');
+    return this.buyInfoFormStep1.get('event');
   }
   get perfum() {
-    return this.buyInfoForm.get('perfum');
+    return this.buyInfoFormStep1.get('perfum');
   }
   get form() {
-    return this.buyInfoForm.get('form');
+    return this.buyInfoFormStep1.get('form');
   }
   get decoration() {
-    return this.buyInfoForm.get('decoration');
+    return this.buyInfoFormStep1.get('decoration');
   }
   get gluten() {
-    return this.buyInfoForm.get('gluten');
+    return this.buyInfoFormStep1.get('gluten');
   }
   get lactose() {
-    return this.buyInfoForm.get('lactose');
+    return this.buyInfoFormStep1.get('lactose');
   }
   get row1() {
-    return this.buyInfoForm.get('row1');
+    return this.buyInfoFormStep2.get('row1');
   }
   get row2() {
-    return this.buyInfoForm.get('row2');
+    return this.buyInfoFormStep2.get('row2');
   }
   get row3() {
-    return this.buyInfoForm.get('row3');
+    return this.buyInfoFormStep2.get('row3');
   }
 }

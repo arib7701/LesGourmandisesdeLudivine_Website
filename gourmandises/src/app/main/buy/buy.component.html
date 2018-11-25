@@ -1,271 +1,359 @@
-<div id="cakes-contact">
-  <div class="container">
+<div
+  id="cakes-add-actu"
+  class="cakes-bg"
+  style="background-image:url(../assets/img/make_order.jpg);"
+>
+  <div class="overlay"></div>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-1 returnBtn">
+      <div class="col-md-1 offset-md-1 returnBtn">
         <button routerLink="/" class="btn btn-default">Retour</button>
       </div>
       <div class="col-md-12 text-center cakes-heading">
         <h2>Passez Votre Commande</h2>
       </div>
     </div>
-    <div class="row" style="display: flex;">
-      <div class="fh5co-contact-info">
-        <form [formGroup]="buyInfoForm" (ngSubmit)="processForm()">
-          <div class="row" style="display: flex;">
-            <div class="col-md-6">
-              <h3>Compléter votre commande</h3>
-              <div class="row form-group" style="display:flex">
-                <div class="col-md-8">
-                  <mat-form-field class="form-full-width">
-                    <input
-                      matInput
-                      placeholder="Quantité de biscuits"
-                      type="number"
-                      name="quantity"
-                      id="quantity"
-                      formControlName="quantity"
-                    />
-                    <mat-error *ngIf="quantity.hasError('required')">
-                      Champ <strong>obligatoire</strong>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-3 specialPrice">
-                  <span class="specialAmount">1.20 € / biscuit</span>
-                </div>
+    <div
+      class="row"
+      style="margin-left: 3%; display: flex; align-items: center;"
+    >
+      <div class="col-md-6 form-control" *ngIf="showStep1">
+        <form [formGroup]="buyInfoFormStep1" (ngSubmit)="processFormStep1()">
+          <div class="col-md-12">
+            <h3>Étape 1 : Choisir vos options</h3>
+            <div class="row form-group" style="display:flex">
+              <div class="col-md-8">
+                <mat-form-field class="form-full-width">
+                  <input
+                    matInput
+                    placeholder="Quantité de biscuits"
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    formControlName="quantity"
+                  />
+                  <mat-error *ngIf="quantity.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </mat-form-field>
               </div>
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <mat-form-field class="form-full-width">
-                    <mat-select
-                      placeholder="Occasion"
-                      name="event"
-                      id="event"
-                      formControlName="event"
-                    >
-                      <mat-option value="anniversaire">Anniversaire</mat-option>
-                      <mat-option value="mariage">Mariage</mat-option>
-                      <mat-option value="publicite">Publicité</mat-option>
-                      <mat-option value="autres">Autres</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="event.hasError('required')">
-                      Champ <strong>obligatoire</strong>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row" style="display:flex;">
-                <div class="col-md-6">
-                  <div class="row form-group">
-                    <h5>Saveur</h5>
-                    <div class="col-md-12">
-                      <mat-radio-group
-                        class="example-radio-group"
-                        name="perfum"
-                        id="perfum"
-                        formControlName="perfum"
-                      >
-                        <mat-radio-button
-                          class="example-radio-button"
-                          value="nature"
-                          >Nature</mat-radio-button
-                        >
-                        <mat-radio-button
-                          class="example-radio-button"
-                          value="amande"
-                          >Amandes</mat-radio-button
-                        >
-                        <mat-radio-button
-                          class="example-radio-button"
-                          value="chocolat"
-                          >Chocolat</mat-radio-button
-                        >
-                        <mat-radio-button
-                          class="example-radio-button"
-                          value="citron"
-                          >Citron</mat-radio-button
-                        >
-                      </mat-radio-group>
-                      <mat-error *ngIf="perfum.hasError('required')">
-                        Champ <strong>obligatoire</strong>
-                      </mat-error>
-                    </div>
-                  </div>
-                  <div class="row form-group">
-                    <h5>Décoré en pâte a sucre:</h5>
-                    <div class="col-md-12">
-                      <section class="example-section" style="display:flex;">
-                        <mat-checkbox
-                          class="example-margin"
-                          name="decoration"
-                          id="decoration"
-                          formControlName="decoration"
-                          >Décorés</mat-checkbox
-                        >
-                        <div class="specialPrice">
-                          <span class="specialAmount">+0.50 € / biscuit</span>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="row form-group">
-                    <h5>Forme:</h5>
-                    <div class="col-md-12">
-                      <mat-radio-group
-                        class="example-radio-group"
-                        name="form"
-                        id="form"
-                        formControlName="form"
-                      >
-                        <mat-radio-button
-                          class="example-radio-button"
-                          value="rectangulaire"
-                          >Rectangulaire</mat-radio-button
-                        >
-                        <mat-radio-button
-                          class="example-radio-button"
-                          value="rond"
-                          >Rond</mat-radio-button
-                        >
-                      </mat-radio-group>
-                      <mat-error *ngIf="form.hasError('required')">
-                        Champ <strong>obligatoire</strong>
-                      </mat-error>
-                    </div>
-                  </div>
-                  <div class="row form-group">
-                    <h5>Requêtes spéciales:</h5>
-                    <div class="col-md-12">
-                      <section class="example-section" style="display:flex;">
-                        <mat-checkbox
-                          class="example-margin"
-                          name="gluten"
-                          id="gluten"
-                          formControlName="gluten"
-                          >Sans Gluten</mat-checkbox
-                        >
-                        <div class="specialPrice">
-                          <span class="specialAmount">+0.50 € / biscuit</span>
-                        </div>
-                      </section>
-                      <section class="example-section" style="display:flex;">
-                        <mat-checkbox
-                          class="example-margin"
-                          name="lactose"
-                          id="lactose"
-                          formControlName="lactose"
-                          >Sans Lactose</mat-checkbox
-                        >
-                        <div class="specialPrice">
-                          <span class="specialAmount">+0.50 € / biscuit</span>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
+              <div class="col-md-3 specialPrice">
+                <span class="specialAmount">1.20 € / biscuit</span>
               </div>
             </div>
-
-            <div class="col-md-5 offset-md-1">
-              <div class="row">
-                <h2>Prix total</h2>
-                <div class="row form-group" style="text-align:center;">
-                  <div class="price">
-                    <span class="amount"
-                      >{{ calculatedPrice | number: '1.2-2' }} €
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <h2>Choississez votre message</h2>
-                <p>
-                  Attention votre message ne peut prendre que
-                  <strong>trois lignes</strong>, de
-                  <strong>12 lettres</strong> maximum, espaces inclus.
-                </p>
-                <div class="row form-group">
-                  <div class="col-md-12">
-                    <mat-form-field class="form-full-width">
-                      <input
-                        matInput
-                        placeholder="Ligne 1"
-                        type="text"
-                        name="row1"
-                        id="row1"
-                        formControlName="row1"
-                      />
-                      <mat-error
-                        *ngIf="
-                          row1.hasError('maxlength') &&
-                          !row1.hasError('required')
-                        "
-                      >
-                        <strong>12</strong> lettres maximum (espaces inclus)
-                      </mat-error>
-                      <mat-error *ngIf="row1.hasError('required')">
-                        Champ <strong>obligatoire</strong>
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col-md-12">
-                    <mat-form-field class="form-full-width">
-                      <input
-                        matInput
-                        placeholder="Ligne 2"
-                        type="text"
-                        name="row2"
-                        id="row2"
-                        formControlName="row2"
-                      />
-                      <mat-error *ngIf="row2.hasError('maxlength')">
-                        <strong>12</strong> lettres maximum (espaces inclus)
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col-md-12">
-                    <mat-form-field class="form-full-width">
-                      <input
-                        matInput
-                        placeholder="Ligne 3"
-                        type="text"
-                        name="row3"
-                        id="row3"
-                        formControlName="row3"
-                      />
-                      <mat-error *ngIf="row3.hasError('maxlength')">
-                        <strong>12</strong> lettres maximum (espaces inclus)
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col-md-12"><div #captchaRef2></div></div>
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    [disabled]="!buyInfoForm.valid"
-                    class="submitBtn"
+            <div class="row form-group">
+              <div class="col-md-12">
+                <mat-form-field class="form-full-width">
+                  <mat-select
+                    placeholder="Occasion"
+                    name="event"
+                    id="event"
+                    formControlName="event"
                   >
-                    Commander
-                  </button>
+                    <mat-option value="anniversaire">Anniversaire</mat-option>
+                    <mat-option value="mariage">Mariage</mat-option>
+                    <mat-option value="publicite">Publicité</mat-option>
+                    <mat-option value="autres">Autres</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="event.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" style="display:flex;">
+              <div class="col-md-6">
+                <div class="row form-group">
+                  <h5>Saveur :</h5>
+                  <div class="col-md-12">
+                    <mat-radio-group
+                      class="example-radio-group"
+                      name="perfum"
+                      id="perfum"
+                      formControlName="perfum"
+                    >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        value="nature"
+                        >Nature</mat-radio-button
+                      >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        value="amande"
+                        >Amandes</mat-radio-button
+                      >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        value="chocolat"
+                        >Chocolat</mat-radio-button
+                      >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        value="citron"
+                        >Citron</mat-radio-button
+                      >
+                    </mat-radio-group>
+                    <mat-error *ngIf="perfum.hasError('required')">
+                      Champ <strong>obligatoire</strong>
+                    </mat-error>
+                  </div>
+                </div>
+                <div class="row form-group ">
+                  <h5>Forme :</h5>
+                  <div class="col-md-12">
+                    <mat-radio-group
+                      class="example-radio-group"
+                      name="form"
+                      id="form"
+                      formControlName="form"
+                    >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        value="rectangulaire"
+                        >Rectangulaire</mat-radio-button
+                      >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        value="rond"
+                        >Rond</mat-radio-button
+                      >
+                    </mat-radio-group>
+                    <mat-error *ngIf="form.hasError('required')">
+                      Champ <strong>obligatoire</strong>
+                    </mat-error>
+                  </div>
                 </div>
               </div>
-              <flash-messages></flash-messages>
+
+              <div class="col-md-6">
+                <div class="row form-group">
+                  <h5>Requêtes spéciales :</h5>
+                  <div class="col-md-12">
+                    <section class="example-section" style="display:flex;">
+                      <mat-checkbox
+                        class="example-margin"
+                        name="gluten"
+                        id="gluten"
+                        formControlName="gluten"
+                        >Sans Gluten</mat-checkbox
+                      >
+                      <div class="specialPrice">
+                        <span class="specialAmount">+0.50 € / biscuit</span>
+                      </div>
+                    </section>
+                    <section class="example-section" style="display:flex;">
+                      <mat-checkbox
+                        class="example-margin"
+                        name="lactose"
+                        id="lactose"
+                        formControlName="lactose"
+                        >Sans Lactose</mat-checkbox
+                      >
+                      <div class="specialPrice">
+                        <span class="specialAmount">+0.50 € / biscuit</span>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="row form-group " style="margin-top:50px;">
+                  <h5>Décoré en pâte a sucre :</h5>
+                  <div class="col-md-12">
+                    <section class="example-section" style="display:flex;">
+                      <mat-checkbox
+                        class="example-margin"
+                        name="decoration"
+                        id="decoration"
+                        formControlName="decoration"
+                        >Décorés</mat-checkbox
+                      >
+                      <div class="specialPrice">
+                        <span class="specialAmount">+0.50 € / biscuit</span>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="row form-group" style="margin-top:50px;">
+                  <div class="col-md-12 text-center">
+                    <button
+                      type="submit"
+                      [disabled]="!buyInfoFormStep1.valid"
+                      class="submitBtn btn btn-default btn-block"
+                    >
+                      Avancez vers l'étape 2
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </form>
+      </div>
+      <div class="col-md-2 offset-md-2 form-control-right" style="display: flex; align-items: center;" *ngIf="showStep1">
+        <h3 class="text-center">Prix total</h3>
+        <div class="price" style="display: flex; align-items: center;">
+          <span class="amount">{{ calculatedPrice | number: '1.2-2' }} €</span>
+        </div>
+      </div>
+      <div class="col-md-6 form-control" *ngIf="showStep2">
+        <form [formGroup]="buyInfoFormStep2" (ngSubmit)="processFormStep2()">
+          <div class="col-md-12">
+            <div class="row">
+              <h3>Étape 2 : Choississez votre message</h3>
+              <h6 style="font-size:20px;">
+                Attention votre message ne peut prendre que
+                <strong>trois lignes</strong>, de
+                <strong>12 lettres</strong> maximum, espaces inclus.
+              </h6>
+              <div class="row form-group ">
+                <div class="col-md-12">
+                  <mat-form-field class="form-full-width">
+                    <input
+                      matInput
+                      placeholder="Ligne 1"
+                      type="text"
+                      name="row1"
+                      id="row1"
+                      formControlName="row1"
+                    />
+                    <mat-error
+                      *ngIf="
+                        row1.hasError('maxlength') && !row1.hasError('required')
+                      "
+                    >
+                      <strong>12</strong> lettres maximum (espaces inclus)
+                    </mat-error>
+                    <mat-error *ngIf="row1.hasError('required')">
+                      Champ <strong>obligatoire</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row form-group ">
+                <div class="col-md-12">
+                  <mat-form-field class="form-full-width">
+                    <input
+                      matInput
+                      placeholder="Ligne 2"
+                      type="text"
+                      name="row2"
+                      id="row2"
+                      formControlName="row2"
+                    />
+                    <mat-error *ngIf="row2.hasError('maxlength')">
+                      <strong>12</strong> lettres maximum (espaces inclus)
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row form-group ">
+                <div class="col-md-12">
+                  <mat-form-field class="form-full-width">
+                    <input
+                      matInput
+                      placeholder="Ligne 3"
+                      type="text"
+                      name="row3"
+                      id="row3"
+                      formControlName="row3"
+                    />
+                    <mat-error *ngIf="row3.hasError('maxlength')">
+                      <strong>12</strong> lettres maximum (espaces inclus)
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row form-group ">
+                <div class="col-md-12"><div #captchaRef2></div></div>
+              </div>
+              <div class="row" style="display:flex;">
+                <div class="col-md-4">
+                  <button
+                    class="submitBtn btn btn-default btn-block"
+                    (click)="returnStep1()"
+                  >
+                    Retour Étape 1
+                  </button>
+                </div>
+                <div class="col-md-7 text-center">
+                  <button
+                    type="submit"
+                    [disabled]="!buyInfoFormStep2.valid"
+                    class="submitBtn btn btn-default btn-block"
+                  >
+                    Avancez vers la derniere étape
+                  </button>
+                </div>
+              </div>
+            </div>
+            <flash-messages></flash-messages>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-2 offset-md-2 form-control-right" style="display: flex;"  *ngIf="showStep2">
+        <h2>Avant Premiere :</h2>
+        <div class="price">
+          <span class="amount">{{ calculatedPrice | number: '1.2-2' }} €</span>
+        </div>
+      </div>
+      <div class="col-md-6 form-control" *ngIf="showStep3">
+        <form [formGroup]="buyInfoFormStep3" (ngSubmit)="processFormStep3()">
+          <div class="col-md-12">
+            <div class="row">
+              <h2>Étape 3 : Validation</h2>
+              <div class="price">
+                <span class="amount"
+                  >{{ calculatedPrice | number: '1.2-2' }} €</span
+                >
+              </div>
+              <div class="row form-group ">
+                <div class="col-md-12">
+                  <mat-form-field class="form-full-width">
+                    <input
+                      matInput
+                      placeholder="Ligne 2"
+                      type="text"
+                      name="row2"
+                      id="row2"
+                      formControlName="row2"
+                    />
+                    <mat-error *ngIf="row2.hasError('maxlength')">
+                      <strong>12</strong> lettres maximum (espaces inclus)
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row form-group ">
+                <div class="col-md-12"><div #captchaRef2></div></div>
+              </div>
+              <div class="row" style="display:flex;">
+                <div class="col-md-5">
+                  <button
+                    class="submitBtn btn btn-default btn-block"
+                    (click)="returnStep2()"
+                  >
+                    Retour Étape 2
+                  </button>
+                </div>
+                <div class="col-md-6 text-center">
+                  <button
+                    type="submit"
+                    [disabled]="!buyInfoFormStep3.valid"
+                    class="submitBtn btn btn-default btn-block"
+                  >
+                    Valider & Commander
+                  </button>
+                </div>
+              </div>
+            </div>
+            <flash-messages></flash-messages>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3" *ngIf="showStep3">
+        <h2>Plateforme de paiement :</h2>
       </div>
     </div>
   </div>
