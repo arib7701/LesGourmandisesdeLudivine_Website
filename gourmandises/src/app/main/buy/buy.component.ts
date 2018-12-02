@@ -30,6 +30,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   infos: any[];
   buyInfoFormStep1: FormGroup;
   buyInfoFormStep2: FormGroup;
+  buyInfoFormStep3: FormGroup;
   calculatedPrice = 0.0;
 
   handler: any;
@@ -60,7 +61,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.grecaptcha = (window as any).grecaptcha;
+    // this.grecaptcha = (window as any).grecaptcha;
 
     this.handler = StripeCheckout.configure({
       key: environment.stripePublishedKey,
@@ -82,7 +83,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.grecaptcha) {
+    /*if (this.grecaptcha) {
       this._reCaptchaId = this.grecaptcha.render(
         this.captchaRef3.nativeElement,
         {
@@ -91,7 +92,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
           'expired-callback': () => this.reCapchaExpired()
         }
       );
-    }
+    }*/
   }
 
   createForms() {
@@ -113,6 +114,8 @@ export class BuyComponent implements OnInit, AfterViewInit {
       row2: new FormControl('', [Validators.maxLength(12)]),
       row3: new FormControl('', [Validators.maxLength(12)])
     });
+
+    this.buyInfoFormStep3 = new FormGroup({});
 
     this.buyInfoFormStep1.valueChanges.subscribe(() => {
       this.calculatePrice();
@@ -156,7 +159,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   handlePayment() {
     this.handler.open({
       name: 'Les Gourmandises de Ludivine',
-      description: 'Commande de Biscuits Personnalises',
+      description: 'Biscuits Personnalisés',
       currency: 'eur',
       amount: this.amount
     });
@@ -175,7 +178,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   }
 
   processFormStep3() {
-    if (!this.captcha) {
+    /* if (!this.captcha) {
       // Show message error - Fill form fully
       this.flashService.show('Veuillez faire le captcha.', {
         cssClass: 'alert-danger',
@@ -183,7 +186,8 @@ export class BuyComponent implements OnInit, AfterViewInit {
       });
     } else {
       this.handlePayment();
-    }
+    } */
+    this.handlePayment();
   }
 
   returnStep1() {

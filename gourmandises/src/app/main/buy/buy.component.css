@@ -60,7 +60,7 @@ input:-webkit-autofill:active {
   width: 150px;
   height: 150px;
   background: rgba(241, 78, 149, 0.8);
-  margin: 0 4px;
+  margin: auto;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;

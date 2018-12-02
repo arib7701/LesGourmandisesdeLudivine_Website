@@ -17,6 +17,7 @@ import { PartnerCreateComponent } from './partner-create/partner-create.componen
 import { GalleryCreateComponent } from './gallery-create/gallery-create.component';
 import { ActuCreateComponent } from './actu-create/actu-create.component';
 import { CreateDataComponent } from './create-data/create-data.component';
+import { OrderEditComponent } from './order-edit/order-edit.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(adminRoutes)],
@@ -34,7 +35,8 @@ import { CreateDataComponent } from './create-data/create-data.component';
     PartnerCreateComponent,
     GalleryCreateComponent,
     ActuCreateComponent,
-    CreateDataComponent
+    CreateDataComponent,
+    OrderEditComponent
   ]
 })
 export class AdminModule {}

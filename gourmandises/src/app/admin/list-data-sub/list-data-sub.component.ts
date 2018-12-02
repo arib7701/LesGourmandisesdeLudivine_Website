@@ -10,6 +10,7 @@ import { PartnerService } from 'src/app/services/partner.service';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Real } from 'src/app/models/real';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-list-data-sub',
@@ -38,6 +39,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
     private actuService: ActuService,
     private partnerService: PartnerService,
     private galleryService: GalleryService,
+    private ordersService: OrdersService,
     private storage: AngularFireStorage
   ) {}
 
@@ -87,6 +89,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
       case 'partners': {
         this.title = 'Partenaires / Produits';
         this.url =
+          // tslint:disable-next-line:max-line-length
           'url(https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-1/1796524_462620637200892_1907837364_n.jpg?_nc_cat=108&oh=718b8521674b2e70677a51c8d1072210&oe=5C260A0B)';
         this.subscription = this.partnerService
           .getAllPartners()
@@ -130,6 +133,25 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
         this.url = 'url(../assets/img/edit_gal.jpg)';
         this.subscription = this.galleryService
           .getAllGallery()
+          .snapshotChanges()
+          .pipe(
+            map(actions =>
+              actions.map(a => ({ key: a.key, ...a.payload.val() }))
+            )
+          )
+          .subscribe(datas => {
+            this.datas = [];
+            datas.forEach(element => {
+              this.datas.push(element as any);
+            });
+          });
+        break;
+      }
+      case 'orders': {
+        this.title = `Mes Commandes`;
+        this.url = 'url(../assets/img/edit_gal.jpg)';
+        this.subscription = this.ordersService
+          .getAllOrders()
           .snapshotChanges()
           .pipe(
             map(actions =>

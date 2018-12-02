@@ -188,10 +188,15 @@
           </div>
         </form>
       </div>
-      <div class="col-md-2 offset-md-2 form-control-right" style="display: flex; align-items: center;" *ngIf="showStep1">
-        <h3 class="text-center">Prix total</h3>
+      <div
+        class="col-md-2 offset-md-2 form-control-right"
+        style="display: flex; align-items: center;"
+        *ngIf="showStep1"
+      >
         <div class="price" style="display: flex; align-items: center;">
-          <span class="amount">{{ calculatedPrice | number: '1.2-2' }} €</span>
+          <span class="amount"
+            >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
+          >
         </div>
       </div>
       <div class="col-md-6 form-control" *ngIf="showStep2">
@@ -292,43 +297,61 @@
           </div>
         </form>
       </div>
-      <div class="col-md-2 offset-md-2 form-control-right" style="display: flex;"  *ngIf="showStep2">
-        <h2>Avant Premiere :</h2>
-        <div class="price">
-          <span class="amount">{{ calculatedPrice | number: '1.2-2' }} €</span>
+      <div
+        class="col-md-2 offset-md-2 form-control-right"
+        style="display: flex; align-items: center;"
+        *ngIf="showStep2"
+      >
+        <h2>Petit Aperçu :</h2>
+        <div class="preview" style="display: flex; align-items: center;">
+          <img src="" alt="previewOrder" />
         </div>
       </div>
       <div class="col-md-6 form-control" *ngIf="showStep3">
         <form [formGroup]="buyInfoFormStep3" (ngSubmit)="processFormStep3()">
           <div class="col-md-12">
-            <div class="row">
-              <h2>Étape 3 : Validation</h2>
-              <div class="price">
+            <h2>Étape 3 : Validation</h2>
+            <div class="row" style="display: flex; align-items: center;">
+              <div class="price" style="display: flex; align-items: center;">
                 <span class="amount"
-                  >{{ calculatedPrice | number: '1.2-2' }} €</span
+                  >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
                 >
               </div>
-              <div class="row form-group ">
+              <div class="row">
                 <div class="col-md-12">
-                  <mat-form-field class="form-full-width">
-                    <input
-                      matInput
-                      placeholder="Ligne 2"
-                      type="text"
-                      name="row2"
-                      id="row2"
-                      formControlName="row2"
-                    />
-                    <mat-error *ngIf="row2.hasError('maxlength')">
-                      <strong>12</strong> lettres maximum (espaces inclus)
-                    </mat-error>
-                  </mat-form-field>
+                  <ul>
+                    <li><strong>Quantité : </strong> {{ details.quantity }}</li>
+                    <li>
+                      <strong>Occasion : </strong>
+                      {{ details.event | uppercase }}
+                    </li>
+                    <li>
+                      <strong>Parfum : </strong>
+                      {{ details.perfum | uppercase }}
+                    </li>
+                    <li>
+                      <strong>Forme : </strong> {{ details.form | uppercase }}
+                    </li>
+                    <li>
+                      <strong>Décoration : </strong>
+                      {{ details.decoration === false ? 'NON' : 'OUI' }}
+                    </li>
+                    <li>
+                      <strong>Sans Gluten : </strong
+                      >{{ details.gluten === false ? 'NON' : 'OUI' }}
+                    </li>
+                    <li>
+                      <strong>Sans Lactose : </strong>
+                      {{ details.lactose === false ? 'NON' : 'OUI' }}
+                    </li>
+                  </ul>
                 </div>
               </div>
+              <div class="row"><div class="col-md-12"></div></div>
               <div class="row form-group ">
                 <div class="col-md-12"><div #captchaRef2></div></div>
               </div>
-              <div class="row" style="display:flex;">
+              <div class="row" style="display:flex; margin-top: 20px;">
                 <div class="col-md-5">
                   <button
                     class="submitBtn btn btn-default btn-block"
@@ -352,8 +375,20 @@
           </div>
         </form>
       </div>
-      <div class="col-md-3" *ngIf="showStep3">
-        <h2>Plateforme de paiement :</h2>
+      <div
+        class="col-md-3 offset-md-2 form-control-right"
+        style="display: block; align-items: center;"
+        *ngIf="showStep3"
+      >
+        <h2 style="text-align: center;">Méthode de Paiement</h2>
+        <h6 style="font-size:16px; padding:15px; text-align: center;">
+          Afin d'effectuer un paiement sécurisé, le site utilise la plateforme
+          de paiement en ligne Stripe (compétiteur de Paypal). <br /><br />
+          Il vous suffit juste de suivre les instructions des fenêtres suivantes
+          pour effectuer votre paiement. <br /><br />
+          Une fois le paiement reçu, je vous contacterais par email pour
+          confirmer la commande.
+        </h6>
       </div>
     </div>
   </div>

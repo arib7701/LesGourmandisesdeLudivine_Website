@@ -7,6 +7,7 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RealEditComponent } from './real-edit/real-edit.component';
 import { PartnerEditComponent } from './partner-edit/partner-edit.component';
 import { ListDataComponent } from './list-data/list-data.component';
+import { OrderEditComponent } from './order-edit/order-edit.component';
 
 export const adminRoutes: Routes = [
   {
@@ -19,7 +20,8 @@ export const adminRoutes: Routes = [
       { path: 'recipes/edit/:id', component: RecipeEditComponent },
       { path: 'real/edit/:id', component: RealEditComponent },
       { path: 'partners/edit/:id', component: PartnerEditComponent },
-      { path: 'actu/edit/:id', component: ActuEditComponent }
+      { path: 'actu/edit/:id', component: ActuEditComponent },
+      { path: 'orders/edit/:id', component: OrderEditComponent }
     ]
   }
 ];
