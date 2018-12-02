@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { PaymentService } from 'src/app/services/payment.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import * as Typed from 'typed.js';
 
 declare var StripeCheckout: any;
@@ -39,12 +40,14 @@ export class BuyComponent implements OnInit, AfterViewInit {
   message: any;
   details: any;
 
+  debounce = 2000;
+  typed1: any;
+  typed2: any;
+  typed3: any;
+
   showStep1 = true;
   showStep2 = false;
   showStep3 = false;
-
-  typed = null;
-  options = null;
 
   constructor(
     private firebase: AngularFireDatabase,
@@ -125,9 +128,33 @@ export class BuyComponent implements OnInit, AfterViewInit {
       this.calculatePrice();
     });
 
-    this.buyInfoFormStep2.valueChanges.subscribe(() => {
-      this.printMessage();
-    });
+    this.buyInfoFormStep2
+      .get('row1')
+      .valueChanges.pipe(
+        debounceTime(this.debounce),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        this.printMessage(1);
+      });
+    this.buyInfoFormStep2
+      .get('row2')
+      .valueChanges.pipe(
+        debounceTime(this.debounce),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        this.printMessage(2);
+      });
+    this.buyInfoFormStep2
+      .get('row3')
+      .valueChanges.pipe(
+        debounceTime(this.debounce),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        this.printMessage(3);
+      });
   }
 
   calculatePrice() {
@@ -151,19 +178,56 @@ export class BuyComponent implements OnInit, AfterViewInit {
     this.amount = this.calculatedPrice * 100;
   }
 
-  printMessage() {
-    this.options = {
-      strings: [
-        'Charles K. Mawusi',
-        'an Economist',
-        'a Ph.D. Student',
-        'an Agricultural Specialist',
-        'an Natural Resources Specialist'
-      ],
-      typeSpeed: 100,
-      loop: false
-    };
-    this.typed = new Typed('.typed', this.options);
+  printMessage(index) {
+    const _Typed: any = Typed;
+    let row_text: string;
+    let options = null;
+
+    if (index === 1) {
+      if (this.typed1 !== undefined) {
+        this.typed1.reset();
+      }
+
+      row_text = this.buyInfoFormStep2.value.row1;
+      if (row_text !== null) {
+        options = {
+          strings: [row_text.toUpperCase()],
+          typeSpeed: 100,
+          loop: false,
+          showCursor: false
+        };
+      }
+      this.typed1 = new _Typed('.typed1', options);
+    } else if (index === 2) {
+      if (this.typed2 !== undefined) {
+        this.typed2.reset();
+      }
+
+      row_text = this.buyInfoFormStep2.value.row2;
+      if (row_text !== null) {
+        options = {
+          strings: [row_text.toUpperCase()],
+          typeSpeed: 100,
+          loop: false,
+          showCursor: false
+        };
+      }
+      this.typed2 = new _Typed('.typed2', options);
+    } else {
+      if (this.typed3 !== undefined) {
+        this.typed3.reset();
+      }
+      row_text = this.buyInfoFormStep2.value.row3;
+      if (row_text !== null) {
+        options = {
+          strings: [row_text.toUpperCase()],
+          typeSpeed: 100,
+          loop: false,
+          showCursor: false
+        };
+      }
+      this.typed3 = new _Typed('.typed3', options);
+    }
   }
 
   reCapchaSuccess(data: any) {

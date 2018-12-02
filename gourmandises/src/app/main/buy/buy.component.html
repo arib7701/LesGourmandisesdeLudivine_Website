@@ -299,13 +299,24 @@
       </div>
       <div class="col-md-3 offset-md-2 form-control-right" *ngIf="showStep2">
         <h3 style="text-align: center; color: white;">Petit Aperçu</h3>
-        <div class="preview">
-          <span class="typed"></span>
+        <div class="preview" style="position: relative; text-align: center;">
           <img
-            style="width:100%;"
+            style="width:100%; position: relative;"
             src="../../../assets/img/cleanbiscuit.png"
             alt="previewOrder"
           />
+          <span
+            class="typed1"
+            style="font-size: 30px; position: absolute; top: 70px;"
+          ></span>
+          <span
+            class="typed2"
+            style="font-size: 30px; position: absolute; top:130px;"
+          ></span>
+          <span
+            class="typed3"
+            style="font-size: 30px; position: absolute; top:200px;"
+          ></span>
         </div>
       </div>
       <div class="col-md-6 form-control" *ngIf="showStep3">
