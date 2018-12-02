@@ -148,7 +148,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
         break;
       }
       case 'orders': {
-        this.title = `Mes Commandes`;
+        this.title = `Commandes`;
         this.url = 'url(../assets/img/edit_gal.jpg)';
         this.subscription = this.ordersService
           .getAllOrders()

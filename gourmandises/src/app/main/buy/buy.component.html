@@ -38,7 +38,7 @@
                 </mat-form-field>
               </div>
               <div class="col-md-3 specialPrice">
-                <span class="specialAmount">1.20 € / biscuit</span>
+                <span class="specialAmount">0.80 € / biscuit</span>
               </div>
             </div>
             <div class="row form-group">
@@ -138,7 +138,7 @@
                         >Sans Gluten</mat-checkbox
                       >
                       <div class="specialPrice">
-                        <span class="specialAmount">+0.50 € / biscuit</span>
+                        <span class="specialAmount">+0.20 € / biscuit</span>
                       </div>
                     </section>
                     <section class="example-section" style="display:flex;">
@@ -150,7 +150,7 @@
                         >Sans Lactose</mat-checkbox
                       >
                       <div class="specialPrice">
-                        <span class="specialAmount">+0.50 € / biscuit</span>
+                        <span class="specialAmount">+0.20 € / biscuit</span>
                       </div>
                     </section>
                   </div>
@@ -167,7 +167,7 @@
                         >Décorés</mat-checkbox
                       >
                       <div class="specialPrice">
-                        <span class="specialAmount">+0.50 € / biscuit</span>
+                        <span class="specialAmount">+0.20 € / biscuit</span>
                       </div>
                     </section>
                   </div>
@@ -297,14 +297,15 @@
           </div>
         </form>
       </div>
-      <div
-        class="col-md-2 offset-md-2 form-control-right"
-        style="display: flex; align-items: center;"
-        *ngIf="showStep2"
-      >
-        <h2>Petit Aperçu :</h2>
-        <div class="preview" style="display: flex; align-items: center;">
-          <img src="" alt="previewOrder" />
+      <div class="col-md-3 offset-md-2 form-control-right" *ngIf="showStep2">
+        <h3 style="text-align: center; color: white;">Petit Aperçu</h3>
+        <div class="preview">
+          <span class="typed"></span>
+          <img
+            style="width:100%;"
+            src="../../../assets/img/cleanbiscuit.png"
+            alt="previewOrder"
+          />
         </div>
       </div>
       <div class="col-md-6 form-control" *ngIf="showStep3">
@@ -376,7 +377,7 @@
         </form>
       </div>
       <div
-        class="col-md-3 offset-md-2 form-control-right"
+        class="col-md-3 offset-md-2 form-control-right paiement"
         style="display: block; align-items: center;"
         *ngIf="showStep3"
       >

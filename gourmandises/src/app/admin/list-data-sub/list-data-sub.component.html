@@ -13,7 +13,7 @@
             </div>
             <div class="timeline-body">
               <table class="table table-hover" *ngIf="datas?.length > 0">
-                <tbody *ngIf="dataType !== 'gallery' || dataType !== 'orders'">
+                <tbody *ngIf="dataType !== 'gallery' && dataType !== 'orders'">
                   <tr
                     *ngFor="
                       let data of (datas
@@ -52,7 +52,23 @@
                     </td>
                   </tr>
                 </tbody>
-                <tbody *ngIf="dataType === 'gallery' || dataType === 'orders'">
+                <tbody *ngIf="dataType === 'gallery'">
+                  <tr *ngFor="let data of datas">
+                    <td>{{ data?.key }}</td>
+                    <td>
+                      <a
+                        [routerLink]="[
+                          '/admin/' + dataType + '/edit/',
+                          data.key
+                        ]"
+                        class="btn btn-sm"
+                      >
+                        <i class="fa fa-edit"></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="dataType === 'orders'">
                   <tr *ngFor="let data of datas">
                     <td>{{ data?.key }}</td>
                     <td>

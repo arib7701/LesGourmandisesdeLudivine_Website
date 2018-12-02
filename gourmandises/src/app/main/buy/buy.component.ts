@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { PaymentService } from 'src/app/services/payment.service';
+import * as Typed from 'typed.js';
 
 declare var StripeCheckout: any;
 
@@ -41,6 +42,9 @@ export class BuyComponent implements OnInit, AfterViewInit {
   showStep1 = true;
   showStep2 = false;
   showStep3 = false;
+
+  typed = null;
+  options = null;
 
   constructor(
     private firebase: AngularFireDatabase,
@@ -120,27 +124,46 @@ export class BuyComponent implements OnInit, AfterViewInit {
     this.buyInfoFormStep1.valueChanges.subscribe(() => {
       this.calculatePrice();
     });
+
+    this.buyInfoFormStep2.valueChanges.subscribe(() => {
+      this.printMessage();
+    });
   }
 
   calculatePrice() {
-    const pricePerBiscuit = 1.2;
+    const pricePerBiscuit = 0.8;
     const numberBiscuits: number = +this.buyInfoFormStep1.value.quantity;
 
     this.calculatedPrice = pricePerBiscuit * numberBiscuits;
 
     if (this.buyInfoFormStep1.value.decoration) {
-      this.calculatedPrice += 0.5 * numberBiscuits;
+      this.calculatedPrice += 0.2 * numberBiscuits;
     }
 
     if (this.buyInfoFormStep1.value.gluten) {
-      this.calculatedPrice += 0.5 * numberBiscuits;
+      this.calculatedPrice += 0.2 * numberBiscuits;
     }
 
     if (this.buyInfoFormStep1.value.lactose) {
-      this.calculatedPrice += 0.5 * numberBiscuits;
+      this.calculatedPrice += 0.2 * numberBiscuits;
     }
 
     this.amount = this.calculatedPrice * 100;
+  }
+
+  printMessage() {
+    this.options = {
+      strings: [
+        'Charles K. Mawusi',
+        'an Economist',
+        'a Ph.D. Student',
+        'an Agricultural Specialist',
+        'an Natural Resources Specialist'
+      ],
+      typeSpeed: 100,
+      loop: false
+    };
+    this.typed = new Typed('.typed', this.options);
   }
 
   reCapchaSuccess(data: any) {
