@@ -44,6 +44,12 @@ export class BuyComponent implements OnInit, AfterViewInit {
   typed1: any;
   typed2: any;
   typed3: any;
+  topRow1: any;
+  topRow2: any;
+  topRow3: any;
+  smallTopRow1: any;
+  smallTopRow2: any;
+  smallTopRow3: any;
 
   showStep1 = true;
   showStep2 = false;
@@ -128,33 +134,17 @@ export class BuyComponent implements OnInit, AfterViewInit {
       this.calculatePrice();
     });
 
-    this.buyInfoFormStep2
-      .get('row1')
-      .valueChanges.pipe(
-        debounceTime(this.debounce),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        this.printMessage(1);
-      });
-    this.buyInfoFormStep2
-      .get('row2')
-      .valueChanges.pipe(
-        debounceTime(this.debounce),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        this.printMessage(2);
-      });
-    this.buyInfoFormStep2
-      .get('row3')
-      .valueChanges.pipe(
-        debounceTime(this.debounce),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        this.printMessage(3);
-      });
+    for (let i = 1; i < 4; i++) {
+      this.buyInfoFormStep2
+        .get(`row${i}`)
+        .valueChanges.pipe(
+          debounceTime(this.debounce),
+          distinctUntilChanged()
+        )
+        .subscribe(() => {
+          this.printMessage(i);
+        });
+    }
   }
 
   calculatePrice() {
@@ -180,53 +170,129 @@ export class BuyComponent implements OnInit, AfterViewInit {
 
   printMessage(index) {
     const _Typed: any = Typed;
-    let row_text: string;
     let options = null;
 
-    if (index === 1) {
-      if (this.typed1 !== undefined) {
-        this.typed1.reset();
-      }
+    let typedVar;
+    let row_text;
+    let htmlVar;
 
-      row_text = this.buyInfoFormStep2.value.row1;
-      if (row_text !== null) {
-        options = {
-          strings: [row_text.toUpperCase()],
-          typeSpeed: 100,
-          loop: false,
-          showCursor: false
-        };
-      }
-      this.typed1 = new _Typed('.typed1', options);
-    } else if (index === 2) {
-      if (this.typed2 !== undefined) {
-        this.typed2.reset();
-      }
+    switch (index) {
+      case 1:
+        typedVar = this.typed1;
+        row_text = this.buyInfoFormStep2.value.row1;
+        htmlVar = `.typed${1}`;
+        options = this.setUpOptionsTyped(typedVar, row_text, options);
+        this.setUpPosition();
 
-      row_text = this.buyInfoFormStep2.value.row2;
-      if (row_text !== null) {
-        options = {
-          strings: [row_text.toUpperCase()],
-          typeSpeed: 100,
-          loop: false,
-          showCursor: false
-        };
-      }
-      this.typed2 = new _Typed('.typed2', options);
-    } else {
-      if (this.typed3 !== undefined) {
-        this.typed3.reset();
-      }
-      row_text = this.buyInfoFormStep2.value.row3;
-      if (row_text !== null) {
-        options = {
-          strings: [row_text.toUpperCase()],
-          typeSpeed: 100,
-          loop: false,
-          showCursor: false
-        };
-      }
-      this.typed3 = new _Typed('.typed3', options);
+        if (options !== null) {
+          this.typed1 = new _Typed(htmlVar, options);
+        } else {
+          this.typed1.destroy();
+        }
+        break;
+
+      case 2:
+        typedVar = this.typed2;
+        row_text = this.buyInfoFormStep2.value.row2;
+        htmlVar = `.typed${2}`;
+        options = this.setUpOptionsTyped(typedVar, row_text, options);
+        this.setUpPosition();
+
+        if (options !== null) {
+          this.typed2 = new _Typed(htmlVar, options);
+        } else {
+          this.typed2.destroy();
+        }
+
+        break;
+
+      case 3:
+        typedVar = this.typed3;
+        row_text = this.buyInfoFormStep2.value.row3;
+        htmlVar = `.typed${3}`;
+        options = this.setUpOptionsTyped(typedVar, row_text, options);
+        this.setUpPosition();
+
+        if (options !== null) {
+          this.typed3 = new _Typed(htmlVar, options);
+        } else {
+          this.typed3.destroy();
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  setUpOptionsTyped(typedVar, row_text, options): any {
+    if (typedVar !== undefined) {
+      typedVar.destroy();
+    }
+
+    if (row_text !== '') {
+      options = {
+        strings: [row_text.toUpperCase()],
+        typeSpeed: 100,
+        loop: false,
+        showCursor: false
+      };
+    } else if (this.message !== null) {
+      options = {
+        strings: [this.message.row1, this.message.row2],
+        typeSpeed: 100,
+        loop: false,
+        showCursor: false
+      };
+    }
+    return options;
+  }
+
+  setUpPosition() {
+    const rowValue1 = this.buyInfoFormStep2.value.row1;
+    const rowValue2 = this.buyInfoFormStep2.value.row2;
+    const rowValue3 = this.buyInfoFormStep2.value.row3;
+
+    if (
+      (rowValue1 !== '' && rowValue2 === '' && rowValue3 === '') ||
+      (rowValue1 === '' && rowValue2 !== '' && rowValue3 === '') ||
+      (rowValue1 === '' && rowValue2 === '' && rowValue3 !== '')
+    ) {
+      this.topRow1 = null;
+      this.topRow2 = null;
+      this.topRow3 = null;
+      this.smallTopRow1 = null;
+      this.smallTopRow2 = null;
+      this.smallTopRow3 = null;
+    } else if (rowValue1 !== '' && rowValue2 !== '' && rowValue3 === '') {
+      this.topRow1 = '80';
+      this.topRow2 = '160';
+      this.topRow3 = null;
+      this.smallTopRow1 = '50';
+      this.smallTopRow2 = '90';
+      this.smallTopRow3 = null;
+    } else if (rowValue1 !== '' && rowValue2 === '' && rowValue3 !== '') {
+      this.topRow1 = '80';
+      this.topRow2 = null;
+      this.topRow3 = '160';
+      this.smallTopRow1 = '50';
+      this.smallTopRow2 = null;
+      this.smallTopRow3 = '90';
+    } else if (rowValue1 === '' && rowValue2 !== '' && rowValue3 !== '') {
+      this.topRow1 = null;
+      this.topRow2 = '80';
+      this.topRow3 = '160';
+      this.smallTopRow1 = null;
+      this.smallTopRow2 = '50';
+      this.smallTopRow3 = '90';
+    } else if (rowValue1 !== '' && rowValue2 !== '' && rowValue3 !== '') {
+      this.topRow1 = '60';
+      this.topRow2 = '120';
+      this.topRow3 = '180';
+      this.smallTopRow1 = '50';
+      this.smallTopRow2 = '80';
+      this.smallTopRow3 = '110';
     }
   }
 
@@ -285,6 +351,16 @@ export class BuyComponent implements OnInit, AfterViewInit {
   returnStep2() {
     this.showStep3 = false;
     this.showStep2 = true;
+
+    setTimeout(() => {
+      this.printMessage(1);
+    }, 2000);
+    setTimeout(() => {
+      this.printMessage(2);
+    }, 3000);
+    setTimeout(() => {
+      this.printMessage(3);
+    }, 4000);
   }
 
   get quantity() {

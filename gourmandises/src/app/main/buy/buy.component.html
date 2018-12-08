@@ -298,25 +298,19 @@
         </form>
       </div>
       <div class="col-md-3 offset-md-2 form-control-right" *ngIf="showStep2">
-        <h3 style="text-align: center; color: white;">Petit Aperçu</h3>
-        <div class="preview" style="position: relative; text-align: center;">
+        <h5 style="text-align: center; color: white;">Petit Aperçu</h5>
+        <div
+          class="preview"
+          style="position: relative; display: flex; justify-content: center; align-items: center;"
+        >
           <img
             style="width:100%; position: relative;"
             src="../../../assets/img/cleanbiscuit.png"
             alt="previewOrder"
           />
-          <span
-            class="typed1"
-            style="font-size: 30px; position: absolute; top: 70px;"
-          ></span>
-          <span
-            class="typed2"
-            style="font-size: 30px; position: absolute; top:130px;"
-          ></span>
-          <span
-            class="typed3"
-            style="font-size: 30px; position: absolute; top:200px;"
-          ></span>
+          <span class="typed1 spanMessage" [style.top.px]="topRow1"></span>
+          <span class="typed2 spanMessage" [style.top.px]="topRow2"></span>
+          <span class="typed3 spanMessage" [style.top.px]="topRow3"></span>
         </div>
       </div>
       <div class="col-md-6 form-control" *ngIf="showStep3">
@@ -324,42 +318,63 @@
           <div class="col-md-12">
             <h2>Étape 3 : Validation</h2>
             <div class="row" style="display: flex; align-items: center;">
-              <div class="price" style="display: flex; align-items: center;">
-                <span class="amount"
-                  >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
+              <div class="row finalPreview">
+                <div class="price" style="display: flex; align-items: center;">
+                  <span class="amount"
+                    >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
+                  >
+                </div>
+                <div
+                  style="position:relative; display: flex; justify-content: center; align-items: center; width: 200px;"
                 >
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <ul>
-                    <li><strong>Quantité : </strong> {{ details.quantity }}</li>
-                    <li>
-                      <strong>Occasion : </strong>
-                      {{ details.event | uppercase }}
-                    </li>
-                    <li>
-                      <strong>Parfum : </strong>
-                      {{ details.perfum | uppercase }}
-                    </li>
-                    <li>
-                      <strong>Forme : </strong> {{ details.form | uppercase }}
-                    </li>
-                    <li>
-                      <strong>Décoration : </strong>
-                      {{ details.decoration === false ? 'NON' : 'OUI' }}
-                    </li>
-                    <li>
-                      <strong>Sans Gluten : </strong
-                      >{{ details.gluten === false ? 'NON' : 'OUI' }}
-                    </li>
-                    <li>
-                      <strong>Sans Lactose : </strong>
-                      {{ details.lactose === false ? 'NON' : 'OUI' }}
-                    </li>
-                  </ul>
+                  <img
+                    style="width: 80%;"
+                    src="../../../assets/img/cleanbiscuit.png"
+                    alt="previewOrder"
+                  />
+                  <span class="spanMessageFinal" [style.top.px]="smallTopRow1">{{
+                    message.row1
+                  }}</span>
+                  <span class="spanMessageFinal" [style.top.px]="smallTopRow2">{{
+                    message.row2
+                  }}</span>
+                  <span class="spanMessageFinal" [style.top.px]="smallTopRow3">{{
+                    message.row3
+                  }}</span>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul>
+                      <li>
+                        <strong>Quantité : </strong> {{ details.quantity }}
+                      </li>
+                      <li>
+                        <strong>Occasion : </strong>
+                        {{ details.event | uppercase }}
+                      </li>
+                      <li>
+                        <strong>Parfum : </strong>
+                        {{ details.perfum | uppercase }}
+                      </li>
+                      <li>
+                        <strong>Forme : </strong> {{ details.form | uppercase }}
+                      </li>
+                      <li>
+                        <strong>Décoration : </strong>
+                        {{ details.decoration === false ? 'NON' : 'OUI' }}
+                      </li>
+                      <li>
+                        <strong>Sans Gluten : </strong
+                        >{{ details.gluten === false ? 'NON' : 'OUI' }}
+                      </li>
+                      <li>
+                        <strong>Sans Lactose : </strong>
+                        {{ details.lactose === false ? 'NON' : 'OUI' }}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div class="row"><div class="col-md-12"></div></div>
               <div class="row form-group ">
                 <div class="col-md-12"><div #captchaRef2></div></div>
               </div>
