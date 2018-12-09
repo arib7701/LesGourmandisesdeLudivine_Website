@@ -378,8 +378,8 @@
               <div class="row form-group ">
                 <div class="col-md-12"><div #captchaRef2></div></div>
               </div>
-              <div class="row" style="display:flex; margin-top: 20px;">
-                <div class="col-md-5">
+              <div class="row" style="display:flex; margin-top: 20px; width:100%;">
+                <div class="col-md-4">
                   <button
                     class="submitBtn btn btn-default btn-block"
                     (click)="returnStep2()"
@@ -387,7 +387,7 @@
                     Retour Étape 2
                   </button>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-5 text-center">
                   <button
                     type="submit"
                     [disabled]="!buyInfoFormStep3.valid"

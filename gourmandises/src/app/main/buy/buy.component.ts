@@ -39,6 +39,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   amount: Number = 100;
   message: any;
   details: any;
+  date = Date.now();
 
   debounce = 2000;
   typed1: any;
@@ -89,7 +90,8 @@ export class BuyComponent implements OnInit, AfterViewInit {
           token,
           this.amount,
           this.details,
-          this.message
+          this.message,
+          this.date
         );
       }
     });
@@ -106,6 +108,15 @@ export class BuyComponent implements OnInit, AfterViewInit {
         }
       );
     }*/
+  }
+
+  handlePayment() {
+    this.handler.open({
+      name: 'Les Gourmandises de Ludivine',
+      description: 'Biscuits Personnalisés',
+      currency: 'eur',
+      amount: this.amount
+    });
   }
 
   createForms() {
@@ -306,15 +317,6 @@ export class BuyComponent implements OnInit, AfterViewInit {
     this.flashService.show('Veuillez refaire le captcha.', {
       cssClass: 'alert-danger',
       timeout: 2000
-    });
-  }
-
-  handlePayment() {
-    this.handler.open({
-      name: 'Les Gourmandises de Ludivine',
-      description: 'Biscuits Personnalisés',
-      currency: 'eur',
-      amount: this.amount
     });
   }
 

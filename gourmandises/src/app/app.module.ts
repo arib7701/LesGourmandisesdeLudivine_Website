@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 import { AppComponent } from './app.component';
 
 import { appRoutes } from './app.routes';
@@ -22,7 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       scrollPositionRestoration: 'enabled'
     })
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

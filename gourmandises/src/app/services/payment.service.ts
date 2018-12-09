@@ -7,8 +7,14 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class PaymentService {
   constructor(private firebase: AngularFireDatabase) {}
 
-  processPayment(token: any, amount: Number, details: any, message: any) {
-    const order = { token, amount, details, message };
+  processPayment(
+    token: any,
+    amount: Number,
+    details: any,
+    message: any,
+    date: number
+  ) {
+    const order = { token, amount, details, message, date };
     return this.firebase.list(`/orders`).push(order);
   }
 }

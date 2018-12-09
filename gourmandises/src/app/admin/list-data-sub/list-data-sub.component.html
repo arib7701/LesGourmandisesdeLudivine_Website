@@ -70,7 +70,20 @@
                 </tbody>
                 <tbody *ngIf="dataType === 'orders'">
                   <tr *ngFor="let data of datas">
-                    <td>{{ data?.key }}</td>
+                    <td>{{ data?.date | date }}</td>
+                    <td>
+                      {{
+                        data?.amount / 100
+                          | currency: 'EUR':'symbol':'2.2-2':'fr'
+                      }}
+                    </td>
+                    <td>{{ data?.token.card.name }}</td>
+                    <td *ngIf="data?.charge.paid === true">
+                      PAYÉ <i class="fas fa-check"></i>
+                    </td>
+                    <td *ngIf="data?.charge.paid === false">
+                      NON PAYÉ <i class="fas fa-exclamation-triangle"></i>
+                    </td>
                     <td>
                       <a
                         [routerLink]="[

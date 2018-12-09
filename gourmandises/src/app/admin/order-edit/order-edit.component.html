@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center cakes-heading">
-        <h2>Changer la Commade</h2>
+        <h2>Changer la Commande</h2>
         <h2>{{ order?.key }}</h2>
         <p></p>
       </div>
@@ -18,12 +18,12 @@
           <form class="form-inline" name="orderForm">
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
-                <label for="title">Titre*</label>
+                <label for="id">Numéro Commande*</label>
                 <input
                   type="text"
-                  [(ngModel)]="actu.title"
+                  [(ngModel)]="id"
                   class="form-control"
-                  name="title"
+                  name="id"
                 />
               </div>
             </div>
@@ -32,7 +32,7 @@
                 <label for="description">Texte*</label>
                 <textarea
                   autosize
-                  [(ngModel)]="actu.description"
+                  [(ngModel)]="order.description"
                   class="form-control"
                   name="description"
                   required
@@ -44,7 +44,7 @@
                 <label for="link">Lien Web</label>
                 <input
                   type="text"
-                  [(ngModel)]="actu.link"
+                  [(ngModel)]="order.link"
                   class="form-control"
                   name="link"
                 />
@@ -55,7 +55,7 @@
                 <label for="titleLink">Titre Lien Web</label>
                 <input
                   type="text"
-                  [(ngModel)]="actu.titleLink"
+                  [(ngModel)]="order.titleLink"
                   class="form-control"
                   name="titleLink"
                 />
