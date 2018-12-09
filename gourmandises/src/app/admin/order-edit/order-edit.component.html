@@ -208,6 +208,8 @@
                         (ngModelChange)="(order.message.row1)"
                         class="form-control"
                         name="row1"
+                        maxlength="12"
+                        required
                       />
                     </div>
                   </div>
@@ -220,6 +222,7 @@
                         (ngModelChange)="(order.message.row2)"
                         class="form-control"
                         name="row2"
+                        maxlength="12"
                       />
                     </div>
                   </div>
@@ -232,6 +235,7 @@
                         (ngModelChange)="(order.message.row3)"
                         class="form-control"
                         name="row3"
+                        maxlength="12"
                       />
                     </div>
                   </div>
@@ -264,13 +268,17 @@
                         style="display: flex; flex-wrap: wrap;"
                       >
                         <label for="event">Occasion *</label>
-                        <input
-                          type="text"
+                        <select
+                          class="form-control"
                           [ngModel]="order.details?.event"
                           (ngModelChange)="(order.details?.event)"
-                          class="form-control"
                           name="event"
-                        />
+                        >
+                          <option value="anniversaire"> Anniversaire </option>
+                          <option value="mariage"> Mariage </option>
+                          <option value="publicite"> Publicité </option>
+                          <option value="autres"> Autres </option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -281,13 +289,15 @@
                         style="display: flex; flex-wrap: wrap;"
                       >
                         <label for="form">Forme *</label>
-                        <input
-                          type="text"
+                        <select
+                          class="form-control"
                           [ngModel]="order.details?.form"
                           (ngModelChange)="(order.details?.form)"
-                          class="form-control"
                           name="form"
-                        />
+                        >
+                          <option value="rectangulaire"> Rectangulaire </option>
+                          <option value="rond"> Rond </option>
+                        </select>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -296,13 +306,17 @@
                         style="display: flex; flex-wrap: wrap;"
                       >
                         <label for="perfum">Parfum *</label>
-                        <input
-                          type="text"
+                        <select
+                          class="form-control"
                           [ngModel]="order.details?.perfum"
                           (ngModelChange)="(order.details?.perfum)"
-                          class="form-control"
                           name="perfum"
-                        />
+                        >
+                          <option value="nature"> Nature </option>
+                          <option value="amande"> Amandes </option>
+                          <option value="chocolat"> Chocolat </option>
+                          <option value="citron"> Citron </option>
+                        </select>
                       </div>
                     </div>
                   </div>
