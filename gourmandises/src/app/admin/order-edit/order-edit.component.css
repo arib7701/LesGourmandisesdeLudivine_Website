@@ -11,6 +11,10 @@
   color: #fff;
 }
 
+#cakes-actuEdit .cakes-heading h3 {
+  color: #fff;
+}
+
 #cakes-actuEdit .cakes-heading p {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -71,4 +75,15 @@
   #cakes-actuEdit {
     padding: 3em 0;
   }
+}
+
+.hrNice {
+  overflow: visible; /* For IE */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: none;
+  border-top: medium double white;
+  color: white;
+  text-align: center;
+  width: 100%;
 }

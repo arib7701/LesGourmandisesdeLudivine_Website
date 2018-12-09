@@ -10,7 +10,7 @@ export class Order {
     gluten?: boolean;
     lactose?: boolean;
     perfum?: string;
-    quatity?: number;
+    quantity?: number;
   };
   message?: {
     row1?: string;

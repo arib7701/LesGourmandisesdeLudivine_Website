@@ -42,7 +42,7 @@ export class OrderEditComponent implements OnInit, OnDestroy {
       cssClass: 'alert-success',
       timeout: 2000
     });
-    this.router.navigate(['/admin/order/edit/' + this.id]);
+    this.router.navigate(['/admin/orders/edit/' + this.id]);
   }
 
   ngOnDestroy() {
