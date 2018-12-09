@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order } from 'src/app/models/order';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OrdersService } from 'src/app/services/orders.service';
@@ -36,13 +37,20 @@ export class OrderEditComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   onSubmit() {
-    this.orderService.editOrder(this.id, this.order as Order[]);
+    if (this.order.message.row1 === '') {
+      this.flashService.show('Vérifier tous vos champs.', {
+        cssClass: 'alert-danger',
+        timeout: 2000
+      });
+    } else {
+      this.orderService.editOrder(this.id, this.order as Order[]);
 
-    this.flashService.show('Changements sauvegardés!', {
-      cssClass: 'alert-success',
-      timeout: 2000
-    });
-    this.router.navigate(['/admin/orders/edit/' + this.id]);
+      this.flashService.show('Changements sauvegardés!', {
+        cssClass: 'alert-success',
+        timeout: 2000
+      });
+      this.router.navigate(['/admin/orders/edit/' + this.id]);
+    }
   }
 
   ngOnDestroy() {

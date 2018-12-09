@@ -205,7 +205,7 @@
                       <input
                         type="text"
                         [ngModel]="order.message?.row1"
-                        (ngModelChange)="(order.message.row1)"
+                        (ngModelChange)="order.message.row1 = $event"
                         class="form-control"
                         name="row1"
                         maxlength="12"
@@ -219,7 +219,7 @@
                       <input
                         type="text"
                         [ngModel]="order.message?.row2"
-                        (ngModelChange)="(order.message.row2)"
+                        (ngModelChange)="order.message.row2 = $event" 
                         class="form-control"
                         name="row2"
                         maxlength="12"
@@ -232,7 +232,7 @@
                       <input
                         type="text"
                         [ngModel]="order.message?.row3"
-                        (ngModelChange)="(order.message.row3)"
+                        (ngModelChange)="order.message.row3 = $event"
                         class="form-control"
                         name="row3"
                         maxlength="12"
@@ -271,7 +271,7 @@
                         <select
                           class="form-control"
                           [ngModel]="order.details?.event"
-                          (ngModelChange)="(order.details?.event)"
+                          (ngModelChange)="order.details.event = $event"
                           name="event"
                         >
                           <option value="anniversaire"> Anniversaire </option>
@@ -292,7 +292,7 @@
                         <select
                           class="form-control"
                           [ngModel]="order.details?.form"
-                          (ngModelChange)="(order.details?.form)"
+                          (ngModelChange)="order.details.form = $event"
                           name="form"
                         >
                           <option value="rectangulaire"> Rectangulaire </option>
@@ -309,7 +309,7 @@
                         <select
                           class="form-control"
                           [ngModel]="order.details?.perfum"
-                          (ngModelChange)="(order.details?.perfum)"
+                          (ngModelChange)="order.details.perfum = $event"
                           name="perfum"
                         >
                           <option value="nature"> Nature </option>
