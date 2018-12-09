@@ -1,10 +1,14 @@
-<div id="cakes-partnerEdit" class="cakes-bg" style="background-image:url(../assets/img/edit_recipe.jpg);">
+<div
+  id="cakes-partnerEdit"
+  class="cakes-bg"
+  style="background-image:url(../assets/img/edit_partner.jpg);"
+>
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center cakes-heading">
         <h2>Changer le Partenaire/Produit</h2>
-        <h2> {{partner?.name}}</h2>
+        <h2>{{ partner?.name }}</h2>
         <p></p>
       </div>
     </div>
@@ -15,53 +19,96 @@
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <label for="name">Partenaire / Produit</label>
-                <input type="text" [(ngModel)]="partner.name" class="form-control" name="name">
+                <input
+                  type="text"
+                  [(ngModel)]="partner.name"
+                  class="form-control"
+                  name="name"
+                />
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <label for="website">Site / Facebook</label>
-                <input type="text" [(ngModel)]="partner.website" class="form-control" name="website">
+                <input
+                  type="text"
+                  [(ngModel)]="partner.website"
+                  class="form-control"
+                  name="website"
+                />
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <label for="location">Lieu de Vente</label>
-                <input type="text" [(ngModel)]="partner.location" class="form-control" name="location">
+                <input
+                  type="text"
+                  [(ngModel)]="partner.location"
+                  class="form-control"
+                  name="location"
+                />
               </div>
             </div>
             <div class="col-md-3 col-sm-6">
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
                 <label for="isPartner">Partenaires</label>
-                <input type="checkbox" style="width:8%; margin-left:10px;" [(ngModel)]="partner.isPartner" class="form-control"
-                  name="isPartner">
+                <input
+                  type="checkbox"
+                  style="width:8%; margin-left:10px;"
+                  [(ngModel)]="partner.isPartner"
+                  class="form-control"
+                  name="isPartner"
+                />
               </div>
             </div>
             <div class="col-md-3 col-sm-6">
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
                 <label for="alreadyUsed">Déjà utilisé</label>
-                <input type="checkbox" style="width:8%; margin-left:10px;" [(ngModel)]="partner.alreadyUsed" class="form-control"
-                  name="alreadyUsed">
+                <input
+                  type="checkbox"
+                  style="width:8%; margin-left:10px;"
+                  [(ngModel)]="partner.alreadyUsed"
+                  class="form-control"
+                  name="alreadyUsed"
+                />
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
                 <label class="logoLabel" for="logo">Web Adresse du Logo</label>
-                <input type="text" [(ngModel)]="partner.logo" class="form-control" name="logo" style="width: 70%;">
+                <input
+                  type="text"
+                  [(ngModel)]="partner.logo"
+                  class="form-control"
+                  name="logo"
+                  style="width: 70%;"
+                />
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
-                <img *ngIf="partner?.logo" class="partnerLogo" src="{{partner.logo}}" alt="logo_partenaire">
+                <img
+                  *ngIf="partner?.logo"
+                  class="partnerLogo"
+                  src="{{partner.logo}}"
+                  alt="logo_partenaire"
+                />
               </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
-              <button type="button" (click)="onSubmit();" class="btn btn-default btn-block">Changer</button>
+              <button
+                type="button"
+                (click)="onSubmit()"
+                class="btn btn-default btn-block"
+              >
+                Changer
+              </button>
             </div>
             <div class="col-md-4 col-sm-4">
               <button routerLink="/admin" class="btn btn-default btn-block">
-                Retour Admin</button>
+                Retour Admin
+              </button>
             </div>
           </form>
         </div>

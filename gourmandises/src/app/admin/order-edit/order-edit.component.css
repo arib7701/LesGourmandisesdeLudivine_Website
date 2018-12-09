@@ -1,25 +1,25 @@
-#cakes-actuEdit {
+#cakes-orderEdit {
   padding: 3em 0;
   clear: both;
 }
 
-#cakes-actuEdit {
+#cakes-orderEdit {
   position: relative;
 }
 
-#cakes-actuEdit .cakes-heading h2 {
+#cakes-orderEdit .cakes-heading h2 {
   color: #fff;
 }
 
-#cakes-actuEdit .cakes-heading h3 {
+#cakes-orderEdit .cakes-heading h3 {
   color: #fff;
 }
 
-#cakes-actuEdit .cakes-heading p {
+#cakes-orderEdit .cakes-heading p {
   color: rgba(255, 255, 255, 0.5);
 }
 
-#cakes-actuEdit .form-control {
+#cakes-orderEdit .form-control {
   background: rgba(255, 255, 255, 0.2);
   border: none !important;
   color: #fff;
@@ -30,17 +30,17 @@
   transition: 0.5s;
 }
 
-#cakes-actuEdit label {
+#cakes-orderEdit label {
   color: #fff !important;
   text-align: left;
   font-size: 15px;
 }
 
-#cakes-actuEdit .form-control:focus {
+#cakes-orderEdit .form-control:focus {
   background: rgba(255, 255, 255, 0.3);
 }
 
-#cakes-actuEdit .btn {
+#cakes-orderEdit .btn {
   height: 54px;
   border: none !important;
   background: #f14e95;
@@ -50,29 +50,29 @@
   font-weight: 400;
 }
 
-.imgActu {
+.imgorder {
   max-width: 500px;
 }
 
-#cakes-actuEdit .form-inline .form-group {
+#cakes-orderEdit .form-inline .form-group {
   width: 100% !important;
   margin-bottom: 10px;
 }
 
-#cakes-actuEdit .form-inline .form-group .form-control {
+#cakes-orderEdit .form-inline .form-group .form-control {
   width: 100%;
 }
 
-#cakes-actuEdit .cakes-heading {
+#cakes-orderEdit .cakes-heading {
   margin-bottom: 30px;
 }
 
-#cakes-actuEdit .cakes-heading h2 {
+#cakes-orderEdit .cakes-heading h2 {
   margin-bottom: 0;
 }
 
 @media screen and (max-width: 768px) {
-  #cakes-actuEdit {
+  #cakes-orderEdit {
     padding: 3em 0;
   }
 }
@@ -86,4 +86,8 @@
   color: white;
   text-align: center;
   width: 100%;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
 }

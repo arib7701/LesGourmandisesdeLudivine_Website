@@ -90,7 +90,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
         this.title = 'Partenaires / Produits';
         this.url =
           // tslint:disable-next-line:max-line-length
-          'url(https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-1/1796524_462620637200892_1907837364_n.jpg?_nc_cat=108&oh=718b8521674b2e70677a51c8d1072210&oe=5C260A0B)';
+          'url(../assets/img/edit_partner.jpg)';
         this.subscription = this.partnerService
           .getAllPartners()
           .snapshotChanges()
@@ -149,7 +149,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
       }
       case 'orders': {
         this.title = `Commandes`;
-        this.url = 'url(../assets/img/edit_gal.jpg)';
+        this.url = 'url(../assets/img/edit_orders.jpg)';
         this.subscription = this.ordersService
           .getAllOrders()
           .snapshotChanges()
