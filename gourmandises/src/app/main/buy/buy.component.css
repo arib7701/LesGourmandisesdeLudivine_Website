@@ -123,24 +123,24 @@ h5 {
 
 /* ----------------------- */
 
-#cakes-add-actu {
+#cakes-add-buy {
   padding: 3em 0;
   clear: both;
 }
 
-#cakes-add-actu {
+#cakes-add-buy {
   position: relative;
 }
 
-#cakes-add-actu .cakes-heading h2 {
+#cakes-add-buy .cakes-heading h2 {
   color: #fff;
 }
 
-#cakes-add-actu .cakes-heading p {
+#cakes-add-buy .cakes-heading p {
   color: rgba(255, 255, 255, 0.5);
 }
 
-#cakes-add-actu .form-control {
+#cakes-add-buy .form-control {
   background: rgba(255, 255, 255, 0.8);
   border: none !important;
   color: #fff;
@@ -169,17 +169,17 @@ h5 {
   background: rgba(255, 255, 255, 0.6);
 }
 
-#cakes-add-actu label {
+#cakes-add-buy label {
   color: #fff !important;
   text-align: left;
   font-size: 15px;
 }
 
-#cakes-add-actu .form-control:focus {
+#cakes-add-buy .form-control:focus {
   background: rgba(255, 255, 255, 0.3);
 }
 
-#cakes-add-actu .btn {
+#cakes-add-buy .btn {
   height: 54px;
   border: none !important;
   background: #f14e95;
@@ -187,14 +187,15 @@ h5 {
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 400;
+  padding: 0;
 }
 
-#cakes-add-actu .form-inline .form-group {
+#cakes-add-buy .form-inline .form-group {
   width: 100% !important;
   margin-bottom: 10px;
 }
 
-#cakes-add-actu .form-inline .form-group .form-control {
+#cakes-add-buy .form-inline .form-group .form-control {
   width: 100%;
 }
 
@@ -206,11 +207,11 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
 }
 
-#cakes-add-actu .cakes-heading {
+#cakes-add-buy .cakes-heading {
   margin-bottom: 30px;
 }
 
-#cakes-add-actu .cakes-heading h2 {
+#cakes-add-buy .cakes-heading h2 {
   margin-bottom: 0;
 }
 
@@ -273,12 +274,16 @@ input:-webkit-autofill:active {
 }
 
 @media screen and (max-width: 768px) {
-  #cakes-add-actu {
+  #cakes-add-order {
     padding: 3em 0;
   }
 
   .cakes-heading h2 {
     font-size: 40px;
+  }
+
+  .leftSide {
+    margin-bottom: 30px;
   }
 }
 
@@ -286,6 +291,9 @@ input:-webkit-autofill:active {
   background: rgba(0, 0, 0, 0.5) !important;
 }
 
-.Checkout.is-desktop .Modal {
-  width: 400px !important;
+.greyBox {
+  margin-left: 3%;
+  margin-right: 3%;
+  display: flex;
+  align-items: center;
 }

@@ -109,7 +109,7 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
         break;
       }
       case 'actu': {
-        this.title = 'Actualites';
+        this.title = 'Actualités';
         this.url = 'url(../assets/img/topnew.jpg)';
         this.subscription = this.actuService
           .getAllActu()
