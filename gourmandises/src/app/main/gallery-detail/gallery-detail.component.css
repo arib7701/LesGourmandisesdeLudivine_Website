@@ -8,7 +8,8 @@
   padding: 0;
   margin: 0 0 10px 1%;
   list-style: none;
-  max-height: 400px;
+  max-height: 280px;
+  min-height: 280px;
   float: left;
   position: relative;
   -webkit-border-radius: 7px;
