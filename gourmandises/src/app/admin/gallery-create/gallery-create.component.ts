@@ -97,7 +97,10 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
                 }
                 this.real.galleryId.push(key);
                 this.realService.editReal(this.real.key, this.real as Real[]);
-                this.change.emit('recipe');
+
+                if (i === this.galleryFilesLength - 1) {
+                  this.change.emit('recipe');
+                }
               });
             })
           )
