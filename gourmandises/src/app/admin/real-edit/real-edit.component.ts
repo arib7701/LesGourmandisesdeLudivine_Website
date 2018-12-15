@@ -403,7 +403,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
       if (this.primaryFile === undefined && this.galleryFiles.length === 0) {
         this.realService.editReal(this.id, this.real as Real[]);
       }
-      this.router.navigate(['/real/' + this.id]);
+      // this.router.navigate(['/real/' + this.id]);
     } else {
       // Show message error - Fill form fully
       this.flashService.show(

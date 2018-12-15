@@ -82,12 +82,12 @@ export class RealDetailComponent implements OnInit, OnDestroy {
 
           // Get Associated Gallery Img
           if (this.real.galleryId !== undefined) {
+            this.galleryImg = [];
             for (let i = 0; i < this.real.galleryId.length; i++) {
               this.subscriptionGal = this.galleryService
                 .getPhotoInGallery(this.real.category, this.real.galleryId[i])
                 .valueChanges()
                 .subscribe(gallery => {
-                  this.galleryImg = [];
                   this.galleryImg.push(gallery);
                 });
             }
