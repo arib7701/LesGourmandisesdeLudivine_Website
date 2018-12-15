@@ -32,3 +32,15 @@ i {
     margin-bottom: 50px;
   }
 }
+
+.spanMessage {
+  font-size: 30px;
+  position: absolute;
+  color: #9e640c;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px white;
+  text-align: center;
+  padding-bottom: 20px;
+  line-height: 60px;
+}

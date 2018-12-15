@@ -69,7 +69,18 @@
                   </tr>
                 </tbody>
                 <tbody *ngIf="dataType === 'orders'">
-                  <tr *ngFor="let data of datas">
+                    <tr
+                    *ngFor="
+                      let data of (datas
+                        | paginate
+                          : {
+                              itemsPerPage: 10,
+                              currentPage: page,
+                              id: dataType
+                            });
+                      let i = index
+                    "
+                  >
                     <td>{{ data?.date | date }}</td>
                     <td>
                       {{
