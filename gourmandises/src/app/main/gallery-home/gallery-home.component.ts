@@ -20,6 +20,9 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
     private galleryService: GalleryService,
     private categoryService: CategoryService
   ) {
+  }
+
+  ngOnInit() {
     this.randomGal = [];
 
     this.subscriptionCat = this.categoryService
@@ -57,9 +60,8 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
         });
         this.randomGal = this.shuffle(this.randomGal);
       });*/
-  }
 
-  ngOnInit() {}
+  }
 
   shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
