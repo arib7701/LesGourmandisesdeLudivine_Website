@@ -1,19 +1,60 @@
+
+.form-full-width {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  #cakes-contact {
+    padding: 3em 0;
+  }
+}
+
+/* ----------------------- */
+
 #cakes-contact {
   padding: 3em 0;
   clear: both;
+}
+
+#cakes-contact {
   position: relative;
 }
 
+#cakes-contact .cakes-heading h2 {
+  color: #fff;
+}
+
+#cakes-contact .cakes-heading p {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 #cakes-contact .form-control {
-  box-shadow: none;
-  background: transparent;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  height: 54px;
-  font-size: 18px;
-  font-weight: 300;
+  background: rgba(255, 255, 255, 0.8);
+  border: none !important;
+  color: #F36 !important;
+  font-size: 16px !important;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  height: 100%;
+  padding: 50px;
+}
+
+.form-control {
+  border: none !important;
+  color: #fff;
+  font-size: 16px !important;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  height: 100%;
+  padding: 10px;
 }
 
 #cakes-contact label {
+  color: #fff !important;
   text-align: left;
   font-size: 15px;
 }
@@ -22,15 +63,7 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: background-color 5000s ease-in-out 0s;
-  -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
-}
-
-#cakes-contact .submitBtn {
+.greyBox .btn {
   height: 54px;
   border: none !important;
   background: #f14e95;
@@ -38,8 +71,7 @@ input:-webkit-autofill:active {
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 400;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 0;
 }
 
 #cakes-contact .form-inline .form-group {
@@ -51,12 +83,81 @@ input:-webkit-autofill:active {
   width: 100%;
 }
 
-.form-full-width {
+#cakes-contact .cakes-heading {
+  margin-bottom: 30px;
+}
+
+#cakes-contact .cakes-heading h2 {
+  margin-bottom: 0;
+}
+
+.cakes-bg {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.cakes-bg {
+  background-position: center center;
   width: 100%;
+  float: left;
+  position: relative;
+}
+
+.cakes-heading {
+  margin-bottom: 5em;
+}
+
+.cakes-heading h2 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #f14e95;
+  font-family: 'Sacramento', Arial, serif;
+}
+
+@media screen and (max-width: 950px) {
+  .cakes-heading {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  #cakes-contact {
+  #cakes-add-order {
     padding: 3em 0;
   }
+
+  .cakes-heading h2 {
+    font-size: 40px;
+  }
+
+  .leftSide {
+    margin-bottom: 30px;
+  }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.greyBox {
+  margin-left: 3%;
+  margin-right: 3%;
+  display: flex;
+  align-items: center;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: #F36;
+}
+
+a {
+  color: #F36;
 }

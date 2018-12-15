@@ -1,4 +1,5 @@
-<div id="cakes-contact">
+<div id="cakes-contact" class="cakes-bg" style="background-image:url(../assets/img/contact.jpg);">
+  <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-md-1 offset-md-1 returnBtn">
@@ -9,88 +10,88 @@
         <h2>Contactez-moi</h2>
       </div>
     </div>
-    <div class="row" style="display: flex;">
-      <div class="col-md-5">
-
-        <div class="fh5co-contact-info">
-          <h3>Informations de Contact</h3>
-          <ul>
-            <li class="address">Séreilhac 87620</li>
-            <li class="phone"><a href="tel://1234567920">+33 06 59 22 06 64</a></li>
-            <li class="email"><a href="#">lesgourmandisesdeludivine@yahoo.com</a></li>
-            <li class="url"><a href="https://lesgourmandisesdeludivine.firebaseapp.com/">lesgourmandisesdeludivine.firebaseapp.com</a></li>
-          </ul>
+    <div class="row greyBox" style="display: flex;">
+      <div class="col-md-12 form-control" style="display: flex;">
+        <div class="col-md-5">
+          <div class="fh5co-contact-info">
+            <h3>Informations de Contact</h3>
+            <ul>
+              <li class="address">Séreilhac 87620</li>
+              <li class="phone"><a href="tel://1234567920">+33 06 59 22 06 64</a></li>
+              <li class="email"><a href="#">lesgourmandisesdeludivine@yahoo.com</a></li>
+              <li class="url"><a href="https://lesgourmandisesdeludivine.firebaseapp.com/">lesgourmandisesdeludivine.firebaseapp.com</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="col-md-6">
+          <h2>Laissez moi un message</h2>
+          <form [formGroup]="contactForm" (ngSubmit)="processForm()">
+            <div class="row form-group" style="display: flex;">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input matInput placeholder="Votre prenom" type="text" name="name" id="firstName" formControlName="firstName">
+                  <mat-error *ngIf="firstName.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
 
-      </div>
-      <div class="col-md-6">
-        <h2>Laissez moi un message</h2>
-        <form [formGroup]="contactForm" (ngSubmit)="processForm()">
-          <div class="row form-group" style="display: flex;">
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="Votre prenom" type="text" name="name" id="firstName" formControlName="firstName">
-                <mat-error *ngIf="firstName.hasError('required')">
-                  Champ <strong>obligatoire</strong>
-                </mat-error>
-              </mat-form-field>
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input matInput placeholder="Votre nom de famille" type="text" name="lastName" id="lastName"
+                    formControlName="lastName">
+                  <mat-error *ngIf="lastName.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
 
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="Votre nom de famille" type="text" name="lastName" id="lastName"
-                  formControlName="lastName">
-                <mat-error *ngIf="lastName.hasError('required')">
-                  Champ <strong>obligatoire</strong>
-                </mat-error>
-              </mat-form-field>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <mat-form-field class="form-full-width">
+                  <input matInput placeholder="Votre email" type="text" name="email" id="email" formControlName="email">
+                  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    Entrez une adresse email valide.
+                  </mat-error>
+                  <mat-error *ngIf="email.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
 
-          <div class="row form-group">
-            <div class="col-md-12">
-              <mat-form-field class="form-full-width">
-                <input matInput placeholder="Votre email" type="text" name="email" id="email" formControlName="email">
-                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                  Entrez une adresse email valide.
-                </mat-error>
-                <mat-error *ngIf="email.hasError('required')">
-                  Champ <strong>obligatoire</strong>
-                </mat-error>
-              </mat-form-field>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <mat-form-field class="form-full-width">
+                  <input matInput placeholder="Sujet" type="text" name="subject" id="subject" formControlName="subject">
+                </mat-form-field>
+              </div>
             </div>
-          </div>
 
-          <div class="row form-group">
-            <div class="col-md-12">
-              <mat-form-field class="form-full-width">
-                <input matInput placeholder="Sujet" type="text" name="subject" id="subject" formControlName="subject">
-              </mat-form-field>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <mat-form-field class="form-full-width">
+                  <mat-label>Message</mat-label>
+                  <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" cols="20"
+                    name="message" id="message" id="message" formControlName="message" placeholder="Ecrivez-nous!"></textarea>
+                  <mat-error *ngIf="message.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-12">
-              <mat-form-field class="form-full-width">
-                <mat-label>Message</mat-label>
-                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" cols="20"
-                  name="message" id="message" id="message" formControlName="message" placeholder="Ecrivez-nous!"></textarea>
-                <mat-error *ngIf="message.hasError('required')">
-                  Champ <strong>obligatoire</strong>
-                </mat-error>
-              </mat-form-field>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <div #captchaRef2></div>
+              </div>
             </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-md-12">
-              <div #captchaRef2></div>
+            <div class="col-md-5">
+              <button type="submit" [disabled]="!contactForm.valid" class="submitBtn  btn btn-default btn-block">Envoyer</button>
             </div>
-          </div>
-          <div>
-            <button type="submit" [disabled]="!contactForm.valid" class="submitBtn">Envoyer</button>
-          </div>
-        </form>
-        <flash-messages></flash-messages>
+          </form>
+          <flash-messages></flash-messages>
+        </div>
       </div>
     </div>
   </div>
