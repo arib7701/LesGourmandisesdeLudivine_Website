@@ -41,7 +41,7 @@ exports.sendContactMessage = functions.database
 
     // Use Nodemailer options and transporter
     const mailOptions = {
-      to: 'amandineribot01@gmail.com',
+      to: 'lesgourmandisesdeludivine@yahoo.com',
       from: val.email,
       subject: `Nouveau Message Site 'Les Gourmandises de Ludivine' de ${
         val.email
@@ -150,7 +150,7 @@ exports.stripeCharge = functions.database
               // console.log('html ', html);
 
               const mailOptions = {
-                to: 'amandineribot01@gmail.com',
+                to: 'lesgourmandisesdeludivine@yahoo.com',
                 from: email,
                 subject: `Nouvelle Commande de ${name}`,
                 html: html
