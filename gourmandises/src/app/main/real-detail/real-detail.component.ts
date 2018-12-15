@@ -56,6 +56,9 @@ export class RealDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private flashService: FlashMessagesService
   ) {
+  }
+
+  ngOnInit() {
     this.subscriptionRoute = this.route.paramMap.subscribe(params => {
       // fetch your new parameters here, on which you are switching the routes
 
@@ -84,6 +87,7 @@ export class RealDetailComponent implements OnInit, OnDestroy {
                 .getPhotoInGallery(this.real.category, this.real.galleryId[i])
                 .valueChanges()
                 .subscribe(gallery => {
+                  this.galleryImg = [];
                   this.galleryImg.push(gallery);
                 });
             }
@@ -134,8 +138,6 @@ export class RealDetailComponent implements OnInit, OnDestroy {
         });
     });
   }
-
-  ngOnInit() {}
 
   liked() {
     if (!this.likesDisabled) {

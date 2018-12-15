@@ -25,7 +25,8 @@ export class BuyHomeComponent implements OnInit {
     let options = null;
     let row_text;
 
-    row_text = ['Choississez <br> votre  <br>  message', 'Biscuits  <br>  personnalisés  <br>  à croquer', 'A partager  <br>  sans  <br>  modération', 'Formes  <br>  et Goûts  <br>  variés', 'Disponible <br> sans gluten <br> sans lactose', 'Pour acheter <br> cliquez sur <br> l\'icone rose'];
+    // tslint:disable-next-line:max-line-length
+    row_text = ['CHOISISSEZ <br> VOTRE  <br>  MESSAGE', 'BISCUITS  <br>  PERSONNALISES  <br>  A CROQUER', 'A PARTAGER  <br>  SANS  <br>  MODERATION', 'FORMES  <br>  ET GOÛTS  <br>  VARIES', 'DISPONIBLE <br> SANS GLUTEN <br> SANS LACTOSE', 'POUR ACHETER <br> CLIQUEZ SUR <br> L\'ICONE ROSE'];
     options = {
       strings: row_text,
       typeSpeed: 100,
@@ -34,6 +35,5 @@ export class BuyHomeComponent implements OnInit {
     };
 
     this.typed1 = new _Typed(`.typed${1}`, options);
-    
   }
 }

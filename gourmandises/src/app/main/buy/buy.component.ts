@@ -80,7 +80,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
     this.handler = StripeCheckout.configure({
       key: environment.stripePublishedKey,
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-      locale: 'auto',
+      locale: 'fr',
       panelLabel: 'Paiement',
       billingAddress: true,
       shippingAddress: true,
