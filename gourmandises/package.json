@@ -30,6 +30,7 @@
     "firebase": "^5.5.7",
     "jquery": "^3.3.1",
     "lightbox2": "^2.10.0",
+    "ng-lazyload-image": "^5.0.0",
     "ngx-autosize": "^1.2.4",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-pagination": "^3.2.1",
