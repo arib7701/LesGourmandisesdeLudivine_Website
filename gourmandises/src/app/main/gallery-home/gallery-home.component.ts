@@ -19,8 +19,7 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
   constructor(
     private galleryService: GalleryService,
     private categoryService: CategoryService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.randomGal = [];
@@ -45,7 +44,7 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
               for (let j = 0; j < this.oneGal.length; j++) {
                 this.randomGal.push(this.oneGal[j]);
               }
-              this.randomGal = this.shuffle(this.randomGal);
+              this.randomGal = this.randomPick(this.randomGal);
             });
         }
       });
@@ -60,16 +59,32 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
         });
         this.randomGal = this.shuffle(this.randomGal);
       });*/
-
   }
 
-  shuffle(a) {
+  randomPick(array) {
+    let len = array.length;
+    const result = new Array(10);
+    const taken = new Array(len);
+    if (10 > len) {
+      throw new RangeError('getRandom: more elements taken than available');
+    }
+    let i = 10;
+    while (i--) {
+      const x = Math.floor(Math.random() * len);
+      result[i] = array[x in taken ? taken[x] : x];
+      taken[x] = --len in taken ? taken[len] : len;
+    }
+    this.randomGal = [];
+    return result;
+  }
+
+  /* shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
-  }
+  }*/
 
   ngOnDestroy() {
     if (this.subscriptionCat !== undefined) {
