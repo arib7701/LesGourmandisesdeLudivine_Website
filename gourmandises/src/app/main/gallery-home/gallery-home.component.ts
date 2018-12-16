@@ -44,7 +44,11 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
               for (let j = 0; j < this.oneGal.length; j++) {
                 this.randomGal.push(this.oneGal[j]);
               }
-              this.randomGal = this.randomPick(this.randomGal);
+              this.randomGal = this.shuffle(this.randomGal);
+
+              if (i === categories.length - 1) {
+                this.randomGal = this.randomGal.slice(0, 20);
+              }
             });
         }
       });
@@ -63,6 +67,7 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
 
   randomPick(array) {
     let len = array.length;
+    console.log(len);
     const result = new Array(10);
     const taken = new Array(len);
     if (10 > len) {
@@ -78,13 +83,13 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  /* shuffle(a) {
+  shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
-  }*/
+  }
 
   ngOnDestroy() {
     if (this.subscriptionCat !== undefined) {
