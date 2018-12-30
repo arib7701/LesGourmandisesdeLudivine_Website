@@ -1,12 +1,11 @@
-
 .form-full-width {
   width: 100%;
 }
 
 .price {
   display: inline-block;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   background: rgba(241, 78, 149, 0.8);
   margin: auto;
   -webkit-border-radius: 50%;
@@ -25,8 +24,7 @@
 
 .specialPrice {
   display: inline-block;
-  width: 100%;
-  height: 100%;
+  width: 120%;
   background: rgba(241, 78, 149, 0.8);
   margin: 0 4px;
   -webkit-border-radius: 50%;
@@ -35,6 +33,9 @@
   border-radius: 50%;
   position: relative;
   text-align: center;
+  margin-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .specialAmount {
@@ -91,7 +92,7 @@ h5 {
 #cakes-add-buy .form-control {
   background: rgba(255, 255, 255, 0.8);
   border: none !important;
-  color: #F36 !important;
+  color: #f36 !important;
   font-size: 16px !important;
   width: 100%;
   -webkit-transition: 0.5s;
@@ -238,18 +239,19 @@ h5 {
   align-items: center;
 }
 
-.mat-input-element, .recap {
-  color: #F36 !important;
+.mat-input-element,
+.recap {
+  color: #f36 !important;
 }
 
 ::ng-deep .mat-select-value {
-  color:  #F36 !important;
+  color: #f36 !important;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px white inset;
-    -webkit-text-fill-color: #F36;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  -webkit-text-fill-color: #f36;
 }

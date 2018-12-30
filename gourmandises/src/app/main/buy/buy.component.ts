@@ -124,10 +124,10 @@ export class BuyComponent implements OnInit, AfterViewInit {
       quantity: new FormControl('', [Validators.required]),
       event: new FormControl('', [Validators.required]),
       perfum: new FormControl('nature', [Validators.required]),
-      form: new FormControl('rectangulaire', [Validators.required]),
-      decoration: new FormControl(false),
-      gluten: new FormControl(false),
-      lactose: new FormControl(false)
+      decoration: new FormControl(false)
+      // form: new FormControl('rectangulaire', [Validators.required]),
+      // gluten: new FormControl(false),
+      // lactose: new FormControl(false)
     });
 
     this.buyInfoFormStep2 = new FormGroup({
@@ -159,8 +159,16 @@ export class BuyComponent implements OnInit, AfterViewInit {
   }
 
   calculatePrice() {
-    const pricePerBiscuit = 0.8;
+    let pricePerBiscuit;
     const numberBiscuits: number = +this.buyInfoFormStep1.value.quantity;
+
+    if (numberBiscuits >= 50) {
+      pricePerBiscuit = 1.0;
+    } else if (numberBiscuits >= 20) {
+      pricePerBiscuit = 1.25;
+    } else {
+      pricePerBiscuit = 1.5;
+    }
 
     this.calculatedPrice = pricePerBiscuit * numberBiscuits;
 
@@ -168,6 +176,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
       this.calculatedPrice += 0.2 * numberBiscuits;
     }
 
+    /*
     if (this.buyInfoFormStep1.value.gluten) {
       this.calculatedPrice += 0.2 * numberBiscuits;
     }
@@ -175,6 +184,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
     if (this.buyInfoFormStep1.value.lactose) {
       this.calculatedPrice += 0.2 * numberBiscuits;
     }
+    */
 
     this.amount = this.calculatedPrice * 100;
   }
@@ -374,18 +384,19 @@ export class BuyComponent implements OnInit, AfterViewInit {
   get perfum() {
     return this.buyInfoFormStep1.get('perfum');
   }
-  get form() {
-    return this.buyInfoFormStep1.get('form');
-  }
   get decoration() {
     return this.buyInfoFormStep1.get('decoration');
+  }
+  /*
+  get form() {
+    return this.buyInfoFormStep1.get('form');
   }
   get gluten() {
     return this.buyInfoFormStep1.get('gluten');
   }
   get lactose() {
     return this.buyInfoFormStep1.get('lactose');
-  }
+  }*/
   get row1() {
     return this.buyInfoFormStep2.get('row1');
   }

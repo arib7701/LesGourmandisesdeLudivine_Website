@@ -110,10 +110,19 @@ exports.stripeCharge = functions.database
               const quantity = payment.details.quantity;
               const event = payment.details.event;
               const perfum = payment.details.perfum;
-              const form = payment.details.form;
               const decoration = payment.details.decoration;
-              const gluten = payment.details.gluten;
-              const lactose = payment.details.lactose;
+              // const form = payment.details.form;
+              // const gluten = payment.details.gluten;
+              // const lactose = payment.details.lactose;
+
+              /*
+                <strong>Forme</strong>: ${form}<br>
+                <strong>Autre requête</strong>: 
+                <ul>
+                  <li>Sans gluten: ${gluten}</li>
+                  <li>Sans lactose: ${lactose}</li>
+                </ul>
+              */
 
               const html = `
                 <div><strong>From</strong>: ${name}</div>
@@ -130,13 +139,7 @@ exports.stripeCharge = functions.database
                   <p><strong>Quantité commandée</strong>: ${quantity}<br>
                      <strong>Occasion</strong>: ${event}<br>
                      <strong>Saveur</strong>: ${perfum}<br>
-                     <strong>Forme</strong>: ${form}<br>
                      <strong>Décoration</strong>: ${decoration}<br>
-                     <strong>Autre requête</strong>: 
-                      <ul>
-                        <li>Sans gluten: ${gluten}</li>
-                        <li>Sans lactose: ${lactose}</li>
-                      </ul>
                   </p>
                 </div>
                 <div>
@@ -146,8 +149,6 @@ exports.stripeCharge = functions.database
                      <strong>Ligne 3</strong>: ${row3} </p>
                 </div>
               `;
-
-              // console.log('html ', html);
 
               const mailOptions = {
                 to: 'lesgourmandisesdeludivine@yahoo.com',

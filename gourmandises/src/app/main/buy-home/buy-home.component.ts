@@ -25,8 +25,13 @@ export class BuyHomeComponent implements OnInit {
     let options = null;
     let row_text;
 
-    // tslint:disable-next-line:max-line-length
-    row_text = ['CHOISISSEZ <br> VOTRE  <br>  MESSAGE', 'BISCUITS  <br>  PERSONNALISES  <br>  A CROQUER', 'A PARTAGER  <br>  SANS  <br>  MODERATION', 'FORMES  <br>  ET GOÛTS  <br>  VARIES', 'DISPONIBLE <br> SANS GLUTEN <br> SANS LACTOSE', 'POUR ACHETER <br> CLIQUEZ SUR <br> L\'ICONE ROSE'];
+    row_text = [
+      'CHOISISSEZ <br> VOTRE  <br>  MESSAGE',
+      'BISCUITS  <br>  PERSONNALISES  <br>  A CROQUER',
+      'A PARTAGER  <br>  SANS  <br>  MODERATION',
+      // tslint:disable-next-line:quotemark
+      "POUR ACHETER <br> CLIQUEZ SUR <br> L'ICONE ROSE"
+    ];
     options = {
       strings: row_text,
       typeSpeed: 100,
