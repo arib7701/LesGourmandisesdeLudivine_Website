@@ -2,8 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-1 offset-md-1 returnBtn">
-        <button routerLink="/" class="btn btn-default">
-          Retour</button>
+        <button routerLink="/" class="btn btn-default">Retour</button>
       </div>
       <div class="col-md-12 text-center cakes-heading">
         <h2>Toutes mes Actualités !</h2>
@@ -12,18 +11,23 @@
     <div class="row">
       <div class="col-md-12 col-md-offset-0 archivelist">
         <ul class="timeline" *ngFor="let actu of actus; let i = index">
-          <li [ngClass]="{ 'timeline-inverted': i%2 == 0 }">
-            <div class="timeline-badge" [ngStyle]="{'background-image':'url('+actu.img+')'}"></div>
+          <li [ngClass]="{ 'timeline-inverted': i % 2 == 0 }">
+            <div
+              class="timeline-badge"
+              [ngStyle]="{ 'background-image': 'url(' + actu.img + ')' }"
+            ></div>
             <div class="timeline-panel">
               <div class="timeline-heading">
-                <h3 class="timeline-title">{{actu.title}}</h3>
-                <span class="date">{{actu.date}}</span>
+                <h3 class="timeline-title">{{ actu.title }}</h3>
+                <span class="date">{{ actu.date }}</span>
               </div>
               <div class="timeline-body">
-                <p>{{actu.description}} </p>
+                <p>{{ actu.description }}</p>
               </div>
               <div class="timeline-body">
-                <a href="{{actu.link}}">{{actu.titleLink}}</a>
+                <a href="{{actu.link}}" target="_blank" rel="noopener">{{
+                  actu.titleLink
+                }}</a>
               </div>
             </div>
           </li>

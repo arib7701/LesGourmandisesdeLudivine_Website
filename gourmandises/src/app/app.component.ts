@@ -19,7 +19,7 @@ export class AppComponent {
       0;
 
     const mq = window.matchMedia('(max-width: 1150px)');
-    mq.addListener(WidthChange);
+    mq.addListener(WidthChange, { passive: true });
     WidthChange(mq);
 
     function WidthChange(mq) {

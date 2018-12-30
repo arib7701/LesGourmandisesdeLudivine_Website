@@ -1,4 +1,8 @@
-<div id="cakes-topnews" class="cakes-bg" style="background-image:url(../assets/img/topnew.jpg);">
+<div
+  id="cakes-topnews"
+  class="cakes-bg"
+  style="background-image:url(../assets/img/topnew.jpg);"
+>
   <div class="overlay"></div>
   <div class="container-fluid">
     <div class="row">
@@ -18,12 +22,17 @@
               </div>
             </div>
 
-            <div class="col-md-6 offset-md-1 col-sm-12 text-center" style="float: left;">
+            <div
+              class="col-md-6 offset-md-1 col-sm-12 text-center"
+              style="float: left;"
+            >
               <div class="topnews-wrap">
-                <h3>{{lastActu?.title}}</h3>
-                <span class="topnewsText">{{lastActu?.description}}</span>
-                <br>
-                <a href="{{lastActu?.link}}" target="_blank">{{lastActu?.titleLink}}</a>
+                <h3>{{ lastActu?.title }}</h3>
+                <span class="topnewsText">{{ lastActu?.description }}</span>
+                <br />
+                <a href="{{lastActu?.link}}" target="_blank" rel="noopener">{{
+                  lastActu?.titleLink
+                }}</a>
               </div>
             </div>
           </div>
@@ -32,6 +41,10 @@
     </div>
   </div>
   <div id="cakes-archive">
-    <a routerLink="archivesActu"><button type="button" class="btn btn-default btn-block">Voir les archives</button></a>
+    <a routerLink="archivesActu"
+      ><button type="button" class="btn btn-default btn-block">
+        Voir les archives
+      </button></a
+    >
   </div>
 </div>

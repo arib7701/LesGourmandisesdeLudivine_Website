@@ -34,6 +34,7 @@
               "./node_modules/owl.carousel/dist/owl.carousel.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/lightbox2/dist/js/lightbox.min.js",
+              "../node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js",
               "src/assets/js/classie.js",
               "src/assets/js/modernizr.min.js",
               "src/assets/js/photostack.js"
