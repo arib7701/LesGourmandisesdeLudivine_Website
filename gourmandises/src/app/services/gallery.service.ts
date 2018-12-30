@@ -17,9 +17,7 @@ export class GalleryService {
 
   // Get ALL Galleries
   getAllGallery(): AngularFireList<Gallery[]> {
-    return (this.manyGalleries = this.firebase.list(
-      '/gallery'
-    ) as AngularFireList<Gallery[]>);
+    return (this.manyGalleries = this.firebase.list('/gallery'));
   }
 
   /*getTwentyRandomImg(): AngularFireList<Gallery[]> {
@@ -41,16 +39,12 @@ export class GalleryService {
 
   // Get ONE Gallery By Category
   getOneGallery(category: string): AngularFireList<Gallery[]> {
-    return (this.manyGalleries = this.firebase.list(
-      `/gallery/${category}`
-    ) as AngularFireList<Gallery[]>);
+    return (this.manyGalleries = this.firebase.list(`/gallery/${category}`));
   }
 
   // Get One Img in One Gallery By Cateogory and By Id
   getPhotoInGallery(category: string, id: string): AngularFireObject<Gallery> {
-    return (this.oneGallery = this.firebase.object(
-      `/gallery/${category}/${id}`
-    ) as AngularFireObject<Gallery>);
+    return (this.oneGallery = this.firebase.object(`/gallery/${category}/${id}`));
   }
 
   // New Img in Gallery depending on Category - return ID
@@ -62,9 +56,9 @@ export class GalleryService {
   }
 
   // Edit Gallery By ID and Gallery
-  editGallery(id: string, newGal: Gallery[]): Promise<void> {
+  editGallery(id: string, newGal: Gallery[], category: string): Promise<void> {
     this.getAllGallery();
-    return this.manyGalleries.update(id, newGal);
+    return this.manyGalleries.update(`${category}/${id}`, newGal);
   }
 
   // Delete All Img in Category Gallery

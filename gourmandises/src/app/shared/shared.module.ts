@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { MatButtonModule, MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
@@ -57,7 +58,8 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     MatSelectModule,
     MatRadioModule,
     MatCheckboxModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    Ng2ImgMaxModule
   ],
   declarations: [NavbarComponent, FooterComponent, FormErrorsComponent],
   exports: [
@@ -77,7 +79,8 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     MatSelectModule,
     MatRadioModule,
     MatCheckboxModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    Ng2ImgMaxModule
   ],
   providers: [
     AngularFireAuth,

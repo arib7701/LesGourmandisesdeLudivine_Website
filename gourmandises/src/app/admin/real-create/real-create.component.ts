@@ -9,12 +9,14 @@ import {
 import { Real } from 'src/app/models/real';
 import { Observable, Subscription } from 'rxjs';
 import { RealService } from 'src/app/services/real.service';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 import { finalize } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category.service';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { Gallery } from 'src/app/models/gallery';
+import { storage } from 'firebase';
 
 @Component({
   selector: 'app-real-create',
@@ -37,18 +39,23 @@ export class RealCreateComponent implements OnInit, OnDestroy {
   downloadURL: Observable<string>;
   gallery: Gallery;
 
+  urlStored300: string;
+  urlStored120: string;
+
   // Subscription
   subscriptionCat: Subscription;
   subscriptionStorage: Subscription;
+  subscriptionStorage2: Subscription;
   subscriptionStorageUrl: Subscription;
 
   constructor(
     private realService: RealService,
     private categoryService: CategoryService,
     private galleryService: GalleryService,
-    private storage: AngularFireStorage,
+    private storageService: AngularFireStorage,
     private flashMess: FlashMessagesService,
-    private _cdRef: ChangeDetectorRef
+    private _cdRef: ChangeDetectorRef,
+    private imgMaxService: Ng2ImgMaxService
   ) {
     // Set up Real
     this.newReal = new Real();
@@ -87,8 +94,8 @@ export class RealCreateComponent implements OnInit, OnDestroy {
 
     // Add to Fire Storage
     const filePath = id;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, this.primaryFile);
+    const fileRef = this.storageService.ref(filePath);
+    const task = this.storageService.upload(filePath, this.primaryFile);
 
     // Get Url and Save to DB
     this.subscriptionStorage = task
@@ -118,6 +125,9 @@ export class RealCreateComponent implements OnInit, OnDestroy {
               this.newReal.img.id = key;
               this.realService.editReal(this.newRealId, this.newReal as Real[]);
 
+              // Store Resized Image Url to DB Gallery
+              this.storeResizedImgToDB(id, key);
+
               // Send back Real to Parent Component
               this.newReal.key = this.newRealId;
               this.action.emit(this.newReal);
@@ -134,6 +144,86 @@ export class RealCreateComponent implements OnInit, OnDestroy {
     });*/
   }
 
+  storeResizedImgToDB(idFile: string, idGallery: string) {
+
+    // Resize to 300x300 for Random Gallery on Home Page
+    let file300: Blob;
+
+    this.imgMaxService
+    .resizeImage(this.primaryFile, 300, 300)
+    .subscribe( result => {
+
+      file300 = result;
+
+      const filePath300 = `${idFile}_300`;
+      const fileRef300 = this.storageService.ref(filePath300);
+      const task300 = this.storageService.upload(filePath300, file300);
+
+      this.getUrlResizedImg(fileRef300, task300, idGallery, 300);
+    },
+    error => {
+      console.log('Error resizing image');
+    });
+
+    // Resize to 120x120 for Recent Real on Home Page
+    let file120: Blob;
+
+    this.imgMaxService
+    .resizeImage(this.primaryFile, 120, 120)
+    .subscribe( result => {
+
+      file120 = result;
+
+      const filePath120 = `${idFile}_120`;
+      const fileRef120 = this.storageService.ref(filePath120);
+      const task120 = this.storageService.upload(filePath120, file120);
+
+      this.getUrlResizedImg(fileRef120, task120, idGallery, 120);
+    },
+    error => {
+      console.log('Error resizing image');
+    });
+  }
+
+  getUrlResizedImg(fileRef: AngularFireStorageReference, task: AngularFireUploadTask, idGallery: string, size: number) {
+
+    let downloadedURL: Observable<string>;
+    let urlStored: string;
+
+    this.subscriptionStorage2 = task
+    .snapshotChanges()
+    .pipe(
+      finalize(() => {
+          downloadedURL = fileRef.getDownloadURL();
+          downloadedURL.subscribe(
+            urlStorage => {
+              // Set up value of New Realization
+              urlStored = urlStorage;
+              this.updateGalleryWithResizedImg(idGallery, urlStored, size);
+            },
+            error => {
+              console.log('Error resizing image');
+            });
+          })
+        )
+        .subscribe();
+  }
+
+  updateGalleryWithResizedImg(idGallery: string, urlStored: string, size: number) {
+
+    if (size === 300) {
+      this.gallery.img300 = urlStored;
+    }
+    if (size === 120) {
+      this.gallery.img120 = urlStored;
+    }
+    this.galleryService.editGallery(
+      idGallery,
+      this.gallery as Gallery[],
+      this.newReal.category
+    );
+  }
+
   ngOnDestroy() {
     if (this.subscriptionCat !== undefined) {
       this.subscriptionCat.unsubscribe();
@@ -141,6 +231,10 @@ export class RealCreateComponent implements OnInit, OnDestroy {
 
     if (this.subscriptionStorage !== undefined) {
       this.subscriptionStorage.unsubscribe();
+    }
+
+    if (this.subscriptionStorage2 !== undefined) {
+      this.subscriptionStorage2.unsubscribe();
     }
 
     if (this.subscriptionStorageUrl !== undefined) {
