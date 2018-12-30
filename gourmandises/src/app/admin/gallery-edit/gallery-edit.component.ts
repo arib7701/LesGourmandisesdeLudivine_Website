@@ -102,6 +102,8 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
 
     // Delete from Storage
     this.deleteImgStorage(img.img);
+    this.deleteImgStorage(img.img300);
+    this.deleteImgStorage(img.img120);
 
     // Get Id of Realization using Img
     this.subscriptionNew = this.realService

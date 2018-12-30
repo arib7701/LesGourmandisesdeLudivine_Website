@@ -11,7 +11,7 @@ import { Observable, Subscription } from 'rxjs';
 import { RealService } from 'src/app/services/real.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { Ng2ImgMaxService } from 'ng2-img-max';
+import { Ng2ImgToolsService } from 'ng2-img-tools';
 import { finalize } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category.service';
 import { GalleryService } from 'src/app/services/gallery.service';
@@ -55,7 +55,7 @@ export class RealCreateComponent implements OnInit, OnDestroy {
     private storageService: AngularFireStorage,
     private flashMess: FlashMessagesService,
     private _cdRef: ChangeDetectorRef,
-    private imgMaxService: Ng2ImgMaxService
+    private imgToolsService: Ng2ImgToolsService
   ) {
     // Set up Real
     this.newReal = new Real();
@@ -149,8 +149,8 @@ export class RealCreateComponent implements OnInit, OnDestroy {
     // Resize to 300x300 for Random Gallery on Home Page
     let file300: Blob;
 
-    this.imgMaxService
-    .resizeImage(this.primaryFile, 300, 300)
+    this.imgToolsService
+    .resizeExactCropImage(this.primaryFile, 300, 300)
     .subscribe( result => {
 
       file300 = result;
@@ -168,8 +168,8 @@ export class RealCreateComponent implements OnInit, OnDestroy {
     // Resize to 120x120 for Recent Real on Home Page
     let file120: Blob;
 
-    this.imgMaxService
-    .resizeImage(this.primaryFile, 120, 120)
+    this.imgToolsService
+    .resizeExactCropImage(this.primaryFile, 120, 120)
     .subscribe( result => {
 
       file120 = result;

@@ -7,10 +7,11 @@ import { PartnerService } from 'src/app/services/partner.service';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { map, finalize } from 'rxjs/operators';
 import { Real } from 'src/app/models/real';
 import { CategoryService } from 'src/app/services/category.service';
+import { Ng2ImgToolsService } from 'ng2-img-tools';
 
 @Component({
   selector: 'app-real-edit',
@@ -53,6 +54,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
   subscriptionGal: Subscription;
   subscriptionPartner: Subscription;
   subscriptionStorage: Subscription;
+  subscriptionStorage2: Subscription;
 
   constructor(
     private categoryService: CategoryService,
@@ -62,7 +64,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
     private flashService: FlashMessagesService,
     private router: Router,
     private route: ActivatedRoute,
-    private storage: AngularFireStorage
+    private imgToolsService: Ng2ImgToolsService,
+    private storageService: AngularFireStorage
   ) {
     this.subscriptionRoute = this.route.paramMap.subscribe(params => {
       // fetch your new parameters here, on which you are switching the routes
@@ -220,7 +223,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
   // Delete Picture From Storage
   deleteImgStorage(img: string) {
     if (img !== undefined) {
-      this.storage
+      this.storageService
         .refFromURL(img)
         .delete()
         .toPromise()
@@ -305,8 +308,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
         // Add to Fire Storage
         const filePath = id;
-        const fileRef = this.storage.ref(filePath);
-        const task = this.storage.upload(filePath, this.primaryFile);
+        const fileRef = this.storageService.ref(filePath);
+        const task = this.storageService.upload(filePath, this.primaryFile);
 
         // Get Url and Save to DB
         this.subscriptionStorage = task
@@ -362,8 +365,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
           // Add to Fire Storage
           const filePath = id;
-          const fileRef = this.storage.ref(filePath);
-          const task = this.storage.upload(filePath, currentFile);
+          const fileRef = this.storageService.ref(filePath);
+          const task = this.storageService.upload(filePath, currentFile);
 
           // Get Url from Storage and Save to DB
           this.subscriptionStorage = task
@@ -392,6 +395,9 @@ export class RealEditComponent implements OnInit, OnDestroy {
                   // Add ID of Img to Realization in Array
                   this.real.galleryId.push(key);
                   this.realService.editReal(this.id, this.real as Real[]);
+
+                  // Store Resized Image Url to DB Gallery
+                  this.storeResizedImgToDB(id, key, currentFile);
                 });
               })
             )
@@ -412,6 +418,62 @@ export class RealEditComponent implements OnInit, OnDestroy {
       );
       this.router.navigate(['/real/edit/' + this.id]);
     }
+  }
+
+  storeResizedImgToDB(idFile: string, idGallery: string, currentFile: File) {
+
+    // Resize to 300x300 for Random Gallery on Home Page
+    let file300: Blob;
+
+    this.imgToolsService
+    .resizeExactCropImage(currentFile, 300, 300)
+    .subscribe( result => {
+
+      file300 = result;
+
+      const filePath300 = `${idFile}_300`;
+      const fileRef300 = this.storageService.ref(filePath300);
+      const task300 = this.storageService.upload(filePath300, file300);
+
+      this.getUrlResizedImg(fileRef300, task300, idGallery);
+    },
+    error => {
+      console.log('Error resizing image');
+    });
+  }
+
+  getUrlResizedImg(fileRef: AngularFireStorageReference, task: AngularFireUploadTask, idGallery: string) {
+
+    let downloadedURL: Observable<string>;
+    let urlStored: string;
+
+    this.subscriptionStorage2 = task
+    .snapshotChanges()
+    .pipe(
+      finalize(() => {
+          downloadedURL = fileRef.getDownloadURL();
+          downloadedURL.subscribe(
+            urlStorage => {
+              // Set up value of New Realization
+              urlStored = urlStorage;
+              this.updateGalleryWithResizedImg(idGallery, urlStored);
+            },
+            error => {
+              console.log('Error resizing image');
+            });
+          })
+        )
+        .subscribe();
+  }
+
+  updateGalleryWithResizedImg(idGallery: string, urlStored: string) {
+
+    this.gallery.img300 = urlStored;
+    this.galleryService.editGallery(
+      idGallery,
+      this.gallery as Gallery[],
+      this.real.category
+    );
   }
 
   ngOnDestroy() {
@@ -437,6 +499,9 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
     if (this.subscriptionStorage !== undefined) {
       this.subscriptionStorage.unsubscribe();
+    }
+    if (this.subscriptionStorage2 !== undefined) {
+      this.subscriptionStorage2.unsubscribe();
     }
   }
 }

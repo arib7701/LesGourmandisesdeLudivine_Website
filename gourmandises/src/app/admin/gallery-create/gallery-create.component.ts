@@ -10,9 +10,10 @@ import { Real } from 'src/app/models/real';
 import { Gallery } from 'src/app/models/gallery';
 import { Observable, Subscription } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery.service';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 import { RealService } from 'src/app/services/real.service';
+import { Ng2ImgToolsService } from 'ng2-img-tools';
 
 @Component({
   selector: 'app-gallery-create',
@@ -37,13 +38,15 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
 
   // Subscription
   subscriptionStorage: Subscription;
+  subscriptionStorage2: Subscription;
   subscriptionStorageGal: Subscription;
   subscriptionURL: Subscription;
 
   constructor(
     private galleryService: GalleryService,
     private realService: RealService,
-    private storage: AngularFireStorage
+    private storageService: AngularFireStorage,
+    private imgToolsService: Ng2ImgToolsService
   ) {
     this.newGal = new Gallery();
   }
@@ -69,8 +72,8 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
 
         // Add to Fire Storage
         const filePath = id;
-        const fileRef = this.storage.ref(filePath);
-        const task = this.storage.upload(filePath, currentFile);
+        const fileRef = this.storageService.ref(filePath);
+        const task = this.storageService.upload(filePath, currentFile);
 
         // Get Url and Save to DB
         this.subscriptionStorageGal = task
@@ -98,6 +101,9 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
                 this.real.galleryId.push(key);
                 this.realService.editReal(this.real.key, this.real as Real[]);
 
+                // Store Resized Image Url to DB Gallery
+                this.storeResizedImgToDB(id, key, currentFile);
+
                 if (i === this.galleryFilesLength - 1) {
                   this.change.emit('recipe');
                 }
@@ -114,9 +120,68 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
     }
   }
 
+  storeResizedImgToDB(idFile: string, idGallery: string, currentFile: File) {
+
+    // Resize to 300x300 for Random Gallery on Home Page
+    let file300: Blob;
+
+    this.imgToolsService
+    .resizeExactCropImage(currentFile, 300, 300)
+    .subscribe( result => {
+
+      file300 = result;
+
+      const filePath300 = `${idFile}_300`;
+      const fileRef300 = this.storageService.ref(filePath300);
+      const task300 = this.storageService.upload(filePath300, file300);
+
+      this.getUrlResizedImg(fileRef300, task300, idGallery);
+    },
+    error => {
+      console.log('Error resizing image');
+    });
+  }
+
+  getUrlResizedImg(fileRef: AngularFireStorageReference, task: AngularFireUploadTask, idGallery: string) {
+
+    let downloadedURL: Observable<string>;
+    let urlStored: string;
+
+    this.subscriptionStorage2 = task
+    .snapshotChanges()
+    .pipe(
+      finalize(() => {
+          downloadedURL = fileRef.getDownloadURL();
+          downloadedURL.subscribe(
+            urlStorage => {
+              // Set up value of New Realization
+              urlStored = urlStorage;
+              this.updateGalleryWithResizedImg(idGallery, urlStored);
+            },
+            error => {
+              console.log('Error resizing image');
+            });
+          })
+        )
+        .subscribe();
+  }
+
+  updateGalleryWithResizedImg(idGallery: string, urlStored: string) {
+
+    this.newGal.img300 = urlStored;
+    this.galleryService.editGallery(
+      idGallery,
+      this.newGal as Gallery[],
+      this.real.category
+    );
+  }
+
   ngOnDestroy() {
     if (this.subscriptionStorage !== undefined) {
       this.subscriptionStorage.unsubscribe();
+    }
+    if (this.subscriptionStorage2 !== undefined) {
+      this.subscriptionStorage2.unsubscribe();
     }
     if (this.subscriptionStorageGal !== undefined) {
       this.subscriptionStorageGal.unsubscribe();
