@@ -9,19 +9,23 @@
       <div class="col-md-6 col-sm-12 newsItem" *ngFor="let real of reals">
         <div class="row" style="display:flex;">
           <div class="col-md-11 news">
-            <h3>{{real.title}}</h3>
-            <img src="{{real.img.url}} " alt="nouvelleCreation ">
+            <h3>{{ real.title }}</h3>
+            <img src="{{ real.img.url120 }} " alt="nouvelleCreation " />
           </div>
           <div class="desc-news col-md-11">
-            <p>{{real.description | slice:0:150}}...</p>
+            <p>{{ real.description | slice: 0:150 }}...</p>
             <a [routerLink]="['/real/', real.key]">Voir Plus</a>
           </div>
-          <br>
-          <br>
+          <br />
+          <br />
         </div>
       </div>
       <div id="cakes-archive-real">
-        <a routerLink="/archivesReal"><button type="button" class="btn btn-default btn-block">Voir les archives</button></a>
+        <a routerLink="/archivesReal"
+          ><button type="button" class="btn btn-default btn-block">
+            Voir les archives
+          </button></a
+        >
       </div>
     </div>
   </div>

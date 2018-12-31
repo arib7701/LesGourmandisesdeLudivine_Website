@@ -6,6 +6,8 @@ export class Real {
   img?: {
     id?: string;
     url?: string;
+    url120?: string;
+    url300?: string;
   };
   category?: string;
   likes?: number;
