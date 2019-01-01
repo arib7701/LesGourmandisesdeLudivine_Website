@@ -82,7 +82,6 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
             finalize(() => {
               this.downloadURL = fileRef.getDownloadURL();
               this.subscriptionURL = this.downloadURL.subscribe(url => {
-                this.newGal.img = url;
                 this.newGal.date = this.real.date;
                 this.newGal.principale = false;
                 this.newGal.newsLink = this.real.key;
@@ -99,7 +98,7 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
                 this.realService.editReal(this.real.key, this.real as Real[]);
 
                 // Store Resized Image Url to DB Gallery
-                this.storeResizedImgToDB(id, key, currentFile);
+                this.storeResizedImgToDB(id, key, currentFile, url);
 
                 if (i === this.galleryFilesLength - 1) {
                   this.change.emit('recipe');
@@ -117,7 +116,7 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  storeResizedImgToDB(idFile: string, idGallery: string, currentFile: File) {
+  storeResizedImgToDB(idFile: string, idGallery: string, currentFile: File, currentUrl: string) {
 
     // Resize to 300x300 for Random Gallery on Home Page
     let file300: Blob;
@@ -132,14 +131,14 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
       const fileRef300 = this.storageService.ref(filePath300);
       const task300 = this.storageService.upload(filePath300, file300);
 
-      this.getUrlResizedImg(fileRef300, task300, idGallery);
+      this.getUrlResizedImg(fileRef300, task300, idGallery, currentUrl);
     },
     error => {
       console.log('Error resizing image');
     });
   }
 
-  getUrlResizedImg(fileRef: AngularFireStorageReference, task: AngularFireUploadTask, idGallery: string) {
+  getUrlResizedImg(fileRef: AngularFireStorageReference, task: AngularFireUploadTask, idGallery: string, currentUrl: string) {
 
     let downloadedURL: Observable<string>;
     let urlStored: string;
@@ -153,7 +152,7 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
             urlStorage => {
               // Set up value of New Realization
               urlStored = urlStorage;
-              this.updateGalleryWithResizedImg(idGallery, urlStored);
+              this.updateGalleryWithResizedImg(idGallery, urlStored, currentUrl);
             },
             error => {
               console.log('Error resizing image');
@@ -163,9 +162,10 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
         .subscribe();
   }
 
-  updateGalleryWithResizedImg(idGallery: string, urlStored: string) {
+  updateGalleryWithResizedImg(idGallery: string, urlStored: string, currentUrl: string) {
 
     this.newGal.img300 = urlStored;
+    this.newGal.img = currentUrl;
     this.galleryService.editGallery(
       idGallery,
       this.newGal as Gallery[],
