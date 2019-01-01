@@ -83,10 +83,7 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
               this.downloadURL = fileRef.getDownloadURL();
               this.subscriptionURL = this.downloadURL.subscribe(url => {
                 this.newGal.img = url;
-                this.newGal.date = new Date().toLocaleDateString(
-                  'fr-FR',
-                  this.options
-                );
+                this.newGal.date = this.real.date;
                 this.newGal.principale = false;
                 this.newGal.newsLink = this.real.key;
                 const key = this.galleryService.addToGallery(

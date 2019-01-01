@@ -55,10 +55,7 @@ export class RecipeCreateComponent implements OnInit {
   onSubmitRecipe() {
     // Set up NON form inputs
     this.newRecipe.title = this.real.title;
-    this.newRecipe.date = new Date().toLocaleDateString(
-      'fr-FR',
-      this.optionsDate
-    );
+    this.newRecipe.date = this.real.date;
     this.newRecipe.newsLink = this.real.key;
 
     // Save Recipe to DB

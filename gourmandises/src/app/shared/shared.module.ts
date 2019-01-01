@@ -8,6 +8,8 @@ import { MatButtonModule, MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 
 // Third Party
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -58,6 +60,8 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     MatSelectModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     LazyLoadImageModule,
     Ng2ImgToolsModule
   ],
@@ -79,6 +83,8 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     MatSelectModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     LazyLoadImageModule,
     Ng2ImgToolsModule
   ],

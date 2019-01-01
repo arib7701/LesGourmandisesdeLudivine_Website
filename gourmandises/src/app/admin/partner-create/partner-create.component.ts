@@ -95,9 +95,7 @@ export class PartnerCreateComponent implements OnInit, OnDestroy {
     if (oldPartner.realId !== undefined) {
       oldPartner.realId.push(this.real.key);
       oldPartner.realTitle.push(this.real.title);
-      oldPartner.realDate.push(
-        new Date().toLocaleDateString('fr-FR', this.options)
-      );
+      oldPartner.realDate.push(this.real.date);
 
       // Update Partner with added new Real Info
       this.partnerService.editPartner(oldPartner.key, oldPartner);
@@ -120,10 +118,7 @@ export class PartnerCreateComponent implements OnInit, OnDestroy {
           if (this.newPartner.alreadyUsed !== true) {
             // Set up NON form inputs
             this.newPartner.realTitle[0] = this.real.title;
-            this.newPartner.realDate[0] = new Date().toLocaleDateString(
-              'fr-FR',
-              this.options
-            );
+            this.newPartner.realDate[0] = this.real.date;
             this.newPartner.realId[0] = this.real.key;
 
             // Save Partner to DB

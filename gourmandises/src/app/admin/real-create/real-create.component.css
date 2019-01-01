@@ -124,3 +124,21 @@ input:-webkit-autofill:active {
     font-size: 40px;
   }
 }
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  display: none;
+}
+
+label {
+  display: inline;
+}
+
+.mat-input-element {
+  margin-top: 5px;
+}
+
+::ng-deep .mat-form-field-suffix {
+  position: absolute !important;
+  top: 50px;
+  right: -25px;
+}

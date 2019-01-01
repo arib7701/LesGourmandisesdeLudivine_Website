@@ -35,6 +35,7 @@ export class RealCreateComponent implements OnInit, OnDestroy {
 
   newRealId: string;
   newReal: Real;
+  pickedDate: Date;
 
   categories: string[];
 
@@ -58,7 +59,6 @@ export class RealCreateComponent implements OnInit, OnDestroy {
     private galleryService: GalleryService,
     private storageService: AngularFireStorage,
     private flashMess: FlashMessagesService,
-    private _cdRef: ChangeDetectorRef,
     private imgToolsService: Ng2ImgToolsService
   ) {
     // Set up Real
@@ -112,6 +112,10 @@ export class RealCreateComponent implements OnInit, OnDestroy {
               // Set up value of New Realization
               this.newReal.img.url = urlStorage;
               this.newReal.haveRecipe.exist = false;
+              this.newReal.date = this.pickedDate.toLocaleDateString(
+                'fr-FR',
+                this.options
+              );
 
               // Create New Realization
               this.newRealId = this.realService.createNewRealization(this
