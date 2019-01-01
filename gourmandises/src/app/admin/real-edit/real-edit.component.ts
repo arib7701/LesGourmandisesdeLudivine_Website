@@ -391,7 +391,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
               finalize(() => {
                 this.downloadURL = fileRef.getDownloadURL();
                 this.downloadURL.subscribe(url => {
-                  
+
                   this.gallery.date = this.real.date;
                   this.gallery.principale = false;
                   this.gallery.newsLink = this.id;
@@ -423,7 +423,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
       if (this.primaryFile === undefined && this.galleryFiles.length === 0) {
         this.realService.editReal(this.id, this.real as Real[]);
       }
-      // this.router.navigate(['/']);
+      this.router.navigate(['/real/' + this.id]);
     } else {
       // Show message error - Fill form fully
       this.flashService.show(
