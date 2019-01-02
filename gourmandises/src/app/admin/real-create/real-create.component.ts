@@ -124,6 +124,10 @@ export class RealCreateComponent implements OnInit, OnDestroy {
               // Save Img Principale to Gallery - Get back its ID
               this.gallery.img = urlStorage;
               this.gallery.newsLink = this.newRealId;
+              this.gallery.date = this.pickedDate.toLocaleDateString(
+                'fr-FR',
+                this.options
+              );
               const key = this.galleryService.addToGallery(
                 this.gallery as Gallery[],
                 this.newReal.category
