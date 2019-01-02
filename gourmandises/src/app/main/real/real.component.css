@@ -97,6 +97,10 @@
   .newsItem img {
     display: block;
   }
+
+  #cakes-archive-real .btn {
+    right: 0px;
+  }
 }
 
 @media screen and (max-width: 480px) {
