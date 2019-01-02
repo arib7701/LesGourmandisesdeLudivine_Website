@@ -170,7 +170,7 @@
                     </div>
                   </div>
                 -->
-                <div class="row form-group " style="margin-top:50px;">
+                <div class="row form-group " style="margin-top:10px;">
                   <h5>Décoré pâte a sucre :</h5>
                   <div class="col-md-12">
                     <section class="example-section row" style="display:flex;">
@@ -190,7 +190,7 @@
                   </div>
                 </div>
                 <div class="row form-group" style="margin-top:50px;">
-                  <div class="col-md-12 text-center">
+                  <div class="col-md-12 text-center btnDiv">
                     <button
                       type="submit"
                       [disabled]="!buyInfoFormStep1.valid"
@@ -291,7 +291,7 @@
                 <div class="col-md-12"><div #captchaRef2></div></div>
               </div>
               <div class="row" style="display:flex;">
-                <div class="col-md-4">
+                <div class="col-md-4 btnDiv">
                   <button
                     class="submitBtn btn btn-default btn-block"
                     (click)="returnStep1()"
@@ -299,13 +299,13 @@
                     Retour Étape 1
                   </button>
                 </div>
-                <div class="col-md-7 text-center">
+                <div class="col-md-7 text-center btnDiv">
                   <button
                     type="submit"
                     [disabled]="!buyInfoFormStep2.valid"
                     class="submitBtn btn btn-default btn-block"
                   >
-                    Avancez vers la derniere étape
+                    Derniere étape
                   </button>
                 </div>
               </div>
@@ -336,12 +336,12 @@
             <h2>Étape 3 : Validation</h2>
             <div class="row" style="display: flex; align-items: center;">
               <div class="row finalPreview">
-                <div class="price" style="display: flex; align-items: center;">
+                <div class="price col-sm-12" style="display: flex; align-items: center;">
                   <span class="amount"
                     >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
                   >
                 </div>
-                <div
+                <div col-sm-12
                   style="position:relative; display: flex; justify-content: center; align-items: center; width: 200px;"
                 >
                   <img
@@ -365,9 +365,9 @@
                     >{{ message.row3 }}</span
                   >
                 </div>
-                <div class="row recap">
+                <div class="row recap col-sm-12">
                   <div class="col-md-12">
-                    <ul>
+                    <ul class="recapOrder">
                       <li>
                         <strong>Quantité : </strong> {{ details.quantity }}
                       </li>
@@ -401,14 +401,11 @@
                   </div>
                 </div>
               </div>
-              <div class="row form-group ">
-                <div class="col-md-12"><div #captchaRef2></div></div>
-              </div>
               <div
                 class="row"
                 style="display:flex; margin-top: 20px; width:100%;"
               >
-                <div class="col-md-4">
+                <div class="col-md-4 btnDiv">
                   <button
                     class="submitBtn btn btn-default btn-block"
                     (click)="returnStep2()"
@@ -416,7 +413,7 @@
                     Retour Étape 2
                   </button>
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5 text-center btnDiv">
                   <button
                     type="submit"
                     [disabled]="!buyInfoFormStep3.valid"

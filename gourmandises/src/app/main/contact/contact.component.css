@@ -1,11 +1,40 @@
-
 .form-full-width {
   width: 100%;
+}
+
+.form-control {
+  display: flex;
 }
 
 @media screen and (max-width: 768px) {
   #cakes-contact {
     padding: 3em 0;
+  }
+
+  .form-control {
+    display: block;
+    text-align: center;
+  }
+
+  .captchaDiv {
+    padding: 0;
+    margin-left: -25px;
+  }
+
+  .infoContact {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    margin-left: -40px;
+  }
+
+  h3 {
+    font-size: 1.55em;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin-top: 50px;
   }
 }
 
@@ -31,7 +60,7 @@
 #cakes-contact .form-control {
   background: rgba(255, 255, 255, 0.8);
   border: none !important;
-  color: #F36 !important;
+  color: #f36 !important;
   font-size: 16px !important;
   width: 100%;
   -webkit-transition: 0.5s;
@@ -149,15 +178,14 @@
   align-items: center;
 }
 
-
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px white inset;
-    -webkit-text-fill-color: #F36;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  -webkit-text-fill-color: #f36;
 }
 
 a {
-  color: #F36;
+  color: #f36;
 }

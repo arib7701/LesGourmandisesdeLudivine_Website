@@ -24,7 +24,7 @@
 
 .specialPrice {
   display: inline-block;
-  width: 120%;
+  width: 130%;
   background: rgba(241, 78, 149, 0.8);
   margin: 0 4px;
   -webkit-border-radius: 50%;
@@ -225,6 +225,40 @@ h5 {
 
   .leftSide {
     margin-bottom: 30px;
+  }
+
+  .btnDiv {
+    padding: 0;
+    padding-bottom: 5px;
+  }
+
+  .greyBox {
+    text-align: center;
+  }
+
+  .finalPreview {
+    flex-wrap: wrap;
+  }
+
+  .price {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+  }
+  .amount {
+    font-size: 20px;
+  }
+
+  .spanMessageFinal {
+    font-size: 23px;
+  }
+
+  .recapOrder {
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+    margin-left: -25px;
+    width: 150%;
   }
 }
 

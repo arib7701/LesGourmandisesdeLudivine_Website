@@ -27,6 +27,23 @@ i {
   color: #f14e95;
 }
 
+.previewBiscuit {
+  width: 50%;
+  position: relative;
+}
+
+.spanMessage {
+  font-size: 30px;
+  position: absolute;
+  color: #9e640c;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px white;
+  text-align: center;
+  padding-bottom: 20px;
+  line-height: 60px;
+}
+
 @media screen and (max-width: 768px) {
   .buy {
     margin-bottom: 50px;
@@ -43,16 +60,18 @@ i {
     padding: 0;
     margin: 0;
   }
-}
 
-.spanMessage {
-  font-size: 30px;
-  position: absolute;
-  color: #9e640c;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px white;
-  text-align: center;
-  padding-bottom: 20px;
-  line-height: 60px;
+  .cakes-heading {
+    margin-bottom: 1em;
+  }
+
+  .previewBiscuit {
+    width: 75%;
+    position: relative;
+  }
+
+  .spanMessage {
+    font-size: 21px;
+    line-height: 45px;
+  }
 }

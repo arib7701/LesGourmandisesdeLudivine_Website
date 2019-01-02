@@ -34,6 +34,11 @@
   #cakes-gallery {
     padding: 3em 0;
   }
+
+  #cakes-gallery-list-detail li {
+    max-height: 450px;
+    min-height: 50px;
+  }
 }
 
 @media screen and (max-width: 480px) {
