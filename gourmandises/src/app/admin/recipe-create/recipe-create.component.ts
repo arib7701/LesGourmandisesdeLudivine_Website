@@ -71,12 +71,6 @@ export class RecipeCreateComponent implements OnInit {
     this.realService.editReal(this.real.key, this.real as Real[]);
     this.load = false;
     this.change.emit('partner');
-
-    // Show success message
-    /*this.flashMess.show('Recette sauvegardée!', {
-      cssClass: 'alert-success',
-      timeout: 2000
-    });*/
   }
 
   noRecipe() {

@@ -152,12 +152,6 @@ export class RealCreateComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
-
-    // Show success message
-    /*this.flashMess.show('Réalisation sauvegardée!', {
-      cssClass: 'alert-success',
-      timeout: 2000
-    });*/
   }
 
   storeResizedImgToDB(idFile: string, idGallery: string) {

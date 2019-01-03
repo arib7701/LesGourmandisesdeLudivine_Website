@@ -10,6 +10,7 @@ import { Actu } from 'src/app/models/actu';
 import { ActuService } from 'src/app/services/actu.service';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-actu-create',
@@ -30,7 +31,8 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private actuService: ActuService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private flashMess: FlashMessagesService
   ) {
     this.newActu = new Actu();
   }

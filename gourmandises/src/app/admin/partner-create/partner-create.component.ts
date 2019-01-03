@@ -147,11 +147,6 @@ export class PartnerCreateComponent implements OnInit, OnDestroy {
           this.change.emit('real');
         }
       }
-      // Show success message
-      /*this.flashMess.show('Partenaires/Produits sauvegardés!', {
-        cssClass: 'alert-success',
-        timeout: 2000
-      });*/
     }
   }
 

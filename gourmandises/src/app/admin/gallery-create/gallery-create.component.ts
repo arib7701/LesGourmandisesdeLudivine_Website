@@ -113,11 +113,6 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
           )
           .subscribe();
       }
-      // Show success message
-      /*this.flashMess.show('Images sauvegardées!', {
-        cssClass: 'alert-success',
-        timeout: 2000
-      });*/
     }
   }
 
