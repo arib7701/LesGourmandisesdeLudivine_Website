@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
               <button type="button" (click)="onSubmitGallery();" class="btn btn-default btn-block">Ajouter
-                les images</button>
+                les images  <img *ngIf="load" class="loader" src="/assets/img/loader.gif"></button>
             </div>
             <div class="col-md-4 col-sm-4">
               <button type="button" (click)="noGallery()" class="btn btn-default btn-block">Pas d'images</button>

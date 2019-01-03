@@ -30,6 +30,7 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
   options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   newGal: Gallery;
+  load = false;
 
   // Upload Files variables
   galleryFiles;
@@ -63,6 +64,9 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
   // ------  SAVE GALLERY IMGS TO DATABASE --------
   onSubmitGallery() {
     if (this.galleryFiles.length > 0) {
+
+      this.load = true;
+
       // Loop through each File
       for (let i = 0; i < this.galleryFilesLength; i++) {
         const currentFile = this.galleryFiles[i];
@@ -101,6 +105,7 @@ export class GalleryCreateComponent implements OnInit, OnDestroy {
                 this.storeResizedImgToDB(id, key, currentFile, url);
 
                 if (i === this.galleryFilesLength - 1) {
+                  this.load = false;
                   this.change.emit('recipe');
                 }
               });

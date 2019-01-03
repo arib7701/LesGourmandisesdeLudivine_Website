@@ -28,6 +28,7 @@ export class PartnerCreateComponent implements OnInit, OnDestroy {
   change: EventEmitter<string> = new EventEmitter();
 
   newPartner: Partner;
+  load = false;
 
   // Upload Files variables
   arrayPartners = new Array<any>();
@@ -110,6 +111,9 @@ export class PartnerCreateComponent implements OnInit, OnDestroy {
   // ------  SAVE PARTNER TO DATABASE --------
   onSubmitPartners() {
     if (this.arrayPartners.length > 0) {
+
+      this.load = true;
+
       for (let i = 0; i < this.arrayPartners.length; i++) {
         this.newPartner = this.arrayPartners[i];
 
@@ -132,12 +136,15 @@ export class PartnerCreateComponent implements OnInit, OnDestroy {
             this.real.partnersId.push(key);
             this.updatedReal = this.realService.editReal(this.real.key, this
               .real as Real[]);
-            this.change.emit('real');
           } else {
             // If already used update Partner
             this.updateOldPartner(this.oldPartner[0]);
-            this.change.emit('real');
           }
+        }
+
+        if (i === this.arrayPartners.length - 1) {
+          this.load = false;
+          this.change.emit('real');
         }
       }
       // Show success message

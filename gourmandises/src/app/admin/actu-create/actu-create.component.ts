@@ -21,6 +21,7 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
   change: EventEmitter<string> = new EventEmitter();
 
   newActu: Actu;
+  load = false;
 
   imgFile;
   downloadURL: Observable<string>;
@@ -41,6 +42,8 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
   }
 
   onSubmitActu() {
+    this.load = true;
+
     const id: string = Math.random()
       .toString(36)
       .substring(2);
@@ -59,7 +62,10 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
           this.subscriptionURL = this.downloadURL.subscribe(url => {
             this.newActu.img = url;
             this.actuService.createNewActu(this.newActu as Actu[]);
+            this.load = false;
             this.change.emit('fromactu');
+          }, error => {
+            console.log('Error saving actu image, please try again');
           });
         })
       )

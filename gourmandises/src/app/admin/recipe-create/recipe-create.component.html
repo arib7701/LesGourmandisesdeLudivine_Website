@@ -56,7 +56,7 @@
 
             <div class="col-md-4 col-sm-4">
               <button type="button" (click)="onSubmitRecipe();" class="btn btn-default btn-block">Ajouter
-                la Recette</button>
+                la Recette  <img *ngIf="load" class="loader" src="/assets/img/loader.gif"></button>
             </div>
             <div class="col-md-4 col-sm-4">
               <button type="button" (click)="noRecipe()" class="btn btn-default btn-block">Pas de Recette</button>

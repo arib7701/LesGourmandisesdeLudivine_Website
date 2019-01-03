@@ -11,6 +11,7 @@ import { GalleryService } from 'src/app/services/gallery.service';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Real } from 'src/app/models/real';
 import { OrdersService } from 'src/app/services/orders.service';
+import { isFormattedError } from '@angular/compiler';
 
 @Component({
   selector: 'app-list-data-sub',
@@ -186,23 +187,24 @@ export class ListDataSubComponent implements OnInit, OnDestroy {
 
   // Delete Partner in associated Realization
   deletePartnerReal(real: Real, realId: string, partnerKey: string) {
-    if (real.partnersId === undefined) {
-    } else {
-      const partners: any = real.partnersId;
-      if (partners.length > 0) {
-        for (let i = 0; i < partners.length; i++) {
-          if (partners[i] === partnerKey) {
-            partners.splice(i, 1);
+
+    if (real !== null) {
+      if (real.partnersId !== undefined) {
+        const partners: any = real.partnersId;
+        if (partners.length > 0) {
+          for (let i = 0; i < partners.length; i++) {
+            if (partners[i] === partnerKey) {
+              partners.splice(i, 1);
+            }
           }
         }
+        // Update realization galleryId
+        real.partnersId = partners;
       }
 
-      // Update realization galleryId
-      real.partnersId = partners;
+      // Update Realization in DB
+      this.realService.editReal(realId, real as Real[]);
     }
-
-    // Update Realization in DB
-    this.realService.editReal(realId, real as Real[]);
   }
 
   onDeleteClick(type: string, id: string, index: number) {

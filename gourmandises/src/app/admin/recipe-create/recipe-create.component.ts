@@ -19,6 +19,7 @@ export class RecipeCreateComponent implements OnInit {
 
   optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
   newRecipe: Recipe;
+  load = false;
 
   numberIngredients: 0;
   arrayIng = new Array<Number>();
@@ -53,6 +54,9 @@ export class RecipeCreateComponent implements OnInit {
 
   // ------  SAVE RECIPE TO DATABASE --------
   onSubmitRecipe() {
+
+    this.load = true;
+
     // Set up NON form inputs
     this.newRecipe.title = this.real.title;
     this.newRecipe.date = this.real.date;
@@ -65,6 +69,7 @@ export class RecipeCreateComponent implements OnInit {
     this.real.haveRecipe.exist = true;
     this.real.haveRecipe.recipeLink = key;
     this.realService.editReal(this.real.key, this.real as Real[]);
+    this.load = false;
     this.change.emit('partner');
 
     // Show success message

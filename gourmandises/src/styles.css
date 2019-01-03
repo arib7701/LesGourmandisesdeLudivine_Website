@@ -135,6 +135,11 @@ figure {
   background: #f14e95;
 }
 
+.loader {
+  width: 25px;
+  margin-left: 10px;
+}
+
 /* In Login Page */
 .notHomePage {
   margin-bottom: 40px;

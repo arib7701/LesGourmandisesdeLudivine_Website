@@ -38,6 +38,7 @@ export class RealCreateComponent implements OnInit, OnDestroy {
   pickedDate: Date;
 
   categories: string[];
+  load = false;
 
   // Upload Files variables
   primaryFile;
@@ -92,6 +93,8 @@ export class RealCreateComponent implements OnInit, OnDestroy {
   }
 
   onSubmitReal() {
+    this.load = true;
+
     const id: string = Math.random()
       .toString(36)
       .substring(2);
@@ -142,6 +145,7 @@ export class RealCreateComponent implements OnInit, OnDestroy {
 
               // Send back Real to Parent Component
               this.newReal.key = this.newRealId;
+              this.load = false;
               this.action.emit(this.newReal);
             }
           );
