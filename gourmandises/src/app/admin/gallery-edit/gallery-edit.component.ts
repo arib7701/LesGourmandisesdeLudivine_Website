@@ -70,30 +70,33 @@ export class GalleryEditComponent implements OnInit, OnDestroy {
     imgKey: string,
     principale: boolean
   ) {
-    // For Non Principale Img
-    if (principale === false && real.galleryId !== undefined) {
-      const gallery: any = real.galleryId;
-      if (gallery.length > 0) {
-        for (let i = 0; i < gallery.length; i++) {
-          if (gallery[i] === imgKey) {
-            gallery.splice(i, 1);
+
+    if (real !== null) {
+      // For Non Principale Img
+      if (principale === false && real.galleryId !== undefined) {
+        const gallery: any = real.galleryId;
+        if (gallery.length > 0) {
+          for (let i = 0; i < gallery.length; i++) {
+            if (gallery[i] === imgKey) {
+              gallery.splice(i, 1);
+            }
           }
         }
+
+        // Update realization galleryId
+        real.galleryId = gallery;
+      } else if (principale) {
+        // For Principale Img
+        // Remove img of Realization
+        real.img = {
+          url: '',
+          id: ''
+        };
       }
 
-      // Update realization galleryId
-      real.galleryId = gallery;
-    } else if (principale) {
-      // For Principale Img
-      // Remove img of Realization
-      real.img = {
-        url: '',
-        id: ''
-      };
+      // Update Realization in DB
+      this.realService.editReal(realId, real as Real[]);
     }
-
-    // Update Realization in DB
-    this.realService.editReal(realId, real as Real[]);
   }
 
   deleteFromGal(category: string, img: Gallery, principale: boolean) {
