@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { GalleryHomeComponent } from './gallery-home/gallery-home.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { GalleryDetailComponent } from './gallery-detail/gallery-detail.component';
+import { NguiInViewComponent } from './ngui-in-view/ngui-in-view.component';
 
 // Recipes Components
 import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
@@ -39,7 +40,6 @@ import { ArchivesRealComponent } from './archives-real/archives-real.component';
 
 // Routes
 import { mainRoutes } from './main.routes';
-
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(mainRoutes)],
   declarations: [
@@ -62,7 +62,8 @@ import { mainRoutes } from './main.routes';
     BuyHomeComponent,
     GalleryHomeComponent,
     RecipeHomeComponent,
-    ActuHomeComponent
+    ActuHomeComponent,
+    NguiInViewComponent
   ]
 })
 export class MainModule {}

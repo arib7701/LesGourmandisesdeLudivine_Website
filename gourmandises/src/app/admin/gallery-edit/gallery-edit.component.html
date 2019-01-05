@@ -1,30 +1,50 @@
-<div id="cakes-galleryEdit" class="cakes-bg" style="background-image:url(../assets/img/edit_gal.jpg);">
+<div
+  id="cakes-galleryEdit"
+  class="cakes-bg"
+  style="background-image:url(../assets/img/edit_gal.jpg);"
+>
   <div class="overlay"></div>
   <div class="container-full">
     <div class="row">
       <div class="col-md-1 offset-md-1 returnBtn">
-        <button routerLink="/admin" class="btn btn-default">
-          Retour</button>
+        <button routerLink="/admin" class="btn btn-default">Retour</button>
       </div>
       <div class="col-md-12 text-center cakes-heading">
         <h2>Changer la Galerie</h2>
-        <h2>{{category}} <small>- {{imgs?.length}} Photos</small></h2>
+        <h2>
+          {{ category }} <small>- {{ imgs?.length }} Photos</small>
+        </h2>
         <p></p>
       </div>
     </div>
-    <div class="row row-bottom-padded-md" style="display: flex; flex-wrap:wrap;">
+    <div
+      class="row row-bottom-padded-md"
+      style="display: flex; flex-wrap:wrap;"
+    >
       <div class="col-md-12">
         <ul id="cakes-gallery-list-detail">
-          <li class="col-md-2 col-sm-4" *ngFor="let img of imgs" data-animate-effect="fadeIn">
-            <button class="btn-delete-gal" (click)="onDelete(img.principale, img)"><i class="fa fa-trash"></i></button>
-            <img class="galleryImg" src="{{img.img}}">
-            <span *ngIf="img.principale" class="imgPrin-gal"><i class="fa fa-warning"></i> Image Principale</span>
+          <li
+            class="col-md-2 col-sm-4"
+            *ngFor="let img of imgs"
+            data-animate-effect="fadeIn"
+          >
+            <button
+              class="btn-delete-gal"
+              (click)="onDelete(img.principale, img)"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+            <img class="galleryImg" src="{{ img.img }}" />
+            <span *ngIf="img.principale" class="imgPrin-gal"
+              ><i class="fas fa-exclamation"></i> Image Principale</span
+            >
           </li>
         </ul>
       </div>
       <div class="col-md-2 offset-sm-2 col-sm-2">
         <button routerLink="/admin" class="btn btn-default btn-block">
-          Retour Admin</button>
+          Retour Admin
+        </button>
       </div>
     </div>
   </div>

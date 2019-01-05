@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InViewportModule } from 'ng-in-viewport';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Ng2ImgToolsModule } from 'ng2-img-tools';
 import { MatButtonModule, MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
@@ -62,7 +62,7 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    LazyLoadImageModule,
+    InViewportModule,
     Ng2ImgToolsModule
   ],
   declarations: [NavbarComponent, FooterComponent, FormErrorsComponent],
@@ -85,7 +85,7 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    LazyLoadImageModule,
+    InViewportModule,
     Ng2ImgToolsModule
   ],
   providers: [

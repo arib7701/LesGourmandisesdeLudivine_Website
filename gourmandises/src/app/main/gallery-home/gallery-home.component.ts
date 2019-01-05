@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Gallery } from 'src/app/models/gallery';
 import { Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/services/category.service';
@@ -79,7 +79,6 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
     }
     return a;
   }
-
   ngOnDestroy() {
     if (this.subscriptionCat !== undefined) {
       this.subscriptionCat.unsubscribe();

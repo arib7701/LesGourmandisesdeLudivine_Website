@@ -26,12 +26,7 @@
                 <div class="item" *ngFor="let random of randomGal">
                   <div class="randomG-slide active text-center">
                     <figure>
-                      <img
-                        [defaultImage]="random.img300"
-                        [lazyLoad]="random.img300"
-                        [offset]="100"
-                        alt="gallery_random"
-                      />
+                      <img src="{{ random.img300 }}" alt="gallery_random" />
                     </figure>
                   </div>
                 </div>
