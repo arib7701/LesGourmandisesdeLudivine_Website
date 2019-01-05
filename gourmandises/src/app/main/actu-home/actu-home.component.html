@@ -17,7 +17,7 @@
             <div class="col-md-4 offset-md-1 col-sm-12 text-center">
               <div class="topnews-img">
                 <div class="topnews-col">
-                  <img src="{{lastActu?.img}}" alt="lastActualite" />
+                  <img src="{{ lastActu?.img300 }}" alt="lastActualite" />
                 </div>
               </div>
             </div>
@@ -30,7 +30,7 @@
                 <h3>{{ lastActu?.title }}</h3>
                 <span class="topnewsText">{{ lastActu?.description }}</span>
                 <br />
-                <a href="{{lastActu?.link}}" target="_blank" rel="noopener">{{
+                <a href="{{ lastActu?.link }}" target="_blank" rel="noopener">{{
                   lastActu?.titleLink
                 }}</a>
               </div>

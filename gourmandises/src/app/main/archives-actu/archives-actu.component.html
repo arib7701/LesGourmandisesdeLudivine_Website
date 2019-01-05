@@ -14,7 +14,7 @@
           <li [ngClass]="{ 'timeline-inverted': i % 2 == 0 }">
             <div
               class="timeline-badge"
-              [ngStyle]="{ 'background-image': 'url(' + actu.img + ')' }"
+              [ngStyle]="{ 'background-image': 'url(' + actu.img160 + ')' }"
             ></div>
             <div class="timeline-panel">
               <div class="timeline-heading">
@@ -25,7 +25,7 @@
                 <p>{{ actu.description }}</p>
               </div>
               <div class="timeline-body">
-                <a href="{{actu.link}}" target="_blank" rel="noopener">{{
+                <a href="{{ actu.link }}" target="_blank" rel="noopener">{{
                   actu.titleLink
                 }}</a>
               </div>
