@@ -1,6 +1,7 @@
 #cakes-randomgallery {
   padding: 3em 0;
   clear: both;
+  overflow-x: hidden;
 }
 
 .row {
