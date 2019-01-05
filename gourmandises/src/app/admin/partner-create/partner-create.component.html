@@ -1,9 +1,18 @@
-<div id="cakes-add-data" class="cakes-bg" style="background-image:url(../assets/img/addnew.jpg);">
+<div
+  id="cakes-add-data"
+  class="cakes-bg"
+  style="background-image:url(../assets/img/addnew.jpg);"
+>
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center cakes-heading">
-        <h2>Ajouter des Partenaires / Produits <a style="padding-left:25px;" (click)="addPartner()"><i class="fa fa-plus"></i></a></h2>
+        <h2>
+          Ajouter des Partenaires / Produits
+          <a style="padding-left:25px;" (click)="addPartner()"
+            ><i class="fa fa-plus"></i
+          ></a>
+        </h2>
         <p></p>
       </div>
     </div>
@@ -11,57 +20,108 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="cakes-heading">
           <form class="form-inline" name="partnersForm">
-            <div class="col-md-12 col-sm-12" style="display:flex; flex-wrap: wrap;">
-              <div *ngFor="let partner of arrayPartners; let i = index" class="col-md-3 col-sm-3">
-                <label for="partners">Partenaire/Produit {{i+1}} <a style="padding-left:15px;" (click)="deletePartner(i)">
-                    <i class="fa fa-trash"> </i></a></label>
+            <div
+              class="col-md-12 col-sm-12"
+              style="display:flex; flex-wrap: wrap;"
+            >
+              <div
+                *ngFor="let partner of arrayPartners; let i = index"
+                class="col-md-3 col-sm-3"
+              >
+                <label for="partners"
+                  >Partenaire/Produit {{ i + 1 }}
+                  <a style="padding-left:15px;" (click)="deletePartner(i)">
+                    <i class="fa fa-trash"> </i></a
+                ></label>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
                     <label for="name">Nom*</label>
-                    <input type="text" class="form-control" [(ngModel)]="arrayPartners[i].name" name="name_{{i}}">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="arrayPartners[i].name"
+                      name="name_{{ i }}"
+                    />
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
-
                     <label for="name">Lieu de Vente</label>
-                    <input type="text" class="form-control" [(ngModel)]="arrayPartners[i].location" name="location_{{i}}">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="arrayPartners[i].location"
+                      name="location_{{ i }}"
+                    />
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
                     <label for="name">Site / Facebook Lien</label>
-                    <input type="text" class="form-control" [(ngModel)]="arrayPartners[i].website" name="website_{{i}}">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="arrayPartners[i].website"
+                      name="website_{{ i }}"
+                    />
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
                     <label for="name">Web Adresse du Logo</label>
-                    <input type="text" class="form-control" [(ngModel)]="arrayPartners[i].logo" name="logo_{{i}}">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="arrayPartners[i].logo"
+                      name="logo_{{ i }}"
+                    />
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
                     <label for="name">Partenaire?</label>
-                    <input style="width:10%; margin-left: 15px;" type="checkbox" class="form-control" [(ngModel)]="arrayPartners[i].isPartner"
-                      name="isPartner_{{i}}">
+                    <input
+                      style="width:10%; margin-left: 15px;"
+                      type="checkbox"
+                      class="form-control"
+                      [(ngModel)]="arrayPartners[i].isPartner"
+                      name="isPartner_{{ i }}"
+                    />
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
                     <label for="name">Déja Utilisé?</label>
-                    <input style="width:10%; margin-left: 15px;" type="checkbox" class="form-control" [(ngModel)]="arrayPartners[i].alreadyUsed"
-                      name="alreadyUsed_{{i}}" (change)="getOldPartner($event, i)">
+                    <input
+                      style="width:10%; margin-left: 15px;"
+                      type="checkbox"
+                      class="form-control"
+                      [(ngModel)]="arrayPartners[i].alreadyUsed"
+                      name="alreadyUsed_{{ i }}"
+                      (change)="getOldPartner($event, i)"
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-4 col-sm-4">
-              <button type="button" (click)="onSubmitPartners();" class="btn btn-default btn-block">Ajouter
-                les sponsors  <img *ngIf="load" class="loader" src="/assets/img/loader.gif"></button>
+              <button
+                type="button"
+                (click)="onSubmitPartners()"
+                class="btn btn-default btn-block"
+              >
+                Ajouter les sponsors
+                <img *ngIf="load" class="loader" src="/assets/img/loader.gif" />
+              </button>
             </div>
             <div class="col-md-4 col-sm-4">
-              <button type="button" (click)="noPartner()" class="btn btn-default btn-block">Pas de sponsors</button>
+              <button
+                type="button"
+                (click)="noPartner()"
+                class="btn btn-default btn-block"
+              >
+                Pas de sponsors
+              </button>
             </div>
           </form>
         </div>

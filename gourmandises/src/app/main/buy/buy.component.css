@@ -250,7 +250,8 @@ h5 {
   }
 
   .spanMessageFinal {
-    font-size: 23px;
+    font-size: 18px;
+    position: inherit;
   }
 
   .recapOrder {
@@ -259,6 +260,15 @@ h5 {
     margin-top: 50px;
     margin-left: -25px;
     width: 150%;
+  }
+
+  .spans {
+    position: absolute;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    top: -30px;
   }
 }
 

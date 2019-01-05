@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { PaymentService } from 'src/app/services/payment.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -57,7 +56,6 @@ export class BuyComponent implements OnInit, AfterViewInit {
   showStep3 = false;
 
   constructor(
-    private firebase: AngularFireDatabase,
     private flashService: FlashMessagesService,
     private paymentService: PaymentService
   ) {

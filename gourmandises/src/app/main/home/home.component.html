@@ -1,7 +1,13 @@
 <app-header></app-header>
 <app-buy-home></app-buy-home>
-<app-actu-home></app-actu-home>
-<app-real></app-real>
+<app-ngui-in-view>
+  <div *ngIf><app-actu-home></app-actu-home></div>
+</app-ngui-in-view>
+
+<app-ngui-in-view>
+  <div *ngIf><app-real></app-real></div>
+</app-ngui-in-view>
+
 <app-recipe-home></app-recipe-home>
 <app-ngui-in-view>
   <div *ngIf><app-gallery-home></app-gallery-home></div>

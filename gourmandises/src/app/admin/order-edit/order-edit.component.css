@@ -75,6 +75,10 @@
   #cakes-orderEdit {
     padding: 3em 0;
   }
+
+  #cakes-orderEdit .btn {
+    margin-bottom: 10px;
+  }
 }
 
 .hrNice {

@@ -67,4 +67,8 @@
   #cakes-partnerEdit {
     padding: 3em 0;
   }
+
+  #cakes-partnerEdit .btn {
+    margin-bottom: 10px;
+  }
 }

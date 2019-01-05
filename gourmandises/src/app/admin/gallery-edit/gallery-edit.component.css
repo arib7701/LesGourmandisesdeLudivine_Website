@@ -128,6 +128,16 @@
     padding-left: 10%;
     padding-bottom: 8%;
   }
+
+  #cakes-galleryEdit .btn {
+    margin-bottom: 10px;
+  }
+
+  #cakes-gallery-list-detail li {
+    max-height: 500px;
+    min-height: 50px;
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -136,7 +146,7 @@
   }
 
   #cakes-gallery-list-detail li {
-    margin-bottom: 17%;
+    margin-bottom: 40px;
     left: -15px;
   }
 }

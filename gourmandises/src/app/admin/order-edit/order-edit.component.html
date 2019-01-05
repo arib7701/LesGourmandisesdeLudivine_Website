@@ -283,23 +283,25 @@
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="col-md-12">
-                      <div
-                        class="form-group"
-                        style="display: flex; flex-wrap: wrap;"
-                      >
-                        <label for="form">Forme *</label>
-                        <select
-                          class="form-control"
-                          [ngModel]="order.details?.form"
-                          (ngModelChange)="order.details.form = $event"
-                          name="form"
+                    <!--
+                      <div class="col-md-12">
+                        <div
+                          class="form-group"
+                          style="display: flex; flex-wrap: wrap;"
                         >
-                          <option value="rectangulaire"> Rectangulaire </option>
-                          <option value="rond"> Rond </option>
-                        </select>
+                          <label for="form">Forme *</label>
+                          <select
+                            class="form-control"
+                            [ngModel]="order.details?.form"
+                            (ngModelChange)="order.details.form = $event"
+                            name="form"
+                          >
+                            <option value="rectangulaire"> Rectangulaire </option>
+                            <option value="rond"> Rond </option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
+                    -->
                     <div class="col-md-12">
                       <div
                         class="form-group"
@@ -339,42 +341,44 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-12">
-                      <div
-                        class="form-group"
-                        style="display: flex; flex-wrap: wrap;"
-                      >
-                        <label for="gluten">Sans Gluten</label>
-                        <input
-                          type="text"
-                          [ngModel]="
-                            order.charge?.gluten === true ? 'OUI' : 'NON'
-                          "
-                          (ngModelChange)="(order.details?.gluten)"
-                          class="form-control"
-                          name="gluten"
-                          disabled
-                        />
+                    <!--
+                      <div class="col-md-12">
+                        <div
+                          class="form-group"
+                          style="display: flex; flex-wrap: wrap;"
+                        >
+                          <label for="gluten">Sans Gluten</label>
+                          <input
+                            type="text"
+                            [ngModel]="
+                              order.charge?.gluten === true ? 'OUI' : 'NON'
+                            "
+                            (ngModelChange)="(order.details?.gluten)"
+                            class="form-control"
+                            name="gluten"
+                            disabled
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div
-                        class="form-group"
-                        style="display: flex; flex-wrap: wrap;"
-                      >
-                        <label for="lactose">Sans Lactose</label>
-                        <input
-                          type="text"
-                          [ngModel]="
-                            order.charge?.lactose === true ? 'OUI' : 'NON'
-                          "
-                          (ngModelChange)="(order.details?.lactose)"
-                          class="form-control"
-                          name="lactose"
-                          disabled
-                        />
+                      <div class="col-md-12">
+                        <div
+                          class="form-group"
+                          style="display: flex; flex-wrap: wrap;"
+                        >
+                          <label for="lactose">Sans Lactose</label>
+                          <input
+                            type="text"
+                            [ngModel]="
+                              order.charge?.lactose === true ? 'OUI' : 'NON'
+                            "
+                            (ngModelChange)="(order.details?.lactose)"
+                            class="form-control"
+                            name="lactose"
+                            disabled
+                          />
+                        </div>
                       </div>
-                    </div>
+                    -->
                   </div>
                 </div>
               </div>

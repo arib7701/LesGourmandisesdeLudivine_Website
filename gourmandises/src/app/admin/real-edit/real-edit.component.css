@@ -88,6 +88,10 @@
   #cakes-realEdit {
     padding: 3em 0;
   }
+
+  #cakes-realEdit .btn {
+    margin-bottom: 10px;
+  }
 }
 
 .hrNice {

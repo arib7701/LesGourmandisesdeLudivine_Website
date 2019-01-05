@@ -181,3 +181,9 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .table td {
+    padding: 0.25rem;
+  }
+}

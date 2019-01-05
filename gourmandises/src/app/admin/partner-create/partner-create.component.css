@@ -123,4 +123,8 @@ input:-webkit-autofill:active {
   .cakes-heading h2 {
     font-size: 40px;
   }
+
+  #cakes-add-data .btn {
+    margin-bottom: 10px;
+  }
 }

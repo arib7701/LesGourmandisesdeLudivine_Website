@@ -76,4 +76,8 @@
   #cakes-recipeEdit {
     padding: 3em 0;
   }
+
+  #cakes-recipeEdit .btn {
+    margin-bottom: 10px;
+  }
 }
