@@ -287,9 +287,6 @@
                 </div>
               </div>
 
-              <div class="row form-group ">
-                <div class="col-md-12"><div #captchaRef2></div></div>
-              </div>
               <div class="row" style="display:flex;">
                 <div class="col-md-4 btnDiv">
                   <button
@@ -334,22 +331,22 @@
         <form [formGroup]="buyInfoFormStep3" (ngSubmit)="processFormStep3()">
           <div class="col-md-12">
             <h2>Étape 3 : Validation</h2>
-            <div class="row" style="display: flex; align-items: center;">
+            <div class="row" style="display: flex; align-items: center; margin-bottom:20px;">
               <div class="row finalPreview">
-                <div class="price col-sm-12" style="display: flex; align-items: center;">
+                <div class="price col-md-3 col-sm-12" style="display: flex; align-items: center;">
                   <span class="amount"
                     >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
                   >
                 </div>
-                <div col-sm-12
-                  style="position:relative; display: flex; justify-content: center; align-items: center; width: 200px;"
+                <div class="col-sm-12 col-md-4"
+                  style="position:relative; display: flex; justify-content: center; align-items: center; width: 300px;"
                 >
                   <img
                     style="width: 80%;"
                     src="../../../assets/img/cleanbiscuit.png"
                     alt="previewOrder"
                   />
-                  <div class="spans" style="align-items:center;">
+                  <div class="spans" style="align-items:center; width:110px;">
                     <span
                       class="spanMessageFinal"
                       [style.top.px]="smallTopRow1"
@@ -367,7 +364,7 @@
                     >
                   </div>
                 </div>
-                <div class="row recap col-sm-12">
+                <div class="row recap col-md-5 col-sm-12">
                   <div class="col-md-12">
                     <ul class="recapOrder">
                       <li>
@@ -407,6 +404,11 @@
                 class="row"
                 style="display:flex; margin-top: 20px; width:100%;"
               >
+                <div class="row form-group ">
+                  <div class="col-md-12">
+                      <input hidden formControlName="success"/>
+                  </div>
+                </div>
                 <div class="col-md-4 btnDiv">
                   <button
                     class="submitBtn btn btn-default btn-block"

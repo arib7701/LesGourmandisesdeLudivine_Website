@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  HostListener
-} from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -20,14 +13,7 @@ declare var StripeCheckout: any;
   templateUrl: './buy.component.html',
   styleUrls: ['./buy.component.css']
 })
-export class BuyComponent implements OnInit, AfterViewInit {
-  @ViewChild('captchaRef2')
-  captchaRef3: ElementRef;
-  captcha: Boolean = false;
-  grecaptcha: any;
-  _reCaptchaId: number;
-  CAPTCHA = environment.CAPTCHA_SITE_ID;
-
+export class BuyComponent implements OnInit {
   infos: any[];
   buyInfoFormStep1: FormGroup;
   buyInfoFormStep2: FormGroup;
@@ -39,6 +25,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
   message: any;
   details: any;
   date = Date.now();
+  successOrder = false;
 
   debounce = 2000;
   typed1: any;
@@ -73,8 +60,6 @@ export class BuyComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // this.grecaptcha = (window as any).grecaptcha;
-
     this.handler = StripeCheckout.configure({
       key: environment.stripePublishedKey,
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
@@ -95,17 +80,15 @@ export class BuyComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    /*if (this.grecaptcha) {
-      this._reCaptchaId = this.grecaptcha.render(
-        this.captchaRef3.nativeElement,
-        {
-          sitekey: this.CAPTCHA,
-          callback: response => this.reCapchaSuccess(response),
-          'expired-callback': () => this.reCapchaExpired()
-        }
-      );
-    }*/
+  showMessage() {
+    // Show message success
+    this.flashService.show(
+      'Votre commande a bien été envoyé. Vous recevrez prochainement un email.',
+      {
+        cssClass: 'alert-success',
+        timeout: 10000
+      }
+    );
   }
 
   handlePayment() {
@@ -113,7 +96,13 @@ export class BuyComponent implements OnInit, AfterViewInit {
       name: 'Les Gourmandises de Ludivine',
       description: 'Biscuits Personnalisés',
       currency: 'eur',
-      amount: this.amount
+      amount: this.amount,
+      closed: () => {
+        this.buyInfoFormStep3.get('success').setErrors({
+          incorrect: true
+        });
+        this.showMessage();
+      }
     });
   }
 
@@ -137,7 +126,9 @@ export class BuyComponent implements OnInit, AfterViewInit {
       row3: new FormControl('', [Validators.maxLength(12)])
     });
 
-    this.buyInfoFormStep3 = new FormGroup({});
+    this.buyInfoFormStep3 = new FormGroup({
+      success: new FormControl(true, Validators.required)
+    });
 
     this.buyInfoFormStep1.valueChanges.subscribe(() => {
       this.calculatePrice();
@@ -281,30 +272,30 @@ export class BuyComponent implements OnInit, AfterViewInit {
       this.topRow1 = null;
       this.topRow2 = null;
       this.topRow3 = null;
-      this.smallTopRow1 = null;
-      this.smallTopRow2 = null;
-      this.smallTopRow3 = null;
+      this.smallTopRow1 = '70';
+      this.smallTopRow2 = '70';
+      this.smallTopRow3 = '70';
     } else if (rowValue1 !== '' && rowValue2 !== '' && rowValue3 === '') {
       this.topRow1 = '80';
       this.topRow2 = '160';
       this.topRow3 = null;
-      this.smallTopRow1 = '50';
-      this.smallTopRow2 = '90';
+      this.smallTopRow1 = '60';
+      this.smallTopRow2 = '100';
       this.smallTopRow3 = null;
     } else if (rowValue1 !== '' && rowValue2 === '' && rowValue3 !== '') {
       this.topRow1 = '80';
       this.topRow2 = null;
       this.topRow3 = '160';
-      this.smallTopRow1 = '50';
+      this.smallTopRow1 = '60';
       this.smallTopRow2 = null;
-      this.smallTopRow3 = '90';
+      this.smallTopRow3 = '100';
     } else if (rowValue1 === '' && rowValue2 !== '' && rowValue3 !== '') {
       this.topRow1 = null;
       this.topRow2 = '80';
       this.topRow3 = '160';
       this.smallTopRow1 = null;
-      this.smallTopRow2 = '50';
-      this.smallTopRow3 = '90';
+      this.smallTopRow2 = '60';
+      this.smallTopRow3 = '100';
     } else if (rowValue1 !== '' && rowValue2 !== '' && rowValue3 !== '') {
       this.topRow1 = '60';
       this.topRow2 = '120';
@@ -313,19 +304,6 @@ export class BuyComponent implements OnInit, AfterViewInit {
       this.smallTopRow2 = '80';
       this.smallTopRow3 = '110';
     }
-  }
-
-  reCapchaSuccess(data: any) {
-    if (data) {
-      this.captcha = true;
-    }
-  }
-
-  reCapchaExpired() {
-    this.flashService.show('Veuillez refaire le captcha.', {
-      cssClass: 'alert-danger',
-      timeout: 2000
-    });
   }
 
   processFormStep1() {
@@ -341,15 +319,6 @@ export class BuyComponent implements OnInit, AfterViewInit {
   }
 
   processFormStep3() {
-    /* if (!this.captcha) {
-      // Show message error - Fill form fully
-      this.flashService.show('Veuillez faire le captcha.', {
-        cssClass: 'alert-danger',
-        timeout: 2000
-      });
-    } else {
-      this.handlePayment();
-    } */
     this.handlePayment();
   }
 
@@ -373,6 +342,9 @@ export class BuyComponent implements OnInit, AfterViewInit {
     }, 4000);
   }
 
+  get success() {
+    return this.buyInfoFormStep3.get('success');
+  }
   get quantity() {
     return this.buyInfoFormStep1.get('quantity');
   }

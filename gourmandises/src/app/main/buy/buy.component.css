@@ -4,8 +4,8 @@
 
 .price {
   display: inline-block;
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 100px;
   background: rgba(241, 78, 149, 0.8);
   margin: auto;
   -webkit-border-radius: 50%;
@@ -14,6 +14,13 @@
   border-radius: 50%;
   position: relative;
   text-align: center;
+}
+
+.spans {
+  position: absolute;
+  top: -30px;
+  display: flex;
+  justify-content: center;
 }
 
 .amount {
