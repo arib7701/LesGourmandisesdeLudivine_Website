@@ -21,15 +21,15 @@
 }
 
 .cakes-nav #cakes-logo a:hover {
-  color: #f14e95 !important;
+  color: #e80866 !important;
 }
 
 .cakes-nav ul li.active > a {
-  color: #f14e95 !important;
+  color: #e80866 !important;
 }
 
 .navbar-toggler {
-  background-color: #f14e95;
+  background-color: #e80866;
 }
 
 .cakes-nav a {
@@ -43,7 +43,7 @@
 }
 
 .notHomeNav a {
-  color: #f14e95 !important;
+  color: #e80866 !important;
 }
 
 .notHomeNav a:hover {
@@ -99,11 +99,11 @@
   }
 
   .notHomeNav > a {
-    color: #f14e95 !important;
+    color: #e80866 !important;
   }
 
   .navbar ul {
-    background-color: #f14e95;
+    background-color: #e80866;
   }
 
   .nav-item a {

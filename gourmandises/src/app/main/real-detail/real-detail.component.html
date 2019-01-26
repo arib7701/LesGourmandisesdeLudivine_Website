@@ -12,7 +12,7 @@
     </div>
     <div class="row" style="display:flex; align-items: center; justify-content: space-evenly;">
       <div class="col-md-1 prevBtnTop">
-        <a *ngIf="nextReal !== undefined" [routerLink]="['/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i></a>
+        <a *ngIf="nextReal !== undefined" [routerLink]="['/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i> <p class="sr-only">Précédent</p></a>
       </div>
       <div class="col-md-3">
         <div class="real-left">
@@ -76,10 +76,10 @@
         </div>
       </div>
       <div class="col-md-1 prevBtnDown">
-        <a *ngIf="nextReal !== undefined" [routerLink]="['/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i></a>
+        <a *ngIf="nextReal !== undefined" [routerLink]="['/real/', nextNewId]"><i class="fa fa-arrow-circle-left arrow"></i> <p class="sr-only">Précédent</p></a>
       </div>
       <div class="col-md-1 nextBtn">
-        <a *ngIf="prevReal !== undefined" [routerLink]="['/real/', prevNewId]"><i class="fa fa-arrow-circle-right arrow"></i></a>
+        <a *ngIf="prevReal !== undefined" [routerLink]="['/real/', prevNewId]"><i class="fa fa-arrow-circle-right arrow"></i> <p class="sr-only">Suivant</p></a>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <label for="name">Votre Nom*</label>
-              <input type="text" [(ngModel)]="comment.name" name="name" class="form-control" required>
+              <input type="text" [(ngModel)]="comment.name" name="name" id="name" class="form-control" required>
             </div>
           </div>
           <div class="col-md-6 col-sm-6">

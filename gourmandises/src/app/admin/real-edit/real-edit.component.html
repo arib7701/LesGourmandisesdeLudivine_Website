@@ -11,18 +11,37 @@
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
         <form class="form-inline" name="realForm">
-          <div class=" col-md-6 col-sm-6">
+          <div class=" col-md- col-sm-6">
             <div class="form-group">
               <label for="title">Titre*</label>
               <input [(ngModel)]="real.title" type="title" class="form-control" name="title" required>
             </div>
           </div>
-          <div class="col-md-6 col-sm-6">
+          <div class="col-md-3 col-sm-3">
             <div class="form-group">
               <label for="img">Catégorie*</label>
               <select type="text" name="category" [(ngModel)]="real.category" class="form-control">
                 <option *ngFor="let cat of categories">{{cat}}</option>
               </select>
+            </div>
+          </div>
+          <div class=" col-md-3 col-sm-3">
+            <div class="form-group">
+              <mat-form-field>
+                <label for="title">Date*</label>
+                <input
+                  class="form-control"
+                  matInput
+                  [matDatepicker]="picker"
+                  [(ngModel)]="pickedDate"
+                  name="date"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
             </div>
           </div>
           <div class="col-md-12 col-sm-12">

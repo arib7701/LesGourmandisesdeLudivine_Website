@@ -16,6 +16,7 @@ import { map, finalize } from 'rxjs/operators';
 import { Real } from 'src/app/models/real';
 import { CategoryService } from 'src/app/services/category.service';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-real-edit',
@@ -50,6 +51,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
   real: Real;
   gallery: Gallery;
+  pickedDate: Date;
 
   // Subscriptions
   subscriptionRoute: Subscription;
@@ -101,6 +103,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
         .subscribe(real => {
           this.real = real;
           this.category = this.real.category;
+          moment.locale('fr');
+          this.pickedDate = moment(this.real.date, 'DD MMMM YYYY').toDate();
 
           if (this.real.galleryId !== undefined) {
             // Get Associated Gallery Img
@@ -296,6 +300,10 @@ export class RealEditComponent implements OnInit, OnDestroy {
         }
 
         // Update Associated Realization
+        this.real.date = this.pickedDate.toLocaleDateString(
+          'fr-FR',
+          this.options
+        );
         this.realService.editReal(this.id, this.real as Real[]);
       }
 
@@ -338,6 +346,10 @@ export class RealEditComponent implements OnInit, OnDestroy {
                   this.category
                 );
                 this.real.img.id = key;
+                this.real.date = this.pickedDate.toLocaleDateString(
+                  'fr-FR',
+                  this.options
+                );
                 this.realService.editReal(this.id, this.real as Real[]);
 
                 // Store Resized Image Url to DB Gallery
@@ -407,6 +419,10 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
                   // Add ID of Img to Realization in Array
                   this.real.galleryId.push(key);
+                  this.real.date = this.pickedDate.toLocaleDateString(
+                    'fr-FR',
+                    this.options
+                  );
                   this.realService.editReal(this.id, this.real as Real[]);
 
                   // Store Resized Image Url to DB Gallery
@@ -421,6 +437,10 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
       // If no change of picture at all
       if (this.primaryFile === undefined && this.galleryFiles.length === 0) {
+        this.real.date = this.pickedDate.toLocaleDateString(
+          'fr-FR',
+          this.options
+        );
         this.realService.editReal(this.id, this.real as Real[]);
       }
       this.router.navigate(['/real/' + this.id]);
@@ -521,6 +541,10 @@ export class RealEditComponent implements OnInit, OnDestroy {
     );
 
     if (type === 'principale') {
+      this.real.date = this.pickedDate.toLocaleDateString(
+        'fr-FR',
+        this.options
+      );
       this.realService.editReal(this.id, this.real as Real[]);
     }
 

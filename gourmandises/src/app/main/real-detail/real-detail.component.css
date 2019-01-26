@@ -24,6 +24,10 @@
   position: relative;
 }
 
+.real-copy p {
+  color:  #757575;
+}
+
 .real-left:last-child {
   margin-bottom: 0;
 }
@@ -70,7 +74,7 @@
   display: table-cell;
   vertical-align: middle;
   font-size: 30px;
-  color: #f14e95;
+  color: #e80866;
 }
 
 .imgDetail img {
@@ -152,9 +156,9 @@
 }
 
 #cakes-comment label {
-  color: #f14e95 !important;
+  color: #e80866 !important;
   text-align: left;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 #cakes-comment .form-control:focus {
@@ -164,7 +168,7 @@
 #cakes-comment .btn {
   height: 54px;
   border: none !important;
-  background: #f14e95;
+  background: #e80866;
   color: #fff;
   font-size: 16px;
   text-transform: uppercase;

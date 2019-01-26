@@ -33,6 +33,7 @@
     "intersection-observer": "^0.5.1",
     "jquery": "^3.3.1",
     "lightbox2": "^2.10.0",
+    "moment": "^2.24.0",
     "ng-in-viewport": "^6.0.3",
     "ng2-img-tools": "^1.1.5",
     "ngx-autosize": "^1.2.4",

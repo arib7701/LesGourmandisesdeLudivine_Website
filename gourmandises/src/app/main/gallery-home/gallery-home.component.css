@@ -1,11 +1,14 @@
 #cakes-randomgallery {
   padding: 3em 0;
   clear: both;
-  overflow-x: hidden;
 }
 
 .row {
   margin-right: 0;
+}
+
+.owl-stage-outer {
+  overflow: hidden !important;
 }
 
 #cakes-randomgallery .wrap-randomG {

@@ -172,7 +172,7 @@ figure {
 .returnBtn .btn {
   height: 35px;
   border: none !important;
-  background: #f14e95;
+  background: #e80866;
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
@@ -210,6 +210,10 @@ figure {
   font-weight: bold;
   color: #f14e95;
   font-family: 'Sacramento', Arial, serif;
+}
+
+.cakes-heading span {
+  color: #757575;
 }
 
 .overlay {
