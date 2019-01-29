@@ -29,6 +29,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
   id: string;
   categories: string[];
   category: string;
+  load = false;
 
   // File Event
   primaryFile: File;
@@ -258,6 +259,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.load = true;
+
     if (this.real.title !== '' && this.real.description !== '') {
       // Compare oldPartners and updatedPartners to only keep new Ones
       const partnersToAdd = this.comparePartners(
@@ -309,7 +312,6 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
       // If picture principale was changed
       if (this.primaryFile !== undefined) {
-
         this.gallery = new Gallery();
 
         if (this.real.img.url !== '' || this.real.img.id !== '') {
@@ -353,8 +355,22 @@ export class RealEditComponent implements OnInit, OnDestroy {
                 this.realService.editReal(this.id, this.real as Real[]);
 
                 // Store Resized Image Url to DB Gallery
-                this.storeResizedImgToDB(id, key, this.primaryFile, url, 300, 'principale');
-                this.storeResizedImgToDB(id, key, this.primaryFile, url, 120, 'principale');
+                this.storeResizedImgToDB(
+                  id,
+                  key,
+                  this.primaryFile,
+                  url,
+                  300,
+                  'principale'
+                );
+                this.storeResizedImgToDB(
+                  id,
+                  key,
+                  this.primaryFile,
+                  url,
+                  120,
+                  'principale'
+                );
               });
             })
           )
@@ -363,7 +379,6 @@ export class RealEditComponent implements OnInit, OnDestroy {
 
       // If imgs removed of Gallery
       if (this.removeGal.length > 0 && this.storeIdImgRemoval.length > 0) {
-
         for (let i = 0; i < this.removeGal.length; i++) {
           // Delete from Storage using URL
           this.deleteImgStorage(this.removeGal[i]);
@@ -380,7 +395,6 @@ export class RealEditComponent implements OnInit, OnDestroy {
       // If new imgs added to Gallery
       if (this.galleryFiles.length > 0) {
         for (let i = 0; i < this.galleryFilesLength; i++) {
-
           this.gallery = new Gallery();
 
           // Get current File
@@ -403,7 +417,6 @@ export class RealEditComponent implements OnInit, OnDestroy {
               finalize(() => {
                 this.downloadURL = fileRef.getDownloadURL();
                 this.downloadURL.subscribe(url => {
-
                   this.gallery.date = this.real.date;
                   this.gallery.principale = false;
                   this.gallery.newsLink = this.id;
@@ -426,8 +439,14 @@ export class RealEditComponent implements OnInit, OnDestroy {
                   this.realService.editReal(this.id, this.real as Real[]);
 
                   // Store Resized Image Url to DB Gallery
-                  console.log('loop ', i, ' gallery id ', key);
-                  this.storeResizedImgToDB(idFile, key, currentFile, url, 300, 'gallery');
+                  this.storeResizedImgToDB(
+                    idFile,
+                    key,
+                    currentFile,
+                    url,
+                    300,
+                    'gallery'
+                  );
                 });
               })
             )
@@ -442,14 +461,16 @@ export class RealEditComponent implements OnInit, OnDestroy {
           this.options
         );
         this.realService.editReal(this.id, this.real as Real[]);
+        this.load = false;
+        this.router.navigate(['/real/' + this.id]);
       }
-      this.router.navigate(['/real/' + this.id]);
     } else {
       // Show message error - Fill form fully
       this.flashService.show(
         'Erreur dans le formulaire, veuillez remplir les champs nécéssaires.',
         { cssClass: 'alert-danger', timeout: 2000 }
       );
+      this.load = false;
       this.router.navigate(['/real/edit/' + this.id]);
     }
   }
@@ -459,7 +480,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
     idGallery: string,
     currentFile: File,
     currentUrl: string,
-    size: number, type: string
+    size: number,
+    type: string
   ) {
     // Resize to sizexsize for Random Gallery on Home Page
     let file: Blob;
@@ -474,7 +496,14 @@ export class RealEditComponent implements OnInit, OnDestroy {
           const fileRef = this.storageService.ref(filePath);
           const task = this.storageService.upload(filePath, file);
 
-          this.getUrlResizedImg(fileRef, task, idGallery, currentUrl, size, type);
+          this.getUrlResizedImg(
+            fileRef,
+            task,
+            idGallery,
+            currentUrl,
+            size,
+            type
+          );
         },
         error => {
           console.log('Error resizing image');
@@ -487,7 +516,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
     task: AngularFireUploadTask,
     idGallery: string,
     currentUrl: string,
-    size: number, type: string
+    size: number,
+    type: string
   ) {
     let downloadedURL: Observable<string>;
     let urlStored: string;
@@ -501,7 +531,13 @@ export class RealEditComponent implements OnInit, OnDestroy {
             urlStorage => {
               // Set up value of New Realization
               urlStored = urlStorage;
-              this.updateGalleryWithResizedImg(idGallery, urlStored, currentUrl, size, type);
+              this.updateGalleryWithResizedImg(
+                idGallery,
+                urlStored,
+                currentUrl,
+                size,
+                type
+              );
             },
             error => {
               console.log('Error resizing image');
@@ -516,12 +552,13 @@ export class RealEditComponent implements OnInit, OnDestroy {
     idGallery: string,
     urlStored: string,
     currentUrl: string,
-    size: number, type: string
+    size: number,
+    type: string
   ) {
     if (size === 300 && type === 'principale') {
       this.gallery.img300 = urlStored;
       this.real.img.url300 = urlStored;
-    } else  {
+    } else {
       this.gallery.img300 = urlStored;
     }
 
@@ -531,9 +568,6 @@ export class RealEditComponent implements OnInit, OnDestroy {
     }
 
     this.gallery.img = currentUrl;
-    console.log('into update gall currentUrl', this.gallery.img, ' gallery id ', idGallery);
-    console.log('into update gall urlstored300', this.gallery.img300, ' gallery id ', idGallery);
-
     this.galleryService.editGallery(
       idGallery,
       this.gallery as Gallery[],
@@ -547,7 +581,8 @@ export class RealEditComponent implements OnInit, OnDestroy {
       );
       this.realService.editReal(this.id, this.real as Real[]);
     }
-
+    this.load = false;
+    this.router.navigate(['/real/' + this.id]);
   }
 
   ngOnDestroy() {

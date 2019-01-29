@@ -140,7 +140,7 @@
           </div>
           <hr class="hrNice">
           <div class="col-md-4 col-sm-4">
-            <button type="button" (click)="onSubmit()" class="btn btn-default btn-block">Changer & Voir</button>
+            <button type="button" (click)="onSubmit()" class="btn btn-default btn-block">Changer & Voir<img *ngIf="load" class="loader" src="/assets/img/loader.gif"></button>
           </div>
           <div class="col-md-4 col-sm-4">
             <button routerLink="/admin" class="btn btn-default btn-block">
