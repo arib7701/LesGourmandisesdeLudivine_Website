@@ -25,8 +25,11 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
   @Output()
   change: EventEmitter<string> = new EventEmitter();
 
+  options = { year: 'numeric', month: 'long', day: 'numeric' };
+
   newActu: Actu;
   load = false;
+  pickedDate: Date;
 
   imgFile;
   downloadURL: Observable<string>;
@@ -69,6 +72,10 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
           this.subscriptionURL = this.downloadURL.subscribe(
             url => {
               this.newActu.img = url;
+              this.newActu.date = this.pickedDate.toLocaleDateString(
+                'fr-FR',
+                this.options
+              );
               const key = this.actuService.createNewActu(this
                 .newActu as Actu[]);
 

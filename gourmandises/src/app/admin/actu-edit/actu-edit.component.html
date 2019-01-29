@@ -1,10 +1,14 @@
-<div id="cakes-actuEdit" class="cakes-bg" style="background-image:url(../assets/img/topnew.jpg);">
+<div
+  id="cakes-actuEdit"
+  class="cakes-bg"
+  style="background-image:url(../assets/img/topnew.jpg);"
+>
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center cakes-heading">
         <h2>Changer l'Actualité</h2>
-        <h2> {{actu?.title}}</h2>
+        <h2>{{ actu?.title }}</h2>
         <p></p>
       </div>
     </div>
@@ -15,45 +19,105 @@
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
                 <label for="title">Titre*</label>
-                <input type="text" [(ngModel)]="actu.title" class="form-control" name="title">
+                <input
+                  type="text"
+                  [(ngModel)]="actu.title"
+                  class="form-control"
+                  name="title"
+                />
               </div>
             </div>
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
                 <label for="description">Texte*</label>
-                <textarea autosize [(ngModel)]="actu.description" class="form-control" name="description" required>Description</textarea>
+                <textarea
+                  autosize
+                  [(ngModel)]="actu.description"
+                  class="form-control"
+                  name="description"
+                  required
+                >
+Description</textarea
+                >
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <label for="link">Lien Web</label>
-                <input type="text" [(ngModel)]="actu.link" class="form-control" name="link">
+                <input
+                  type="text"
+                  [(ngModel)]="actu.link"
+                  class="form-control"
+                  name="link"
+                />
               </div>
             </div>
             <div class="col-md-3 col-sm-6">
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
                 <label for="titleLink">Titre Lien Web</label>
-                <input type="text" [(ngModel)]="actu.titleLink" class="form-control" name="titleLink">
+                <input
+                  type="text"
+                  [(ngModel)]="actu.titleLink"
+                  class="form-control"
+                  name="titleLink"
+                />
+              </div>
+            </div>
+            <div class=" col-md-3 col-sm-3">
+              <div class="form-group">
+                <mat-form-field>
+                  <label for="title">Date*</label>
+                  <input
+                    class="form-control"
+                    matInput
+                    [matDatepicker]="picker"
+                    [(ngModel)]="pickedDate"
+                    name="date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <label for="img">Image*</label>
-                <input type="file" class="form-control" (change)="uploadImg($event)" accept=".png,.jpg" required />
+                <input
+                  type="file"
+                  class="form-control"
+                  (change)="uploadImg($event)"
+                  accept=".png,.jpg"
+                  required
+                />
               </div>
             </div>
             <div class="col-md-12 col-sm-12">
               <div class="form-group" style="display: flex; flex-wrap: wrap;">
-                <img *ngIf="actu?.img" class="imgActu" src="{{actu.img}}" alt="logo_actualite">
+                <img
+                  *ngIf="actu?.img"
+                  class="imgActu"
+                  src="{{ actu.img }}"
+                  alt="logo_actualite"
+                />
               </div>
             </div>
 
             <div class="col-md-4 col-sm-4">
-              <button type="button" (click)="onSubmit();" class="btn btn-default btn-block">Changer</button>
+              <button
+                type="button"
+                (click)="onSubmit()"
+                class="btn btn-default btn-block"
+              >
+                Changer
+              </button>
             </div>
             <div class="col-md-4 col-sm-4">
               <button routerLink="/admin" class="btn btn-default btn-block">
-                Retour Admin</button>
+                Retour Admin
+              </button>
             </div>
           </form>
         </div>

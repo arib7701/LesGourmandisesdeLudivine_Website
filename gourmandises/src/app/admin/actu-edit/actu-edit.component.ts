@@ -10,8 +10,8 @@ import {
   AngularFireUploadTask
 } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
-import { Ng2ImgMaxService } from 'ng2-img-max';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-actu-edit',
@@ -19,12 +19,14 @@ import { Ng2ImgToolsService } from 'ng2-img-tools';
   styleUrls: ['./actu-edit.component.css']
 })
 export class ActuEditComponent implements OnInit, OnDestroy {
+  options = { year: 'numeric', month: 'long', day: 'numeric' };
   id: string;
   actu: Actu;
   subscriptionActu: Subscription;
   subscriptionStorage: Subscription;
   subscriptionStorage2: Subscription;
   imgFile: File;
+  pickedDate: Date;
   downloadURL: Observable<string>;
 
   constructor(
@@ -44,6 +46,8 @@ export class ActuEditComponent implements OnInit, OnDestroy {
       .valueChanges()
       .subscribe(actu => {
         this.actu = actu;
+        moment.locale('fr');
+        this.pickedDate = moment(this.actu.date, 'DD MMMM YYYY').toDate();
       });
   }
 
@@ -98,6 +102,10 @@ export class ActuEditComponent implements OnInit, OnDestroy {
             this.downloadURL = fileRef.getDownloadURL();
             this.downloadURL.subscribe(url => {
               this.actu.img = url;
+              this.actu.date = this.pickedDate.toLocaleDateString(
+                'fr-FR',
+                this.options
+              );
               this.actuService.editActu(this.id, this.actu as Actu[]);
 
               // Store Resized Image Url to DB Gallery
@@ -107,6 +115,10 @@ export class ActuEditComponent implements OnInit, OnDestroy {
         )
         .subscribe();
     } else {
+      this.actu.date = this.pickedDate.toLocaleDateString(
+        'fr-FR',
+        this.options
+      );
       this.actuService.editActu(this.id, this.actu as Actu[]);
     }
 
@@ -192,6 +204,7 @@ export class ActuEditComponent implements OnInit, OnDestroy {
       this.actu.img160 = urlStored;
     }
 
+    this.actu.date = this.pickedDate.toLocaleDateString('fr-FR', this.options);
     this.actuService.editActu(idActu, this.actu as Actu[]);
   }
 

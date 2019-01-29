@@ -36,6 +36,25 @@
               <input type="text" [(ngModel)]="newActu.titleLink" class="form-control" name="titleLink">
             </div>
           </div>
+          <div class=" col-md-3 col-sm-3">
+            <div class="form-group">
+              <mat-form-field>
+                <label for="title">Date*</label>
+                <input
+                  class="form-control"
+                  matInput
+                  [matDatepicker]="picker"
+                  [(ngModel)]="pickedDate"
+                  name="date"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <label for="img">Image*</label>
