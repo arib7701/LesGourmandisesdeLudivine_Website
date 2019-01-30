@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { ActivatedRoute } from '@angular/router';
 import { Gallery } from 'src/app/models/gallery';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-gallery-detail',
@@ -31,8 +32,22 @@ export class GalleryDetailComponent implements OnInit, OnDestroy {
         imgs.forEach(element => {
           this.imgs.push(element as Gallery);
         });
-        this.imgs.reverse();
+        this.imgs.sort(this.sortByDate);
       });
+  }
+
+  sortByDate(a: Gallery, b: Gallery): number {
+    moment.locale('fr');
+    const dateA = moment(a.date, 'DD MMMM YYYY').toDate();
+    const dateB = moment(b.date, 'DD MMMM YYYY').toDate();
+
+    if (dateA < dateB) {
+      return 1;
+    } else if (dateA === dateB) {
+      return 0;
+    } else {
+      return -1;
+    }
   }
 
   ngOnInit() {}
