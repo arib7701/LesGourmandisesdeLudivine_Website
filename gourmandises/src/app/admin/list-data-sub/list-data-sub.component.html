@@ -27,7 +27,7 @@
                     "
                   >
                     <td>
-                      {{ data.title || data.name }}
+                      {{ data.title || data.name }} -
                       <small>{{ data?.date }}</small>
                     </td>
 
@@ -69,7 +69,7 @@
                   </tr>
                 </tbody>
                 <tbody *ngIf="dataType === 'orders'">
-                    <tr
+                  <tr
                     *ngFor="
                       let data of (datas
                         | paginate
@@ -115,7 +115,7 @@
                 nextLabel="Suivant"
                 class="paginations"
                 (pageChange)="page = $event"
-                id="{{dataType}}"
+                id="{{ dataType }}"
               ></pagination-controls>
             </div>
           </div>

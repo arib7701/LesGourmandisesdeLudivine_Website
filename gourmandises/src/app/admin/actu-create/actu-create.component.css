@@ -129,7 +129,10 @@ input:-webkit-autofill:active {
   }
 }
 
-::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+#cakes-add-actu
+  ::ng-deep
+  .mat-form-field-appearance-legacy
+  .mat-form-field-underline {
   display: none;
 }
 
