@@ -1,7 +1,7 @@
 @font-face {
   font-weight: normal;
   font-style: normal;
-  font-family: 'icons';
+  font-family: 'Font Awesome 5 Free';
 }
 
 .photostack {
@@ -146,8 +146,8 @@
 }
 
 .photostack nav span::after {
-  content: '\e600';
-  font-family: 'icons';
+  content: '\f0e2';
+  font-family: 'Font Awesome 5 Free';
   font-size: 80%;
   speak: none;
   display: inline-block;
