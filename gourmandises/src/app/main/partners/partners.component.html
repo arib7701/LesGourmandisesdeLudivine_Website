@@ -71,8 +71,8 @@
                 <thead>
                   <th></th>
                   <th></th>
-                  <th>Réalisations associées</th>
-                  <th>Site Web / Facebook</th>
+                  <th class="partnerReal">Réalisations associées</th>
+                  <th class="webPartner">Site Web / Facebook</th>
                 </thead>
                 <tbody>
                   <tr
@@ -90,12 +90,12 @@
                     <td>
                       <img
                         class="patlogo"
-                        style="width: 100px; height: 100px;"
                         src="{{ pat.logo }}"
+                        alt="partner_logo"
                       />
                     </td>
                     <td>{{ pat?.name }}</td>
-                    <td style="width:300px;">
+                    <td class="partnerReal">
                       <ul *ngIf="pat?.realTitle.length > 0">
                         <li *ngFor="let title of pat.realTitle; let i = index">
                           <i class="fas fa-star"></i>
@@ -105,7 +105,7 @@
                         </li>
                       </ul>
                     </td>
-                    <td>
+                    <td class="webPartner">
                       <a href="{{ pat?.website }}" target="_blank">{{
                         pat?.website
                       }}</a>

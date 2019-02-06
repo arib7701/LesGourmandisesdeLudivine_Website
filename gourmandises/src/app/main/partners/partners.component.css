@@ -18,7 +18,8 @@
 }
 
 .patlogo {
-  max-width: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 li {
@@ -31,4 +32,24 @@ li {
 
 .paginations /deep/ .current {
   background-color: #f14e95 !important;
+}
+
+.partnerReal {
+  width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .webPartner {
+    display: none;
+  }
+
+  .partnerReal {
+    width: 350px;
+    padding: 0.3rem !important;
+  }
+
+  .patlogo {
+    width: 60px;
+    height: 60px;
+  }
 }
