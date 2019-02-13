@@ -119,6 +119,59 @@
             </div>
           </div>
 
+          <hr class="hrNice" *ngIf="!recipe">
+          <div *ngIf="!recipe" style="margin:0 auto;">
+            <label for="name">Ajouter Recette <a style="padding-left:15px;" (click)="addRecipe()"><i
+                  class="fa fa-plus"> </i></a></label>
+          </div>
+
+          <div class="col-md-12 col-sm-12" style="display:flex; flex-wrap:wrap;" *ngIf="addNewRecipe">
+          <hr class="hrNice">
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label for="title">Temps de Préparation*</label>
+                <input type="text" [(ngModel)]="newRecipe.preparationTime " class="form-control " name="title ">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label for="partners">Temps de Cuisson</label>
+                <input type="text" class="form-control" [(ngModel)]="newRecipe.cookingTime " name="partners ">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label for="numberSteps">Nombre d'Étapes*</label>
+                <input type="text" class="form-control" [(ngModel)]="numberSteps " (change)="arraySteps($event)" name="numberSteps">
+              </div>
+              <div *ngIf="numberSteps> 0">
+                <div class="form-group" *ngFor="let i of arrayStep">
+                  <label for="steps">Étape #{{i+1}}</label>
+                  <input type="text" class="form-control" [(ngModel)]="newRecipe.steps[i]" name="steps">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label for="numberIngredients">Nombre d'Ingrédients*</label>
+                <input type="text" class="form-control" [(ngModel)]="numberIngredients" (change)="arrayIngredients($event)"
+                  name="numberIngredients">
+              </div>
+              <div *ngIf="numberIngredients > 0">
+                <div class="form-group" *ngFor="let i of arrayIng">
+                  <div class="col-md-7">
+                    <label for="ingredients">Ingrédient #{{i+1}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="newRecipe.ingredients[i]" name="ingredients">
+                  </div>
+                  <div class="col-md-5">
+                    <label for="quantity">Quantité #{{i+1}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="newRecipe.quantities[i]" name="quantity">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <hr *ngIf="real.comments?.length> 0" class="hrNice">
 
           <div class="col-md-12 col-sm-12 " *ngIf="real.comments?.length> 0;">

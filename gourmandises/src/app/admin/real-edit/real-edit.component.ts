@@ -17,6 +17,8 @@ import { Real } from 'src/app/models/real';
 import { CategoryService } from 'src/app/services/category.service';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
 import * as moment from 'moment';
+import { Recipe } from 'src/app/models/recipe';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-real-edit',
@@ -54,6 +56,15 @@ export class RealEditComponent implements OnInit, OnDestroy {
   gallery: Gallery;
   pickedDate: Date;
 
+  // Recipe
+  recipe = false;
+  addNewRecipe = false;
+  newRecipe: Recipe;
+  numberIngredients: 0;
+  arrayIng = new Array<Number>();
+  numberSteps: 0;
+  arrayStep = new Array<Number>();
+
   // Subscriptions
   subscriptionRoute: Subscription;
   subscriptionCat: Subscription;
@@ -68,6 +79,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
     private realService: RealService,
     private partnerService: PartnerService,
     private galleryService: GalleryService,
+    private recipeService: RecipeService,
     private flashService: FlashMessagesService,
     private router: Router,
     private route: ActivatedRoute,
@@ -103,6 +115,7 @@ export class RealEditComponent implements OnInit, OnDestroy {
         .valueChanges()
         .subscribe(real => {
           this.real = real;
+          this.recipe = this.real.haveRecipe.exist;
           this.category = this.real.category;
           moment.locale('fr');
           this.pickedDate = moment(this.real.date, 'DD MMMM YYYY').toDate();
@@ -176,6 +189,28 @@ export class RealEditComponent implements OnInit, OnDestroy {
       realId: [this.id],
       alreadyUsed: false
     });
+  }
+
+  addRecipe() {
+    this.addNewRecipe = true;
+    this.newRecipe = new Recipe();
+    this.newRecipe.ingredients = new Array<string>();
+    this.newRecipe.quantities = new Array<string>();
+    this.newRecipe.steps = new Array<string>();
+  }
+
+  arrayIngredients(event) {
+    this.arrayIng = new Array(this.numberIngredients);
+    for (let i = 0; i < this.numberIngredients; i++) {
+      this.arrayIng[i] = i;
+    }
+  }
+
+  arraySteps(event) {
+    this.arrayStep = new Array(this.numberSteps);
+    for (let i = 0; i < this.numberSteps; i++) {
+      this.arrayStep[i] = i;
+    }
   }
 
   deletePartner(number: number) {
@@ -308,6 +343,23 @@ export class RealEditComponent implements OnInit, OnDestroy {
           this.options
         );
         this.realService.editReal(this.id, this.real as Real[]);
+      }
+
+      // If Recipe Added
+      if (this.arrayIng.length > 0 && this.arrayStep.length > 0) {
+        // Set up NON form inputs
+        this.newRecipe.title = this.real.title;
+        this.newRecipe.date = this.real.date;
+        this.newRecipe.newsLink = this.real.key;
+
+        // Save Recipe to DB
+        const key = this.recipeService.createNewRecipe(this
+          .newRecipe as Recipe[]);
+
+        // Add ID of Recipe to Realization
+        this.real.haveRecipe.exist = true;
+        this.real.haveRecipe.recipeLink = key;
+        this.realService.editReal(this.real.key, this.real as Real[]);
       }
 
       // If picture principale was changed
