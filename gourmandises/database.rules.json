@@ -1,7 +1,5 @@
 {
   "rules": {
-    ".read": true,
-    ".write": "auth != null",
     "orders": {
       ".read": "auth != null",
       ".write": true
@@ -9,6 +7,18 @@
     "messages": {
       ".read": "auth != null",
       ".write": true
-    }
+    },
+    "news": {
+      "$id": {
+        "likes": {
+          ".write": true
+        },
+        "comments": {
+          ".write": true
+        }
+      }
+    },
+    ".read": true,
+    ".write": "auth != null",
   }
 }

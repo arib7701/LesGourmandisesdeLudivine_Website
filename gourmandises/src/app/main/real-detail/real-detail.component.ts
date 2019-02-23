@@ -142,7 +142,8 @@ export class RealDetailComponent implements OnInit, OnDestroy {
   liked() {
     if (!this.likesDisabled) {
       this.real.likes = this.real.likes + 1;
-      this.realService.editReal(this.id, this.real as Real[]);
+      this.partnersArray = [];
+      this.realService.editRealLikes(this.id, this.real.likes);
       this.likesDisabled = true;
     }
   }
@@ -161,7 +162,8 @@ export class RealDetailComponent implements OnInit, OnDestroy {
 
       this.real.comments.push(this.comment);
 
-      this.realService.editReal(this.id, this.real as Real[]);
+      this.partnersArray = [];
+      this.realService.editRealComments(this.id, this.real.comments);
 
       // Show success message
       this.flashService.show('Message envoyé!', {

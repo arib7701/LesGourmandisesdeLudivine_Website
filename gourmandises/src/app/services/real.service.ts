@@ -33,7 +33,7 @@ export class RealService {
   getNewsById(id: string): AngularFireObject<Real> {
     return (this.oneReal = this.firebase.object<Real>(
       `/news/${id}`
-    ) as AngularFireObject<Real>);
+    ));
   }
 
   // Get Next Realization By Id
@@ -65,6 +65,18 @@ export class RealService {
   editReal(id: string, newReal: Real[]): Promise<void> {
     this.getAllNews();
     return this.manyReals.update(id, newReal);
+  }
+
+  // Edit LikesRealization By ID
+  editRealLikes(id: string, newLikes: number): Promise<void> {
+    this.getNewsById(id);
+    return this.oneReal.update({likes: newLikes});
+  }
+
+  // Edit LikesRealization By ID
+  editRealComments(id: string, newComment: any[]): Promise<void> {
+    this.getNewsById(id);
+    return this.oneReal.update({comments: newComment});
   }
 
   // Delete Realization by Id
