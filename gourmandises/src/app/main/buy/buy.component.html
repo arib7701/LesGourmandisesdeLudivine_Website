@@ -191,7 +191,7 @@
                 </div>
 
                 <div class="row form-group">
-                  <h5>A colorier :</h5>
+                  <h5>A colorier (sans message) :</h5>
                   <div class="col-md-12">
                     <section class="example-section row" style="display:flex;">
                       <div class="col-md-6 col-sm-12">
@@ -347,6 +347,90 @@
           <span class="typed3 spanMessage" [style.top.px]="topRow3"></span>
         </div>
       </div>
+      <div class="col-md-8 form-control leftSide" *ngIf="showStep2Bis">
+        <form [formGroup]="buyInfoFormStep2Bis" (ngSubmit)="processFormStep2Bis()">
+          <div class="col-md-12">
+            <div class="row">
+              <h3>Étape 2 : Choississez votre motif</h3>
+              <div class="row form-group">
+                <h5>Motifs :</h5>
+                <div class="col-md-12">
+                  <mat-radio-group
+                    name="theme"
+                    id="theme"
+                    formControlName="theme"
+                  >
+                    <mat-radio-button
+                      class="example-radio-button-theme"
+                      value="peppaPig"
+                      ><p style="width:20px; margin-bottom:0px;">Peppa Pig</p>
+                      <img src="../../assets/img/biscuit11-100px.jpg" alt="motifBiscuit">
+                      </mat-radio-button
+                    >
+                    <mat-radio-button
+                      class="example-radio-button-theme"
+                      value="helloKitty"
+                      ><p style="width:20px; margin-bottom:0px;">Hello Kitty</p>
+                      <img src="../../assets/img/biscuit15-100px.jpg" alt="motifBiscuit">
+                      </mat-radio-button
+                    >
+                    <mat-radio-button
+                      class="example-radio-button-theme"
+                      value="licorne"
+                      ><p style="width:20px; margin-bottom:0px;">Licorne</p>
+                      <img src="../../assets/img/biscuit19-100px.jpg" alt="motifBiscuit">
+                      </mat-radio-button
+                    >
+                    <mat-radio-button
+                      class="example-radio-button-theme"
+                      value="poupee"
+                      ><p style="width:20px; margin-bottom:0px;">Poupée</p>
+                       <img src="../../assets/img/biscuit21-100px.jpg" alt="motifBiscuit">
+                      </mat-radio-button
+                    >
+                    <mat-radio-button
+                      class="example-radio-button-theme"
+                      value="bebe"
+                      ><p style="width:20px; margin-bottom:0px;">Bébé</p>
+                      <img src="../../assets/img/biscuit22-100px.jpg" alt="motifBiscuit">
+                      </mat-radio-button
+                    >
+                    <mat-radio-button
+                      class="example-radio-button-theme"
+                      value="melange"
+                      ><p style="width:20px; margin-bottom:0px;">Mix de tout</p>
+                      <img src="../../assets/img/biscuit23-100px.jpg" alt="motifBiscuit"></mat-radio-button
+                    >
+                  </mat-radio-group>
+                  <mat-error *ngIf="perfum.hasError('required')">
+                    Champ <strong>obligatoire</strong>
+                  </mat-error>
+                </div>
+              </div>
+              <div class="row" style="display:flex;">
+                <div class="col-md-4 btnDiv">
+                  <button
+                    class="submitBtn btn btn-default btn-block"
+                    (click)="returnStep1()"
+                  >
+                    Retour Étape 1
+                  </button>
+                </div>
+                <div class="col-md-7 text-center btnDiv">
+                  <button
+                    type="submit"
+                    [disabled]="!buyInfoFormStep2Bis.valid"
+                    class="submitBtn btn btn-default btn-block"
+                  >
+                    Derniere étape
+                  </button>
+                </div>
+              </div>
+            </div>
+            <flash-messages></flash-messages>
+          </div>
+        </form>
+      </div>
       <div class="col-md-6 form-control leftSide" *ngIf="showStep3">
         <form [formGroup]="buyInfoFormStep3" (ngSubmit)="processFormStep3()">
           <div class="col-md-12">
@@ -358,7 +442,7 @@
                     >Total : {{ calculatedPrice | number: '1.2-2' }} €</span
                   >
                 </div>
-                <div class="col-sm-12 col-md-4"
+                <div class="col-sm-12 col-md-4" *ngIf="withMessage"
                   style="position:relative; display: flex; justify-content: center; align-items: center; width: 300px;"
                 >
                   <img
@@ -384,6 +468,13 @@
                     >
                   </div>
                 </div>
+                <div class="col-sm-12 col-md-4" *ngIf="!withMessage">
+                  <img
+                    style="width: 80%;"
+                    [src]="pathImgTheme"
+                    alt="previewOrder"
+                  />
+                </div>
                 <div class="row recap col-md-5 col-sm-12">
                   <div class="col-md-12">
                     <ul class="recapOrder">
@@ -401,6 +492,10 @@
                       <li>
                         <strong>Décoration : </strong>
                         {{ details.decoration === false ? 'NON' : 'OUI' }}
+                      </li>
+                      <li>
+                        <strong>A colorier : </strong>
+                        {{ details.paint === false ? 'NON' : 'OUI' }}
                       </li>
                       <!--
                         <li>

@@ -56,8 +56,18 @@
   flex-direction: column;
 }
 
+.example-radio-group-theme {
+  display: inline-flex;
+  flex-direction: row;
+}
+
 .example-radio-button {
   margin: 5px;
+}
+
+.example-radio-button-theme {
+  margin-right: 80px;
+  width: 200px;
 }
 
 .example-margin {

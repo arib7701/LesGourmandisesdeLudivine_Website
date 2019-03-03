@@ -17,6 +17,7 @@ export class BuyComponent implements OnInit {
   infos: any[];
   buyInfoFormStep1: FormGroup;
   buyInfoFormStep2: FormGroup;
+  buyInfoFormStep2Bis: FormGroup;
   buyInfoFormStep3: FormGroup;
   calculatedPrice = 0.0;
 
@@ -24,6 +25,8 @@ export class BuyComponent implements OnInit {
   amount: Number = 100;
   message: any;
   details: any;
+  withMessage = false;
+  pathImgTheme: string;
   date = Date.now();
   successOrder = false;
 
@@ -40,6 +43,7 @@ export class BuyComponent implements OnInit {
 
   showStep1 = true;
   showStep2 = false;
+  showStep2Bis = false;
   showStep3 = false;
 
   constructor(
@@ -125,6 +129,10 @@ export class BuyComponent implements OnInit {
       ]),
       row2: new FormControl('', [Validators.maxLength(12)]),
       row3: new FormControl('', [Validators.maxLength(12)])
+    });
+
+    this.buyInfoFormStep2Bis = new FormGroup({
+      theme: new FormControl('', [Validators.required])
     });
 
     this.buyInfoFormStep3 = new FormGroup({
@@ -314,13 +322,54 @@ export class BuyComponent implements OnInit {
   processFormStep1() {
     this.details = this.buyInfoFormStep1.value;
     this.showStep1 = false;
-    this.showStep2 = true;
+    this.showStep3 = false;
+
+    if (!this.buyInfoFormStep1.value.paint) {
+      this.showStep2 = true;
+      this.showStep2Bis = false;
+      this.withMessage = true;
+    } else {
+      this.showStep2Bis = true;
+      this.showStep2 = false;
+      this.withMessage = false;
+    }
   }
 
   processFormStep2() {
     this.message = this.buyInfoFormStep2.value;
     this.showStep2 = false;
+    this.showStep2Bis = false;
     this.showStep3 = true;
+    this.showStep1 = false;
+  }
+
+  processFormStep2Bis() {
+    this.message = this.buyInfoFormStep2Bis.value.theme;
+    this.showStep2Bis = false;
+    this.showStep2 = false;
+    this.showStep3 = true;
+    this.showStep1 = false;
+
+    switch (this.message) {
+      case 'peppaPig':
+        this.pathImgTheme = '../../assets/img/biscuit11-100px.jpg';
+        break;
+      case 'helloKitty':
+        this.pathImgTheme = '../../assets/img/biscuit15-100px.jpg';
+        break;
+      case 'licorne':
+        this.pathImgTheme = '../../assets/img/biscuit19-100px.jpg';
+        break;
+      case 'poupee':
+        this.pathImgTheme = '../../assets/img/biscuit21-100px.jpg';
+        break;
+      case 'bebe':
+        this.pathImgTheme = '../../assets/img/biscuit22-100px.jpg';
+        break;
+      case 'melange':
+        this.pathImgTheme = '../../assets/img/biscuit23-100px.jpg';
+        break;
+    }
   }
 
   processFormStep3() {
@@ -329,22 +378,32 @@ export class BuyComponent implements OnInit {
 
   returnStep1() {
     this.showStep2 = false;
+    this.showStep2Bis = false;
     this.showStep1 = true;
+    this.showStep3 = false;
   }
 
   returnStep2() {
+    this.showStep1 = false;
     this.showStep3 = false;
-    this.showStep2 = true;
 
-    setTimeout(() => {
-      this.printMessage(1);
-    }, 2000);
-    setTimeout(() => {
-      this.printMessage(2);
-    }, 3000);
-    setTimeout(() => {
-      this.printMessage(3);
-    }, 4000);
+    if (!this.buyInfoFormStep1.value.paint) {
+      this.showStep2 = true;
+      this.showStep2Bis = false;
+
+      setTimeout(() => {
+        this.printMessage(1);
+      }, 2000);
+      setTimeout(() => {
+        this.printMessage(2);
+      }, 3000);
+      setTimeout(() => {
+        this.printMessage(3);
+      }, 4000);
+    } else {
+      this.showStep2Bis = true;
+      this.showStep2 = false;
+    }
   }
 
   get success() {
