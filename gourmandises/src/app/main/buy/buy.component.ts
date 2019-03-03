@@ -344,13 +344,18 @@ export class BuyComponent implements OnInit {
   }
 
   processFormStep2Bis() {
-    this.message = this.buyInfoFormStep2Bis.value.theme;
+    const rows = {
+      row1: this.buyInfoFormStep2Bis.value.theme,
+      row2: '',
+      row3: ''
+    };
+    this.message = rows;
     this.showStep2Bis = false;
     this.showStep2 = false;
     this.showStep3 = true;
     this.showStep1 = false;
 
-    switch (this.message) {
+    switch (this.message.row1) {
       case 'peppaPig':
         this.pathImgTheme = '../../assets/img/biscuit11-100px.jpg';
         break;

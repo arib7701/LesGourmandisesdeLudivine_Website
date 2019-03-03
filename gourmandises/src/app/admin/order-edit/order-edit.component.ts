@@ -15,6 +15,7 @@ export class OrderEditComponent implements OnInit, OnDestroy {
   id: string;
   order: Order;
   subscriptionOrder: Subscription;
+  withMessage = true;
 
   constructor(
     private orderService: OrdersService,
@@ -31,18 +32,27 @@ export class OrderEditComponent implements OnInit, OnDestroy {
       .valueChanges()
       .subscribe(order => {
         this.order = order;
+
+        if (this.order.details.paint) {
+          this.withMessage = false;
+        } else {
+          this.withMessage = true;
+        }
       });
   }
 
   ngOnInit() {}
 
   onSubmit() {
-    if (this.order.message.row1 === '') {
+    if (!this.order.details.paint && this.order.message.row1 === '') {
       this.flashService.show('Vérifier tous vos champs.', {
         cssClass: 'alert-danger',
         timeout: 2000
       });
     } else {
+      this.order.message.row2 = '';
+      this.order.message.row3 = '';
+
       this.orderService.editOrder(this.id, this.order as Order[]);
 
       this.flashService.show('Changements sauvegardés!', {

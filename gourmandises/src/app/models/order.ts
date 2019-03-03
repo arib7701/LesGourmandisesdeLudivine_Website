@@ -11,6 +11,7 @@ export class Order {
     lactose?: boolean;
     perfum?: string;
     quantity?: number;
+    paint?: boolean;
   };
   message?: {
     row1?: string;

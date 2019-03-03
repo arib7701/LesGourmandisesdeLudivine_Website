@@ -195,8 +195,8 @@
                   </div>
                 </div>
               </div>
-              <hr class="hrNice" />
-              <div class="col-md-12 col-sm-12">
+              <hr class="hrNice" *ngIf="withMessage" />
+              <div class="col-md-12 col-sm-12" *ngIf="withMessage">
                 <h3>Message Biscuits</h3>
                 <div class="row" style="display:flex;">
                   <div class="col-md-4">
@@ -219,7 +219,7 @@
                       <input
                         type="text"
                         [ngModel]="order.message?.row2"
-                        (ngModelChange)="order.message.row2 = $event" 
+                        (ngModelChange)="order.message.row2 = $event"
                         class="form-control"
                         name="row2"
                         maxlength="12"
@@ -321,6 +321,24 @@
                         </select>
                       </div>
                     </div>
+                    <div class="col-md-12">
+                      <div
+                        class="form-group"
+                        style="display: flex; flex-wrap: wrap;"
+                      >
+                        <label for="paint">A colorier</label>
+                        <input
+                          type="text"
+                          [ngModel]="
+                            order.details?.paint === true ? 'AVEC' : 'SANS'
+                          "
+                          (ngModelChange)="(order.details?.paint)"
+                          class="form-control"
+                          name="paint"
+                          disabled
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-4">
                     <div class="col-md-12">
@@ -332,13 +350,34 @@
                         <input
                           type="text"
                           [ngModel]="
-                            order.charge?.decoration === true ? 'AVEC' : 'SANS'
+                            order.details?.decoration === true ? 'AVEC' : 'SANS'
                           "
                           (ngModelChange)="(order.details?.decoration)"
                           class="form-control"
                           name="decoration"
                           disabled
                         />
+                      </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="!withMessage">
+                      <div
+                        class="form-group"
+                        style="display: flex; flex-wrap: wrap;"
+                      >
+                        <label for="row1">Theme *</label>
+                        <select
+                          class="form-control"
+                          [ngModel]="order.message.row1"
+                          (ngModelChange)="order.message.row1 = $event"
+                          name="row1"
+                        >
+                          <option value="peppaPig"> Peppa Pig </option>
+                          <option value="helloKitty"> Hello Kitty </option>
+                          <option value="licorne"> Licorne </option>
+                          <option value="poupee"> Poupée </option>
+                          <option value="bebe"> Bébé </option>
+                          <option value="melange"> Mix de tout </option>
+                        </select>
                       </div>
                     </div>
                     <!--
