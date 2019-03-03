@@ -111,6 +111,7 @@ exports.stripeCharge = functions.database
               const event = payment.details.event;
               const perfum = payment.details.perfum;
               const decoration = payment.details.decoration;
+              const paint = payment.details.paint;
               // const form = payment.details.form;
               // const gluten = payment.details.gluten;
               // const lactose = payment.details.lactose;
@@ -140,6 +141,7 @@ exports.stripeCharge = functions.database
                      <strong>Occasion</strong>: ${event}<br>
                      <strong>Saveur</strong>: ${perfum}<br>
                      <strong>Décoration</strong>: ${decoration}<br>
+                     <strong>A colorier</strong>: ${paint}<br>
                   </p>
                 </div>
                 <div>

@@ -111,7 +111,8 @@ export class BuyComponent implements OnInit {
       quantity: new FormControl('', [Validators.required]),
       event: new FormControl('', [Validators.required]),
       perfum: new FormControl('nature', [Validators.required]),
-      decoration: new FormControl(false)
+      decoration: new FormControl(false),
+      paint: new FormControl(false)
       // form: new FormControl('rectangulaire', [Validators.required]),
       // gluten: new FormControl(false),
       // lactose: new FormControl(false)
@@ -163,6 +164,10 @@ export class BuyComponent implements OnInit {
 
     if (this.buyInfoFormStep1.value.decoration) {
       this.calculatedPrice += 0.2 * numberBiscuits;
+    }
+
+    if (this.buyInfoFormStep1.value.paint) {
+      this.calculatedPrice += 0.5 * numberBiscuits;
     }
 
     /*
@@ -356,6 +361,9 @@ export class BuyComponent implements OnInit {
   }
   get decoration() {
     return this.buyInfoFormStep1.get('decoration');
+  }
+  get paint() {
+    return this.buyInfoFormStep1.get('paint');
   }
   /*
   get form() {
