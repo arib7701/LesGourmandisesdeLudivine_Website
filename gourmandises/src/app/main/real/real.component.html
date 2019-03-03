@@ -8,11 +8,11 @@
     <div class="newsSection">
       <div class="col-md-6 col-sm-12 newsItem" *ngFor="let real of reals">
         <div class="row" style="display:flex;">
-          <div class="col-md-11 news">
+          <div class="col-md-8 news">
             <h3>{{ real.title }}</h3>
             <img src="{{ real.img.url120 }} " alt="nouvelleCreation " />
           </div>
-          <div class="desc-news col-md-11">
+          <div class="desc-news col-md-8">
             <p>{{ real.description | slice: 0:150 }}...</p>
             <a [routerLink]="['/real/', real.key]">Voir Plus</a>
           </div>
