@@ -32,9 +32,11 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
   pickedDate: Date;
 
   imgFile;
+  videoFile;
   downloadURL: Observable<string>;
   subscriptionStorage: Subscription;
   subscriptionStorage2: Subscription;
+  subscriptionStorageVideo: Subscription;
   subscriptionURL: Subscription;
 
   constructor(
@@ -49,6 +51,11 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
 
   uploadImg(event) {
     this.imgFile = event.target.files[0];
+  }
+
+  uploadVideo(event) {
+    this.videoFile = event.target.files[0];
+    console.log(this.videoFile);
   }
 
   onSubmitActu() {
@@ -79,14 +86,57 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
               const key = this.actuService.createNewActu(this
                 .newActu as Actu[]);
 
+              // Store Video Url to DB
+              if (this.videoFile !== undefined) {
+                this.storeVideoToDB(key);
+              } else {
+                this.load = false;
+                this.change.emit('fromactu');
+              }
+
               // Store Resized Image Url to DB Gallery
-              this.storeResizedImgToDB(id, key);
+              // this.storeResizedImgToDB(id, key);
+            },
+            error => {
+              console.log('Error saving actu image, please try again');
+            }
+          );
+        })
+      )
+      .subscribe();
+  }
+
+  storeVideoToDB(idActu: string) {
+    console.log('into video');
+
+    const id: string = Math.random()
+      .toString(36)
+      .substring(2);
+
+    const filePath = id;
+    const fileRef = this.storageService.ref(filePath);
+    const task = this.storageService.upload(filePath, this.videoFile);
+
+    console.log(task);
+
+    let downloadedURL: Observable<string>;
+
+    this.subscriptionStorageVideo = task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          downloadedURL = fileRef.getDownloadURL();
+          downloadedURL.subscribe(
+            url => {
+              console.log('url ', url);
+              this.newActu.video = url;
+              this.actuService.editActu(idActu, this.newActu as Actu[]);
 
               this.load = false;
               this.change.emit('fromactu');
             },
             error => {
-              console.log('Error saving actu image, please try again');
+              console.log('Error uploading video');
             }
           );
         })
@@ -178,6 +228,9 @@ export class ActuCreateComponent implements OnInit, OnDestroy {
     }
     if (this.subscriptionStorage2 !== undefined) {
       this.subscriptionStorage2.unsubscribe();
+    }
+    if (this.subscriptionStorageVideo !== undefined) {
+      this.subscriptionStorageVideo.unsubscribe();
     }
     if (this.subscriptionURL !== undefined) {
       this.subscriptionURL.unsubscribe();
