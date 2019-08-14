@@ -19,6 +19,6 @@
       }
     },
     ".read": true,
-    ".write": "auth != null",
+    ".write": "auth != null"
   }
 }
