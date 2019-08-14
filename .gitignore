@@ -12,9 +12,9 @@
 **/src/environments/environment.prod.ts
 **/src/environments/environment.ts
 **/functions/environment.js
-**/src/database.rules.json
-**/src/storage.rules
-**/src/firebase.json
+**/database.rules.json
+**/storage.rules
+**/firebase.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
