@@ -11,7 +11,7 @@
 .DS_Store
 **/src/environments/environment.prod.ts
 **/src/environments/environment.ts
-**/functions/environment.js
+**/functions/environment.ts
 **/database.rules.json
 **/storage.rules
 **/firebase.json

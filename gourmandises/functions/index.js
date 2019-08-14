@@ -5,11 +5,11 @@ environment = 'environment.js';
 const nodemailer = require('nodemailer');
 
 //Parameters
-const user_name = environment.nodeMailerConfig.user_name;
-const refresh_token = environment.nodeMailerConfig.refresh_token;
-const access_token = environment.nodeMailerConfig.access_token;
-const client_id = environment.nodeMailerConfig.client_id;
-const client_secret = environment.nodeMailerConfig.client_secret;
+const user_name = environment.user_name;
+const refresh_token = environment.refresh_token;
+const access_token = environment.access_token;
+const client_id = environment.client_id;
+const client_secret = environment.client_secret;
 
 var auth = {
   type: 'oauth2',
