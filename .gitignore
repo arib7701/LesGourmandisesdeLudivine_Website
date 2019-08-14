@@ -11,6 +11,7 @@
 .DS_Store
 **/src/environments/environment.prod.ts
 **/src/environments/environment.ts
+**/functions/environment.js
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

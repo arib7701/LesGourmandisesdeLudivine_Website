@@ -1,16 +1,15 @@
 const functions = require('firebase-functions');
+environment = 'environment.js';
 
 // ------------------ NODEMAILER FUNCTION ----------------------------
 const nodemailer = require('nodemailer');
 
 //Parameters
-const user_name = 'amandineribot01@gmail.com';
-const refresh_token = '1/L3s38kqZDTCCjQ_DGNQz07mZ1Vh5m5H62JaVkVFsL0o';
-const access_token =
-  'ya29.GlsVBtp5q0MFawa6XkylV6LCnZMlyUwkU0o9VdYTBxVCz2ktGzTUJKrCXmqwK_YP0gCdWQInLJ-14Ktojq01Av9j9HjVrZB_F1eCk-xRYWjlrm0AsUfSUc-FTzXI';
-const client_id =
-  '403711033846-h8ufq2csruunvamf55e04mq8vhorghq9.apps.googleusercontent.com';
-const client_secret = 'tg3B1xPtXgBqaNBnZ6BpDE0I';
+const user_name = environment.nodeMailerConfig.user_name;
+const refresh_token = environment.nodeMailerConfig.refresh_token;
+const access_token = environment.nodeMailerConfig.access_token;
+const client_id = environment.nodeMailerConfig.client_id;
+const client_secret = environment.nodeMailerConfig.client_secret;
 
 var auth = {
   type: 'oauth2',
@@ -36,8 +35,6 @@ exports.sendContactMessage = functions.database
     }
 
     const val = change.after.val();
-
-    // to: 'lesgourmandisesdeludivine@yahoo.com',
 
     // Use Nodemailer options and transporter
     const mailOptions = {
