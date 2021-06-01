@@ -32,7 +32,7 @@
     "firebase": "^5.5.7",
     "firebase-functions": "^3.2.0",
     "intersection-observer": "^0.5.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lightbox2": "^2.10.0",
     "moment": "^2.24.0",
     "ng-in-viewport": "^6.0.3",
